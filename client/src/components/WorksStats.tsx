@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { JapanMap } from "./JapanMap";
 
 interface StatItem {
   label: string;
@@ -36,71 +37,60 @@ const notableWorks = [
   },
 ];
 
-function CountUpAnimation({ target, suffix, isVisible }: { target: number; suffix?: string; isVisible: boolean }) {
-  const [count, setCount] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-  useEffect(() => {
-    if (!isVisible || hasAnimated) return;
-
-    setHasAnimated(true);
-    const duration = 1500;
-    const steps = 60;
-    const increment = target / steps;
-    let current = 0;
-
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
-    }, duration / steps);
-
-    return () => clearInterval(timer);
-  }, [isVisible, target, hasAnimated]);
-
-  return (
-    <span
-      className={`font-display text-5xl md:text-6xl font-bold transition-all duration-700 ${
-        isVisible ? "opacity-100 scale-100" : "opacity-0 scale-50"
-      }`}
-      style={{ color: "oklch(0.35 0.08 160)" }}
-    >
-      {count}{suffix}
-    </span>
-  );
-}
-
 export default function WorksStats() {
   const [isVisible, setIsVisible] = useState(false);
+  const [counts, setCounts] = useState([0, 0, 0, 0]);
   const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const currentRef = statsRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !isVisible) {
           setIsVisible(true);
+          
+          // アニメーションで数値をカウントアップ
+          const targetValues = stats.map(s => s.value);
+          const duration = 1500;
+          const steps = 60;
+          const stepDuration = duration / steps;
+          
+          let currentStep = 0;
+          const interval = setInterval(() => {
+            currentStep++;
+            const progress = currentStep / steps;
+            
+            setCounts(targetValues.map(target => Math.floor(target * progress)));
+            
+            if (currentStep >= steps) {
+              clearInterval(interval);
+              setCounts(targetValues);
+            }
+          }, stepDuration);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 }
     );
 
-    if (statsRef.current) {
-      observer.observe(statsRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (statsRef.current) {
-        observer.unobserve(statsRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
-  }, []);
+  }, [isVisible]);
 
   return (
     <div className="space-y-12">
+      {/* Japan Map */}
+      <div>
+        <h4 className="font-display text-2xl md:text-3xl font-bold mb-6">全国津々浦々の大学に貢献</h4>
+        <JapanMap />
+      </div>
+
       {/* Period indicator */}
       <p className="text-base md:text-lg text-muted-foreground">
         ここ2年間（2024-2025年）の主な活動実績
@@ -116,7 +106,14 @@ export default function WorksStats() {
               transitionDelay: `${index * 100}ms`,
             }}
           >
-            <CountUpAnimation target={stat.value} suffix={stat.suffix} isVisible={isVisible} />
+            <span
+              className={`font-display text-5xl md:text-6xl font-bold transition-all duration-700 ${
+                isVisible ? "opacity-100 scale-100" : "opacity-0 scale-50"
+              }`}
+              style={{ color: "oklch(0.35 0.08 160)" }}
+            >
+              {counts[index]}{stat.suffix}
+            </span>
             <p className="text-base md:text-lg text-foreground">{stat.label}</p>
           </div>
         ))}
