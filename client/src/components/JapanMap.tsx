@@ -1,130 +1,138 @@
-import { useState } from "react";
-import { universities } from "@/data/universities";
+import { useEffect, useState, useRef } from "react";
+import { universitiesByPrefecture, prefecturesWithUniversities, type University } from "@/data/universities";
 
 export function JapanMap() {
-  const [hoveredUniversity, setHoveredUniversity] = useState<string | null>(null);
+  const [svgContent, setSvgContent] = useState<string>("");
+  const [hoveredPrefecture, setHoveredPrefecture] = useState<string | null>(null);
+  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // 日本の緯度経度範囲: 北緯24-46度、東経123-146度
-  const minLat = 24;
-  const maxLat = 46;
-  const minLng = 123;
-  const maxLng = 146;
+  useEffect(() => {
+    // SVGファイルを読み込む
+    fetch("/japan-map.svg")
+      .then((res) => res.text())
+      .then((svg) => {
+        setSvgContent(svg);
+      });
+  }, []);
 
-  // 緯度経度をSVG座標に変換
-  const latLngToXY = (lat: number, lng: number) => {
-    const x = ((lng - minLng) / (maxLng - minLng)) * 700 + 50;
-    const y = ((maxLat - lat) / (maxLat - minLat)) * 500 + 50;
-    return { x, y };
-  };
+  useEffect(() => {
+    if (!svgContent || !containerRef.current) return;
+
+    const container = containerRef.current;
+    const svgElement = container.querySelector("svg");
+    if (!svgElement) return;
+
+    // すべての都道府県要素を取得
+    const prefectures = svgElement.querySelectorAll(".prefecture");
+
+    prefectures.forEach((pref) => {
+      const prefCode = pref.getAttribute("data-code");
+      if (!prefCode) return;
+
+      // 実績のある都道府県かチェック
+      const hasUniversity = prefecturesWithUniversities.includes(prefCode);
+
+      // 基本スタイルを設定
+      (pref as SVGElement).style.transition = "all 0.3s ease";
+      
+      if (hasUniversity) {
+        (pref as SVGElement).style.fill = "oklch(0.35 0.08 160)";
+        (pref as SVGElement).style.fillOpacity = "0.7";
+        (pref as SVGElement).style.stroke = "oklch(0.25 0.08 160)";
+        (pref as SVGElement).style.strokeWidth = "1.5";
+        (pref as SVGElement).style.cursor = "pointer";
+      } else {
+        (pref as SVGElement).style.fill = "#f0f0f0";
+        (pref as SVGElement).style.fillOpacity = "1";
+        (pref as SVGElement).style.stroke = "#999";
+        (pref as SVGElement).style.strokeWidth = "0.8";
+        (pref as SVGElement).style.cursor = "default";
+      }
+
+      // マウスオーバーイベント
+      pref.addEventListener("mouseenter", (e: Event) => {
+        if (!hasUniversity) return;
+
+        const mouseEvent = e as MouseEvent;
+        setHoveredPrefecture(prefCode);
+        setTooltipPosition({
+          x: mouseEvent.clientX,
+          y: mouseEvent.clientY,
+        });
+
+        (pref as SVGElement).style.fillOpacity = "1";
+        (pref as SVGElement).style.strokeWidth = "2.5";
+      });
+
+      pref.addEventListener("mousemove", (e: Event) => {
+        if (!hasUniversity) return;
+
+        const mouseEvent = e as MouseEvent;
+        setTooltipPosition({
+          x: mouseEvent.clientX,
+          y: mouseEvent.clientY,
+        });
+      });
+
+      pref.addEventListener("mouseleave", () => {
+        if (!hasUniversity) return;
+
+        setHoveredPrefecture(null);
+        (pref as SVGElement).style.fillOpacity = "0.7";
+        (pref as SVGElement).style.strokeWidth = "1.5";
+      });
+    });
+
+    // 境界線のスタイルを設定（より見やすく）
+    const boundaryLines = svgElement.querySelectorAll(".boundary-line");
+    boundaryLines.forEach((line) => {
+      (line as SVGElement).style.stroke = "#666";
+      (line as SVGElement).style.strokeWidth = "1";
+    });
+  }, [svgContent]);
+
+  const hoveredUniversities = hoveredPrefecture
+    ? universitiesByPrefecture[hoveredPrefecture] || []
+    : [];
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto">
-      {/* SVG Map Container */}
-      <div className="relative">
-        <svg 
-          viewBox="0 0 800 600" 
-          className="w-full h-auto"
-          style={{ maxHeight: "500px" }}
-        >
-          {/* Background Japan Map */}
-          <image 
-            href="/japan-map.jpg" 
-            width="800" 
-            height="600"
-            opacity="0.15"
-          />
-          
-          {/* University markers */}
-          {universities.map((uni, index) => {
-            const { x, y } = latLngToXY(uni.lat, uni.lng);
-            const isHovered = hoveredUniversity === uni.name;
-            
-            return (
-              <g 
-                key={index}
-                onMouseEnter={() => setHoveredUniversity(uni.name)}
-                onMouseLeave={() => setHoveredUniversity(null)}
-                style={{ cursor: "pointer" }}
-              >
-                {/* Pulse animation */}
-                <circle
-                  cx={x}
-                  cy={y}
-                  r="8"
-                  fill="oklch(0.35 0.08 160)"
-                  opacity="0.3"
-                >
-                  <animate
-                    attributeName="r"
-                    from="8"
-                    to="16"
-                    dur="2s"
-                    begin={`${index * 0.1}s`}
-                    repeatCount="indefinite"
-                  />
-                  <animate
-                    attributeName="opacity"
-                    from="0.3"
-                    to="0"
-                    dur="2s"
-                    begin={`${index * 0.1}s`}
-                    repeatCount="indefinite"
-                  />
-                </circle>
-                
-                {/* Main marker */}
-                <circle
-                  cx={x}
-                  cy={y}
-                  r={isHovered ? "8" : "6"}
-                  fill={isHovered ? "oklch(0.25 0.08 160)" : "oklch(0.35 0.08 160)"}
-                  stroke="white"
-                  strokeWidth="2"
-                  opacity="0.9"
-                />
-                
-                {/* Tooltip */}
-                {isHovered && (
-                  <g>
-                    <rect
-                      x={x + 15}
-                      y={y - 30}
-                      width="200"
-                      height="50"
-                      fill="oklch(0.2 0 0)"
-                      rx="4"
-                      opacity="0.95"
-                    />
-                    <text
-                      x={x + 20}
-                      y={y - 12}
-                      fill="white"
-                      fontSize="14"
-                      fontWeight="600"
-                    >
-                      {uni.name}
-                    </text>
-                    <text
-                      x={x + 20}
-                      y={y - 0}
-                      fill="oklch(0.7 0 0)"
-                      fontSize="11"
-                    >
-                      {uni.event}
-                    </text>
-                  </g>
-                )}
-              </g>
-            );
-          })}
-        </svg>
-      </div>
+    <div className="relative">
+      <div
+        ref={containerRef}
+        className="w-full max-w-2xl mx-auto"
+        dangerouslySetInnerHTML={{ __html: svgContent }}
+      />
       
-      {/* Legend */}
-      <div className="mt-4 flex items-center justify-center gap-2 text-sm text-muted-foreground">
-        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "oklch(0.35 0.08 160)" }}></div>
-        <span>講演・研修実績のある大学（{universities.length}校）</span>
-      </div>
+      <p className="text-center text-sm text-muted-foreground mt-4">
+        ● 講演・研修実績のある大学（21校）
+      </p>
+
+      {/* ツールチップ */}
+      {hoveredPrefecture && hoveredUniversities.length > 0 && (
+        <div
+          className="fixed z-50 bg-background border-2 rounded-lg shadow-xl p-4 max-w-sm pointer-events-none"
+          style={{
+            left: `${tooltipPosition.x + 15}px`,
+            top: `${tooltipPosition.y + 15}px`,
+            borderColor: "oklch(0.35 0.08 160)",
+          }}
+        >
+          <h4 className="font-semibold mb-2 text-base" style={{ color: "oklch(0.35 0.08 160)" }}>
+            {hoveredUniversities[0].prefecture}
+          </h4>
+          <ul className="space-y-2">
+            {hoveredUniversities.map((uni, index) => (
+              <li key={index} className="text-sm">
+                <p className="font-medium">{uni.name}</p>
+                <p className="text-xs text-muted-foreground">
+                  {uni.year}年 - {uni.event}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
