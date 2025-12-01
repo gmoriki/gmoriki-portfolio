@@ -72,44 +72,59 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section - Editorial Style */}
-      <section className="container py-16 md:py-24 lg:py-32">
-        <div className="editorial-grid">
-          {/* Main Title Area */}
-          <div className="col-span-12 lg:col-span-8">
-            <div className="space-y-8">
-              <div>
-                <h1 className="text-[clamp(4rem,12vw,10rem)] leading-[0.9] tracking-tighter font-display font-black">
-                  gmoriki
-                </h1>
-                <p className="text-[clamp(1.5rem,4vw,3rem)] leading-tight font-display font-semibold mt-4 text-primary">
-                  AI人材育成
-                </p>
-              </div>
-              <div className="border-t-2 border-foreground/20 pt-6 max-w-2xl">
-                <p className="text-xl md:text-2xl font-body leading-relaxed">
-                  AIとヒトをつなぎ、誰もが技術の恩恵を受けられる社会を創る
-                </p>
+      {/* Hero Section - With Background Image */}
+      <section className="relative overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url(/hero-bg.jpeg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40" />
+        
+        {/* Content */}
+        <div className="container relative z-10 py-24 md:py-32 lg:py-40">
+          <div className="editorial-grid">
+            {/* Main Title Area */}
+            <div className="col-span-12 lg:col-span-8">
+              <div className="space-y-8">
+                <div>
+                  <h1 className="text-[clamp(4rem,12vw,10rem)] leading-[0.9] tracking-tighter font-display font-black text-white drop-shadow-2xl">
+                    gmoriki
+                  </h1>
+                  <p className="text-[clamp(1.5rem,4vw,3rem)] leading-tight font-display font-semibold mt-4 text-white drop-shadow-lg">
+                    AI人材育成
+                  </p>
+                </div>
+                <div className="border-t-2 border-white/40 pt-6 max-w-2xl">
+                  <p className="text-xl md:text-2xl font-body leading-relaxed text-white drop-shadow-lg">
+                    AIとヒトをつなぎ、誰もが技術の恩恵を受けられる社会を創る
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Side Info */}
-          <div className="col-span-12 lg:col-span-4 lg:pt-32">
-            <div className="space-y-6 border-l-2 border-foreground/20 pl-6">
-              <div>
-                <p className="text-sm uppercase tracking-wider text-muted-foreground mb-2">Name</p>
-                <p className="text-lg font-body">森木銀河 / Ginga Moriki</p>
-              </div>
-              <div>
-                <p className="text-sm uppercase tracking-wider text-muted-foreground mb-2">Expertise</p>
-                <p className="text-base font-body leading-relaxed">
-                  生成AI活用推進 / AI人材育成 / データ分析・システム構築
-                </p>
-              </div>
-              <div>
-                <p className="text-sm uppercase tracking-wider text-muted-foreground mb-2">Education</p>
-                <p className="text-base font-body">教育学修士</p>
+            {/* Side Info */}
+            <div className="col-span-12 lg:col-span-4 lg:pt-32">
+              <div className="space-y-6 border-l-2 border-white/40 pl-6">
+                <div>
+                  <p className="text-sm uppercase tracking-wider text-white/70 mb-2">Name</p>
+                  <p className="text-lg font-body text-white">森木銀河 / Ginga Moriki</p>
+                </div>
+                <div>
+                  <p className="text-sm uppercase tracking-wider text-white/70 mb-2">Expertise</p>
+                  <p className="text-base font-body leading-relaxed text-white">
+                    生成AI活用推進 / AI人材育成 / データ分析・システム構築
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm uppercase tracking-wider text-white/70 mb-2">Education</p>
+                  <p className="text-base font-body text-white">教育学修士</p>
+                </div>
               </div>
             </div>
           </div>
