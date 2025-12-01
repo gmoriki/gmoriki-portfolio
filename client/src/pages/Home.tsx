@@ -123,9 +123,9 @@ export default function Home() {
         <div className="flex flex-wrap gap-4">
           <Dialog>
             <DialogTrigger asChild>
-              <Button variant="outline" size="lg" className="text-lg">
+              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent hover:bg-accent hover:text-accent-foreground h-11 px-8 text-lg">
                 ABOUT
-              </Button>
+              </button>
             </DialogTrigger>
             <DialogContent className="max-w-2xl">
               <DialogHeader>
@@ -144,9 +144,9 @@ export default function Home() {
 
           <Dialog>
             <DialogTrigger asChild>
-              <Button variant="outline" size="lg" className="text-lg">
+              <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent hover:bg-accent hover:text-accent-foreground h-11 px-8 text-lg">
                 MISSION · VISION · VALUES
-              </Button>
+              </button>
             </DialogTrigger>
             <DialogContent className="max-w-4xl">
               <DialogHeader>
