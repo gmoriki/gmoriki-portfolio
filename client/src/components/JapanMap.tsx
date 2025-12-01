@@ -1,157 +1,130 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { universities } from "@/data/universities";
 
 export function JapanMap() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [hoveredUniversity, setHoveredUniversity] = useState<string | null>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+  // 日本の緯度経度範囲: 北緯24-46度、東経123-146度
+  const minLat = 24;
+  const maxLat = 46;
+  const minLng = 123;
+  const maxLng = 146;
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    // キャンバスサイズを設定
-    const dpr = window.devicePixelRatio || 1;
-    const rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    ctx.scale(dpr, dpr);
-
-    // 日本地図の描画範囲（緯度経度）
-    const minLat = 24; // 沖縄
-    const maxLat = 46; // 北海道
-    const minLng = 123; // 西端
-    const maxLng = 146; // 東端
-
-    // 緯度経度をキャンバス座標に変換
-    const latLngToXY = (lat: number, lng: number) => {
-      const x = ((lng - minLng) / (maxLng - minLng)) * rect.width;
-      const y = ((maxLat - lat) / (maxLat - minLat)) * rect.height;
-      return { x, y };
-    };
-
-    // 背景を描画
-    ctx.fillStyle = "#f9fafb";
-    ctx.fillRect(0, 0, rect.width, rect.height);
-
-    // 日本の大まかな輪郭を描画（簡略化）
-    ctx.strokeStyle = "#d1d5db";
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    
-    // 簡略化された日本の輪郭（主要な島々）
-    const japanOutline = [
-      // 本州の大まかな輪郭
-      [35.5, 140], [36, 140.5], [37, 138.5], [37.5, 137], 
-      [36.5, 136], [35.5, 135.5], [34.5, 135], [34, 136], 
-      [33.5, 133], [34, 131], [35, 133], [35.5, 135],
-      [36, 136.5], [37, 138], [38, 139.5], [39, 140.5],
-      [40, 140.8], [41, 140.5], [40.5, 139.5], [39.5, 139],
-      [38.5, 139.5], [37.5, 140], [36.5, 140.5], [35.5, 140]
-    ];
-
-    japanOutline.forEach(([lat, lng], i) => {
-      const { x, y } = latLngToXY(lat, lng);
-      if (i === 0) {
-        ctx.moveTo(x, y);
-      } else {
-        ctx.lineTo(x, y);
-      }
-    });
-    ctx.stroke();
-
-    // 大学の位置にマーカーを描画
-    universities.forEach((uni) => {
-      const { x, y } = latLngToXY(uni.lat, uni.lng);
-      
-      // マーカーの円
-      ctx.beginPath();
-      ctx.arc(x, y, 6, 0, Math.PI * 2);
-      ctx.fillStyle = hoveredUniversity === uni.name ? "#1e40af" : "#3b82f6";
-      ctx.fill();
-      
-      // マーカーの縁
-      ctx.strokeStyle = "#ffffff";
-      ctx.lineWidth = 2;
-      ctx.stroke();
-      
-      // パルス効果（アニメーション用）
-      ctx.beginPath();
-      ctx.arc(x, y, 10, 0, Math.PI * 2);
-      ctx.strokeStyle = "rgba(59, 130, 246, 0.3)";
-      ctx.lineWidth = 1;
-      ctx.stroke();
-    });
-
-  }, [hoveredUniversity]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    setMousePos({ x: e.clientX, y: e.clientY });
-
-    // マウス位置に近い大学を検出
-    const minLat = 24;
-    const maxLat = 46;
-    const minLng = 123;
-    const maxLng = 146;
-
-    const latLngToXY = (lat: number, lng: number) => {
-      const canvasX = ((lng - minLng) / (maxLng - minLng)) * rect.width;
-      const canvasY = ((maxLat - lat) / (maxLat - minLat)) * rect.height;
-      return { x: canvasX, y: canvasY };
-    };
-
-    let closestUni: string | null = null;
-    let minDistance = Infinity;
-
-    universities.forEach((uni) => {
-      const { x: uniX, y: uniY } = latLngToXY(uni.lat, uni.lng);
-      const distance = Math.sqrt((x - uniX) ** 2 + (y - uniY) ** 2);
-      
-      if (distance < 15 && distance < minDistance) {
-        closestUni = uni.name;
-        minDistance = distance;
-      }
-    });
-
-    setHoveredUniversity(closestUni);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredUniversity(null);
+  // 緯度経度をSVG座標に変換
+  const latLngToXY = (lat: number, lng: number) => {
+    const x = ((lng - minLng) / (maxLng - minLng)) * 700 + 50;
+    const y = ((maxLat - lat) / (maxLat - minLat)) * 500 + 50;
+    return { x, y };
   };
 
   return (
-    <div className="relative">
-      <canvas
-        ref={canvasRef}
-        className="w-full h-[400px] cursor-pointer"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-      />
-      {hoveredUniversity && (
-        <div
-          className="fixed z-50 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm shadow-lg pointer-events-none"
-          style={{
-            left: mousePos.x + 10,
-            top: mousePos.y + 10,
-          }}
+    <div className="relative w-full max-w-4xl mx-auto">
+      {/* SVG Map Container */}
+      <div className="relative">
+        <svg 
+          viewBox="0 0 800 600" 
+          className="w-full h-auto"
+          style={{ maxHeight: "500px" }}
         >
-          <div className="font-semibold">{hoveredUniversity}</div>
-          <div className="text-xs text-gray-300">
-            {universities.find(u => u.name === hoveredUniversity)?.event}
-          </div>
-        </div>
-      )}
+          {/* Background Japan Map */}
+          <image 
+            href="/japan-map.jpg" 
+            width="800" 
+            height="600"
+            opacity="0.15"
+          />
+          
+          {/* University markers */}
+          {universities.map((uni, index) => {
+            const { x, y } = latLngToXY(uni.lat, uni.lng);
+            const isHovered = hoveredUniversity === uni.name;
+            
+            return (
+              <g 
+                key={index}
+                onMouseEnter={() => setHoveredUniversity(uni.name)}
+                onMouseLeave={() => setHoveredUniversity(null)}
+                style={{ cursor: "pointer" }}
+              >
+                {/* Pulse animation */}
+                <circle
+                  cx={x}
+                  cy={y}
+                  r="8"
+                  fill="oklch(0.35 0.08 160)"
+                  opacity="0.3"
+                >
+                  <animate
+                    attributeName="r"
+                    from="8"
+                    to="16"
+                    dur="2s"
+                    begin={`${index * 0.1}s`}
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="opacity"
+                    from="0.3"
+                    to="0"
+                    dur="2s"
+                    begin={`${index * 0.1}s`}
+                    repeatCount="indefinite"
+                  />
+                </circle>
+                
+                {/* Main marker */}
+                <circle
+                  cx={x}
+                  cy={y}
+                  r={isHovered ? "8" : "6"}
+                  fill={isHovered ? "oklch(0.25 0.08 160)" : "oklch(0.35 0.08 160)"}
+                  stroke="white"
+                  strokeWidth="2"
+                  opacity="0.9"
+                />
+                
+                {/* Tooltip */}
+                {isHovered && (
+                  <g>
+                    <rect
+                      x={x + 15}
+                      y={y - 30}
+                      width="200"
+                      height="50"
+                      fill="oklch(0.2 0 0)"
+                      rx="4"
+                      opacity="0.95"
+                    />
+                    <text
+                      x={x + 20}
+                      y={y - 12}
+                      fill="white"
+                      fontSize="14"
+                      fontWeight="600"
+                    >
+                      {uni.name}
+                    </text>
+                    <text
+                      x={x + 20}
+                      y={y - 0}
+                      fill="oklch(0.7 0 0)"
+                      fontSize="11"
+                    >
+                      {uni.event}
+                    </text>
+                  </g>
+                )}
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+      
+      {/* Legend */}
+      <div className="mt-4 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "oklch(0.35 0.08 160)" }}></div>
+        <span>講演・研修実績のある大学（{universities.length}校）</span>
+      </div>
     </div>
   );
 }

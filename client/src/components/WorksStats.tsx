@@ -41,47 +41,51 @@ export default function WorksStats() {
   const [isVisible, setIsVisible] = useState(false);
   const [counts, setCounts] = useState([0, 0, 0, 0]);
   const statsRef = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
     const currentRef = statsRef.current;
+    if (!currentRef) return;
+
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
-          setIsVisible(true);
-          
-          // アニメーションで数値をカウントアップ
-          const targetValues = stats.map(s => s.value);
-          const duration = 1500;
-          const steps = 60;
-          const stepDuration = duration / steps;
-          
-          let currentStep = 0;
-          const interval = setInterval(() => {
-            currentStep++;
-            const progress = currentStep / steps;
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated.current) {
+            hasAnimated.current = true;
+            setIsVisible(true);
             
-            setCounts(targetValues.map(target => Math.floor(target * progress)));
+            // アニメーションで数値をカウントアップ
+            const targetValues = stats.map(s => s.value);
+            const duration = 1500;
+            const steps = 60;
+            const stepDuration = duration / steps;
             
-            if (currentStep >= steps) {
-              clearInterval(interval);
-              setCounts(targetValues);
-            }
-          }, stepDuration);
-        }
+            let currentStep = 0;
+            
+            const interval = setInterval(() => {
+              currentStep++;
+              const progress = currentStep / steps;
+              
+              const newCounts = targetValues.map(target => Math.floor(target * progress));
+              setCounts(newCounts);
+              
+              if (currentStep >= steps) {
+                clearInterval(interval);
+                setCounts(targetValues);
+              }
+            }, stepDuration);
+          }
+        });
       },
       { threshold: 0.1 }
     );
 
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
+    observer.observe(currentRef);
 
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
+      observer.disconnect();
     };
-  }, [isVisible]);
+  }, []);
 
   return (
     <div className="space-y-12">
