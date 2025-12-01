@@ -2,47 +2,51 @@ export interface University {
   name: string;
   prefecture: string;
   prefectureCode: string;
-  lat: number;
-  lng: number;
-  year: number;
-  event: string;
+  date: string;
+  title: string;
 }
 
 export const universities: University[] = [
-  // 北海道・東北
-  { name: "秋田県内大学", prefecture: "秋田県", prefectureCode: "05", lat: 39.7186, lng: 140.1024, year: 2025, event: "大学コンソーシアムあきた" },
-  { name: "新潟大学", prefecture: "新潟県", prefectureCode: "15", lat: 37.9161, lng: 139.0364, year: 2025, event: "SD研修" },
+  // 2025年
+  { name: "愛知教育大学", prefecture: "愛知県", prefectureCode: "23", date: "2025年9月24日", title: "大学授業での生成AI活用方法" },
+  { name: "新潟大学", prefecture: "新潟県", prefectureCode: "15", date: "2025年9月19日", title: "AIと一緒に働こう！今日から始める生成AI入門セミナー in 新潟大学" },
+  { name: "岐阜聖徳学園大学", prefecture: "岐阜県", prefectureCode: "21", date: "2025年9月10日", title: "生成AI入門業務活用編" },
+  { name: "法政大学", prefecture: "東京都", prefectureCode: "13", date: "2025年9月5日", title: "教職員における生成AI入門" },
+  { name: "岡山大学", prefecture: "岡山県", prefectureCode: "33", date: "2025年8月26日", title: "大学教職員のためのAIリテラシー基礎研修—今すぐ始めるAI活用で変わる働き方—" },
+  { name: "早稲田大学アカデミックソリューション", prefecture: "東京都", prefectureCode: "13", date: "2025年7月23日", title: "大学職員のための生成AI活用講座—\"AIをともに育む当事者\"への第一歩—" },
+  { name: "早稲田大学アカデミックソリューション", prefecture: "東京都", prefectureCode: "13", date: "2025年1月31日", title: "AIエージェントのコモディティ化と大学職員の生存戦略2030" },
+  { name: "神戸大学", prefecture: "兵庫県", prefectureCode: "28", date: "2025年1月23日", title: "大学職員・URAのための生成AI基本講座" },
+  { name: "立命館大学", prefecture: "京都府", prefectureCode: "26", date: "2025年1月20日", title: "生成AIサービス活用のノウハウとその先" },
+  { name: "大学コンソーシアム大阪", prefecture: "大阪府", prefectureCode: "27", date: "2025年1月15日", title: "⽣成AI活⽤の基礎とプラクティス -2025年こそ⽣成AIを活⽤したい職員のために-" },
+  { name: "崇城大学", prefecture: "熊本県", prefectureCode: "43", date: "2025年1月10日", title: "⼤学における⽣成AI活⽤⼊⾨" },
+  { name: "大学コンソーシアムあきた", prefecture: "秋田県", prefectureCode: "5", date: "2025年1月9日", title: "⼤学における⽣成AI活⽤⼊⾨" },
   
-  // 関東
-  { name: "早稲田大学", prefecture: "東京都", prefectureCode: "13", lat: 35.7090, lng: 139.7197, year: 2025, event: "大学ITマネジメントセミナー" },
-  { name: "法政大学", prefecture: "東京都", prefectureCode: "13", lat: 35.6950, lng: 139.7514, year: 2025, event: "FD・SDワークショップ" },
-  { name: "文京学院大学", prefecture: "東京都", prefectureCode: "13", lat: 35.7362, lng: 139.7282, year: 2023, event: "講演" },
+  // 2024年
+  { name: "広島大学", prefecture: "広島県", prefectureCode: "34", date: "2024年11月6日", title: "⼤学教育におけるAI利⽤の習熟度レベルと⽣成AI活⽤" },
+  { name: "琉球大学", prefecture: "沖縄県", prefectureCode: "47", date: "2024年10月29日", title: "生成AIハンズオン研修" },
+  { name: "金沢大学", prefecture: "石川県", prefectureCode: "17", date: "2024年10月27日", title: "令和7年度DX研修（生成AI活用（応用編））" },
+  { name: "大学コンソーシアム大阪", prefecture: "大阪府", prefectureCode: "27", date: "2024年10月24日", title: "生成AIを頼れるパートナーに！大学職員のためのAI活用・習慣化講座" },
+  { name: "龍谷大学", prefecture: "滋賀県", prefectureCode: "25", date: "2024年10月9日", title: "生成AIの活用方法と今後の可能性" },
+  { name: "国立情報学研究所", prefecture: "東京都", prefectureCode: "13", date: "2024年10月3日", title: "大学職員の内省を促すAI「何でも相談おじいさん」開発の経緯と実装" },
+  { name: "北九州市立大学", prefecture: "福岡県", prefectureCode: "40", date: "2024年9月26日", title: "大学教育における生成AI利用 実践編" },
+  { name: "愛媛大学", prefecture: "愛媛県", prefectureCode: "38", date: "2024年9月24日", title: "大学業務における生成AI活用 初級編" },
+  { name: "佐賀大学", prefecture: "佐賀県", prefectureCode: "41", date: "2024年8月27日", title: "大学職員は生成AIを「実際に」活用できるのか" },
+  { name: "九州大学", prefecture: "福岡県", prefectureCode: "40", date: "2024年8月20日", title: "大学業務における生成AI活用の現在地 -実践編-" },
+  { name: "茨城大学", prefecture: "茨城県", prefectureCode: "8", date: "2024年8月5日", title: "大学教育における生成AI活用 入門" },
+  { name: "九州大学", prefecture: "福岡県", prefectureCode: "40", date: "2024年6月20日", title: "大学業務における生成AI活用の現在地 -基本編-" },
+  { name: "大阪体育大学", prefecture: "大阪府", prefectureCode: "27", date: "2024年3月21日", title: "生成AIを活用できる大学教職員になる-基本と実践-" },
+  { name: "桐生大学", prefecture: "群馬県", prefectureCode: "10", date: "2024年3月12日", title: "大学教職員に必要な生成AI利用のリテラシー" },
+  { name: "広島大学", prefecture: "広島県", prefectureCode: "34", date: "2024年3月4日", title: "Copilotとして理解する生成AI利用の基本" },
+  { name: "北九州市立大学", prefecture: "福岡県", prefectureCode: "40", date: "2024年2月28日", title: "大学教育における生成AI利用の対応" },
+  { name: "美作大学", prefecture: "岡山県", prefectureCode: "33", date: "2024年2月15日", title: "テキスト生成AIの基本" },
+  { name: "北陸大学", prefecture: "石川県", prefectureCode: "17", date: "2024年2月5日", title: "ハンズオンで理解する生成AI" },
+  { name: "東京国際大学", prefecture: "東京都", prefectureCode: "13", date: "2024年1月24日", title: "これからの授業と生成AI" },
   
-  // 中部
-  { name: "金沢大学", prefecture: "石川県", prefectureCode: "17", lat: 36.5447, lng: 136.7039, year: 2024, event: "DX研修（生成AI活用）" },
-  { name: "岐阜聖徳学園大学", prefecture: "岐阜県", prefectureCode: "21", lat: 35.3912, lng: 136.7223, year: 2025, event: "FD研修会" },
-  { name: "愛知教育大学", prefecture: "愛知県", prefectureCode: "23", lat: 35.0283, lng: 137.0689, year: 2025, event: "全学FD講演会" },
-  
-  // 近畿
-  { name: "立命館大学", prefecture: "京都府", prefectureCode: "26", lat: 35.0286, lng: 135.7817, year: 2025, event: "私立大学キャンパスシステム研究会" },
-  { name: "龍谷大学", prefecture: "京都府", prefectureCode: "26", lat: 34.9667, lng: 135.7667, year: 2024, event: "FD研修会" },
-  { name: "大阪府内大学", prefecture: "大阪府", prefectureCode: "27", lat: 34.6937, lng: 135.5023, year: 2025, event: "大学コンソーシアム大阪" },
-  { name: "神戸大学", prefecture: "兵庫県", prefectureCode: "28", lat: 34.7275, lng: 135.2347, year: 2025, event: "研究マネジメント人材研修会" },
-  
-  // 中国
-  { name: "岡山大学", prefecture: "岡山県", prefectureCode: "33", lat: 34.6851, lng: 133.9191, year: 2025, event: "鹿田医療系キャンパス合同FD" },
-  { name: "広島大学", prefecture: "広島県", prefectureCode: "34", lat: 34.4000, lng: 132.7167, year: 2024, event: "AL研修会" },
-  
-  // 四国
-  { name: "愛媛大学", prefecture: "愛媛県", prefectureCode: "38", lat: 33.8378, lng: 132.7667, year: 2024, event: "生成AIコーディネーター養成講座" },
-  { name: "四国地区大学", prefecture: "香川県", prefectureCode: "37", lat: 34.0658, lng: 134.0594, year: 2024, event: "SPODオンラインセミナー" },
-  
-  // 九州・沖縄
-  { name: "九州大学", prefecture: "福岡県", prefectureCode: "40", lat: 33.5952, lng: 130.2181, year: 2024, event: "大学教職員職能開発FD" },
-  { name: "佐賀大学", prefecture: "佐賀県", prefectureCode: "41", lat: 33.2433, lng: 130.3000, year: 2024, event: "生成AI利活用セミナー" },
-  { name: "熊本大学", prefecture: "熊本県", prefectureCode: "43", lat: 32.8067, lng: 130.7083, year: 2024, event: "業務効率化勉強会" },
-  { name: "崇城大学", prefecture: "熊本県", prefectureCode: "43", lat: 32.8667, lng: 130.7500, year: 2025, event: "FD講演会" },
-  { name: "琉球大学", prefecture: "沖縄県", prefectureCode: "47", lat: 26.2478, lng: 127.7625, year: 2024, event: "ITスキルハンズオン研修会" },
+  // 2023年
+  { name: "早稲田大学アカデミックソリューション", prefecture: "東京都", prefectureCode: "13", date: "2023年12月12日", title: "大学業務における生成AI利用の体系" },
+  { name: "愛媛大学", prefecture: "愛媛県", prefectureCode: "38", date: "2023年12月6日", title: "大学業務における生成AI入門" },
+  { name: "愛媛大学", prefecture: "愛媛県", prefectureCode: "38", date: "2023年9月29日", title: "生成AI利用の本質的理解―大学の授業のために―" },
+  { name: "文京学院大学", prefecture: "東京都", prefectureCode: "13", date: "2023年7月11日", title: "生成AI時代における大学の現在地を探る" },
 ];
 
 // 都道府県コードごとにグループ化
@@ -56,3 +60,9 @@ export const universitiesByPrefecture = universities.reduce((acc, uni) => {
 
 // 実績のある都道府県コードのリスト
 export const prefecturesWithUniversities = Object.keys(universitiesByPrefecture);
+
+// 統計情報
+export const stats = {
+  totalUniversities: universities.length,
+  totalPrefectures: prefecturesWithUniversities.length,
+};

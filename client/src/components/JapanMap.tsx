@@ -126,7 +126,7 @@ export function JapanMap() {
               <li key={index} className="text-sm">
                 <p className="font-medium">{uni.name}</p>
                 <p className="text-xs text-muted-foreground">
-                  {uni.year}年 - {uni.event}
+                  {uni.date} - {uni.title}
                 </p>
               </li>
             ))}

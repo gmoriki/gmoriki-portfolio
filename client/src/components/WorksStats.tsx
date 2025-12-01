@@ -16,14 +16,18 @@ const stats: StatItem[] = [
 
 const notableWorks = [
   {
-    date: "2025年10月27日",
-    title: "金沢大学令和7年度DX研修（生成AI活用（応用編））",
-    description: "講演およびワークショップ",
-  },
-  {
     date: "2024年",
     title: "大学職員のためのプロンプトガイド開発",
-    description: "実務で使えるプロンプト集を体系化",
+    description: "実務で使えるプロンプト集を体系化。多数の大学に引用され、大学業務における生成AI活用のスタンダードとして広く利用されています",
+    link: "https://promptforus.com/",
+    image: "/prompt-guide.webp",
+  },
+  {
+    date: "2023年",
+    title: "国内大学の生成AIポリシー データベース公開",
+    description: "国内大学の生成AIに関するポリシーやガイドラインを体系的にまとめたデータベース。多数の大学に参考資料として引用されています",
+    link: "https://docs.google.com/spreadsheets/d/1cDOqaIdu9JKOYuF0ThG33oixE09m210z/edit#gid=1530250804",
+    image: "/ai-policy-db.webp",
   },
   {
     date: "2024年8月",
@@ -126,20 +130,47 @@ export default function WorksStats() {
       {/* Notable Works */}
       <div className="space-y-6">
         <h4 className="font-display text-2xl md:text-3xl font-bold">特筆すべき実績</h4>
-        <div className="space-y-4">
+        <div className="space-y-6">
           {notableWorks.map((work, index) => (
             <div key={index} className="border-l-2 pl-6 py-2" style={{ borderColor: "oklch(0.35 0.08 160)" }}>
-              <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4">
-                <span
-                  className="text-sm md:text-base font-semibold min-w-[140px]"
-                  style={{ color: "oklch(0.35 0.08 160)" }}
-                >
-                  {work.date}
-                </span>
-                <div className="flex-1">
-                  <p className="text-base md:text-lg font-semibold">{work.title}</p>
-                  <p className="text-sm md:text-base text-muted-foreground">{work.description}</p>
+              <div className="flex flex-col gap-3">
+                <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4">
+                  <span
+                    className="text-sm md:text-base font-semibold min-w-[140px]"
+                    style={{ color: "oklch(0.35 0.08 160)" }}
+                  >
+                    {work.date}
+                  </span>
+                  <div className="flex-1">
+                    {work.link ? (
+                      <a
+                        href={work.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-base md:text-lg font-semibold hover:underline"
+                      >
+                        {work.title}
+                      </a>
+                    ) : (
+                      <p className="text-base md:text-lg font-semibold">{work.title}</p>
+                    )}
+                    <p className="text-sm md:text-base text-muted-foreground mt-1">{work.description}</p>
+                  </div>
                 </div>
+                {work.image && (
+                  <a
+                    href={work.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <img
+                      src={work.image}
+                      alt={work.title}
+                      className="w-full max-w-3xl rounded-lg border hover:opacity-90 transition-opacity"
+                    />
+                  </a>
+                )}
               </div>
             </div>
           ))}
