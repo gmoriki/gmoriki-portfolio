@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -9,7 +8,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Sparkles, Target, Heart, BookOpen, Award, Users, Briefcase } from "lucide-react";
 
 interface DetailContent {
   title: string;
@@ -74,240 +72,274 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="container py-20 md:py-28">
-        <div className="max-w-4xl">
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tight mb-6">
-            森木銀河
-            <span className="block text-2xl md:text-4xl font-normal text-muted-foreground mt-6">
-              Ginga Moriki
-            </span>
-          </h1>
-          <p className="text-2xl md:text-3xl text-muted-foreground mb-10 leading-relaxed">
-            AIとヒトをつなぎ、誰もが技術の恩恵を受けられる社会を創る
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Badge variant="secondary" className="text-base md:text-lg px-5 py-2.5">
-              AI人材・組織開発
-            </Badge>
-            <Badge variant="secondary" className="text-base md:text-lg px-5 py-2.5">
-              生成AI活用推進
-            </Badge>
-            <Badge variant="secondary" className="text-base md:text-lg px-5 py-2.5">
-              教育学修士
-            </Badge>
+      {/* Hero Section - Editorial Style */}
+      <section className="container py-16 md:py-24 lg:py-32">
+        <div className="editorial-grid">
+          {/* Main Title Area */}
+          <div className="col-span-12 lg:col-span-8">
+            <div className="space-y-8">
+              <div>
+                <h1 className="text-[clamp(4rem,12vw,10rem)] leading-[0.9] tracking-tighter font-display font-black">
+                  gmoriki
+                </h1>
+                <p className="text-[clamp(1.5rem,4vw,3rem)] leading-tight font-display font-semibold mt-4 text-primary">
+                  AI人材育成
+                </p>
+              </div>
+              <div className="border-t-2 border-foreground/20 pt-6 max-w-2xl">
+                <p className="text-xl md:text-2xl font-body leading-relaxed">
+                  AIとヒトをつなぎ、誰もが技術の恩恵を受けられる社会を創る
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Side Info */}
+          <div className="col-span-12 lg:col-span-4 lg:pt-32">
+            <div className="space-y-6 border-l-2 border-foreground/20 pl-6">
+              <div>
+                <p className="text-sm uppercase tracking-wider text-muted-foreground mb-2">Name</p>
+                <p className="text-lg font-body">森木銀河 / Ginga Moriki</p>
+              </div>
+              <div>
+                <p className="text-sm uppercase tracking-wider text-muted-foreground mb-2">Expertise</p>
+                <p className="text-base font-body leading-relaxed">
+                  生成AI活用推進 / AI人材育成 / データ分析・システム構築
+                </p>
+              </div>
+              <div>
+                <p className="text-sm uppercase tracking-wider text-muted-foreground mb-2">Education</p>
+                <p className="text-base font-body">教育学修士</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* MVV Section - Single Card */}
-      <section className="container pb-12">
+      {/* MVV Section */}
+      <section className="container pb-16">
         <Card 
-          className="cursor-pointer hover:shadow-xl transition-all bg-gradient-to-br from-blue-50/50 via-purple-50/30 to-pink-50/50 dark:from-blue-950/20 dark:via-purple-950/15 dark:to-pink-950/20 border-2"
+          className="cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 border-foreground/10 bg-accent/30"
           onClick={() => openDetail(mvvContent)}
         >
-          <CardHeader>
-            <CardTitle className="text-2xl md:text-3xl">Mission · Vision · Values</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6 md:space-y-8">
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <Target className="w-7 h-7 text-primary" />
-                <h3 className="text-xl md:text-2xl font-semibold">Mission</h3>
+          <CardContent className="p-8 md:p-12">
+            <h2 className="text-3xl md:text-5xl font-display font-bold mb-8">
+              Mission · Vision · Values
+            </h2>
+            <div className="editorial-grid">
+              <div className="col-span-12 md:col-span-4 space-y-4">
+                <div className="border-l-4 border-primary pl-4">
+                  <h3 className="text-xl font-display font-semibold mb-2">Mission</h3>
+                  <p className="text-base font-body text-muted-foreground leading-relaxed">
+                    AIとヒトをつなぎ、誰もが技術の恩恵を受けられる社会を創る
+                  </p>
+                </div>
               </div>
-              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                AIとヒトをつなぎ、誰もが技術の恩恵を受けられる社会を創る
-              </p>
-            </div>
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <Sparkles className="w-7 h-7 text-primary" />
-                <h3 className="text-xl md:text-2xl font-semibold">Vision</h3>
+              <div className="col-span-12 md:col-span-4 space-y-4">
+                <div className="border-l-4 border-primary pl-4">
+                  <h3 className="text-xl font-display font-semibold mb-2">Vision</h3>
+                  <p className="text-base font-body text-muted-foreground leading-relaxed">
+                    AIエージェントの園芸家を育て、自律的に成長するエコシステムを創る
+                  </p>
+                </div>
               </div>
-              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                AIエージェントの園芸家を育て、自律的に成長するエコシステムを創る
-              </p>
-            </div>
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <Heart className="w-7 h-7 text-primary" />
-                <h3 className="text-xl md:text-2xl font-semibold">Values</h3>
+              <div className="col-span-12 md:col-span-4 space-y-4">
+                <div className="border-l-4 border-primary pl-4">
+                  <h3 className="text-xl font-display font-semibold mb-2">Values</h3>
+                  <p className="text-base font-body text-muted-foreground leading-relaxed">
+                    社会正義・ナレッジ共有・相互支援
+                  </p>
+                </div>
               </div>
-              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                社会正義・ナレッジ共有・相互支援
-              </p>
             </div>
           </CardContent>
         </Card>
       </section>
 
       {/* Main Content Grid */}
-      <section className="container pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Expertise Card */}
-          <Card 
-            className="cursor-pointer hover:shadow-xl transition-all"
-            onClick={() => openDetail(expertiseContent)}
-          >
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl md:text-3xl">
-                <BookOpen className="w-7 h-7 text-primary" />
-                専門性
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-5">
-              <div>
-                <h3 className="font-semibold mb-2 text-lg md:text-xl">生成AI活用推進</h3>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  大企業の現場で生成AI活用を推進。業務フローにAIを組み込む。
-                </p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2 text-lg md:text-xl">AI人材育成</h3>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  SPADEスキルを体系化。全国の大学で研修・講演を実施。
-                </p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2 text-lg md:text-xl">データ分析・システム構築</h3>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                  Python, VBA, Tableauなどを使った業務効率化。
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Achievements Card */}
-          <Card 
-            className="cursor-pointer hover:shadow-xl transition-all"
-            onClick={() => openDetail(achievementsContent)}
-          >
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl md:text-3xl">
-                <Award className="w-7 h-7 text-primary" />
-                実績
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-4 text-base md:text-lg text-muted-foreground">
-                <li className="leading-relaxed">• 業務時間50%削減（東京都市大学）</li>
-                <li className="leading-relaxed">• 教員業績管理システムPM（九州大学）</li>
-                <li className="leading-relaxed">• 生成AIコーディネーター養成講座（愛媛大学）</li>
-                <li className="leading-relaxed">• 全国の大学で研修・講演多数</li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          {/* Services Card */}
-          <Card 
-            className="cursor-pointer hover:shadow-xl transition-all"
-            onClick={() => openDetail(servicesContent)}
-          >
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl md:text-3xl">
-                <Users className="w-7 h-7 text-primary" />
-                サービスメニュー
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div>
-                  <h3 className="font-semibold mb-2 text-base md:text-lg">大学向け研修</h3>
-                  <p className="text-sm md:text-base text-muted-foreground">
-                    生成AIコーディネーター養成講座など
-                  </p>
+      <section className="container pb-16">
+        <div className="editorial-grid">
+          {/* Expertise Card - Spans 7 columns */}
+          <div className="col-span-12 lg:col-span-7">
+            <Card 
+              className="cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 border-foreground/10 h-full"
+              onClick={() => openDetail(expertiseContent)}
+            >
+              <CardContent className="p-8 md:p-10">
+                <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 border-b-2 border-foreground/10 pb-4">
+                  専門性
+                </h2>
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-xl font-display font-semibold mb-2">生成AI活用推進</h3>
+                    <p className="text-base font-body text-muted-foreground leading-relaxed">
+                      大企業の現場で生成AI活用を推進。業務フローにAIを組み込む。
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-display font-semibold mb-2">AI人材育成</h3>
+                    <p className="text-base font-body text-muted-foreground leading-relaxed">
+                      SPADEスキルを体系化。全国の大学で研修・講演を実施。
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-display font-semibold mb-2">データ分析・システム構築</h3>
+                    <p className="text-base font-body text-muted-foreground leading-relaxed">
+                      Python, VBA, Tableauなどを使った業務効率化。
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold mb-2 text-base md:text-lg">企業向けアドバイザリー</h3>
-                  <p className="text-sm md:text-base text-muted-foreground">
-                    継続的な伴走支援
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2 text-base md:text-lg">講演・ワークショップ</h3>
-                  <p className="text-sm md:text-base text-muted-foreground">
-                    予算に応じた形式
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-2 text-base md:text-lg">オンライン教材</h3>
-                  <p className="text-sm md:text-base text-muted-foreground">
-                    買い切り型の教材
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </div>
 
-          {/* Career Card */}
-          <Card className="bg-gradient-to-br from-slate-50/50 via-gray-50/30 to-zinc-50/50 dark:from-slate-950/20 dark:via-gray-950/15 dark:to-zinc-950/20">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl md:text-3xl">
-                <Briefcase className="w-7 h-7 text-primary" />
-                キャリア
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-5">
-              <div>
-                <p className="font-semibold text-base md:text-lg mb-1">2025/01 - 現在</p>
-                <p className="text-base md:text-lg">民間企業</p>
-                <p className="text-sm md:text-base text-muted-foreground">生成AI活用推進</p>
-              </div>
-              <div>
-                <p className="font-semibold text-base md:text-lg mb-1">2024/05 - 現在</p>
-                <p className="text-base md:text-lg">愛媛大学</p>
-                <p className="text-sm md:text-base text-muted-foreground">プロジェクトフェロー</p>
-              </div>
-              <div>
-                <p className="font-semibold text-base md:text-lg mb-1">2021/11 - 2025/01</p>
-                <p className="text-base md:text-lg">九州大学</p>
-                <p className="text-sm md:text-base text-muted-foreground">IR室 学術推進専門員</p>
-              </div>
-              <div>
-                <p className="font-semibold text-base md:text-lg mb-1">2019/04 - 2021/10</p>
-                <p className="text-base md:text-lg">東京都市大学</p>
-                <p className="text-sm md:text-base text-muted-foreground">専任事務職員</p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+          {/* Achievements Card - Spans 5 columns */}
+          <div className="col-span-12 lg:col-span-5">
+            <Card 
+              className="cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 border-foreground/10 h-full bg-primary/5"
+              onClick={() => openDetail(achievementsContent)}
+            >
+              <CardContent className="p-8 md:p-10">
+                <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 border-b-2 border-foreground/10 pb-4">
+                  実績
+                </h2>
+                <ul className="space-y-4 text-base font-body">
+                  <li className="leading-relaxed">業務時間50%削減<br/><span className="text-sm text-muted-foreground">東京都市大学</span></li>
+                  <li className="leading-relaxed">教員業績管理システムPM<br/><span className="text-sm text-muted-foreground">九州大学</span></li>
+                  <li className="leading-relaxed">生成AIコーディネーター養成講座<br/><span className="text-sm text-muted-foreground">愛媛大学</span></li>
+                  <li className="leading-relaxed">全国の大学で研修・講演多数</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
 
-      {/* Contact Section */}
-      <section className="bg-gradient-to-br from-blue-50/40 via-purple-50/30 to-pink-50/40 dark:from-blue-950/15 dark:via-purple-950/10 dark:to-pink-950/15 py-20 md:py-28">
-        <div className="container text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">お問い合わせ</h2>
-          <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-            研修・講演・アドバイザリーのご依頼、その他お問い合わせは、noteまたはXのDMでお気軽にご連絡ください。
-          </p>
-          <div className="flex gap-5 justify-center flex-wrap">
-            <Button asChild variant="default" size="lg" className="text-base md:text-lg px-8 py-6">
-              <a href="https://note.com/pogohopper8" target="_blank" rel="noopener noreferrer">
-                note
-              </a>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="text-base md:text-lg px-8 py-6">
-              <a href="https://twitter.com/pogohopper8" target="_blank" rel="noopener noreferrer">
-                X (Twitter)
-              </a>
-            </Button>
+          {/* Services Card - Spans 5 columns */}
+          <div className="col-span-12 lg:col-span-5">
+            <Card 
+              className="cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 border-foreground/10 h-full"
+              onClick={() => openDetail(servicesContent)}
+            >
+              <CardContent className="p-8 md:p-10">
+                <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 border-b-2 border-foreground/10 pb-4">
+                  サービス
+                </h2>
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-lg font-display font-semibold mb-1">大学向け研修</h3>
+                    <p className="text-sm font-body text-muted-foreground">生成AIコーディネーター養成講座など</p>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-display font-semibold mb-1">企業向けアドバイザリー</h3>
+                    <p className="text-sm font-body text-muted-foreground">継続的な伴走支援</p>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-display font-semibold mb-1">講演・ワークショップ</h3>
+                    <p className="text-sm font-body text-muted-foreground">予算に応じた形式</p>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-display font-semibold mb-1">オンライン教材</h3>
+                    <p className="text-sm font-body text-muted-foreground">買い切り型の教材</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Career Card - Spans 7 columns */}
+          <div className="col-span-12 lg:col-span-7">
+            <Card className="border-2 border-foreground/10 h-full bg-secondary/30">
+              <CardContent className="p-8 md:p-10">
+                <h2 className="text-3xl md:text-4xl font-display font-bold mb-8 border-b-2 border-foreground/10 pb-4">
+                  キャリア
+                </h2>
+                <div className="space-y-6">
+                  <div className="border-l-2 border-primary pl-4">
+                    <p className="text-sm text-muted-foreground mb-1">2025/01 - 現在</p>
+                    <p className="text-lg font-display font-semibold">民間企業</p>
+                    <p className="text-base font-body text-muted-foreground">生成AI活用推進</p>
+                  </div>
+                  <div className="border-l-2 border-primary pl-4">
+                    <p className="text-sm text-muted-foreground mb-1">2024/05 - 現在</p>
+                    <p className="text-lg font-display font-semibold">愛媛大学</p>
+                    <p className="text-base font-body text-muted-foreground">プロジェクトフェロー</p>
+                  </div>
+                  <div className="border-l-2 border-muted-foreground/30 pl-4">
+                    <p className="text-sm text-muted-foreground mb-1">2021/11 - 2025/01</p>
+                    <p className="text-lg font-display font-semibold">九州大学</p>
+                    <p className="text-base font-body text-muted-foreground">IR室 学術推進専門員</p>
+                  </div>
+                  <div className="border-l-2 border-muted-foreground/30 pl-4">
+                    <p className="text-sm text-muted-foreground mb-1">2019/04 - 2021/10</p>
+                    <p className="text-lg font-display font-semibold">東京都市大学</p>
+                    <p className="text-base font-body text-muted-foreground">専任事務職員</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
+      {/* Contact Section */}
+      <section className="border-t-2 border-foreground/10 py-16 md:py-24">
+        <div className="container">
+          <div className="editorial-grid">
+            <div className="col-span-12 lg:col-span-8">
+              <h2 className="text-4xl md:text-6xl font-display font-bold mb-8">
+                お問い合わせ
+              </h2>
+              <p className="text-xl font-body leading-relaxed mb-10 max-w-2xl">
+                研修・講演・アドバイザリーのご依頼、その他お問い合わせは、noteまたはXのDMでお気軽にご連絡ください。
+              </p>
+              <div className="flex gap-4 flex-wrap">
+                <Button 
+                  asChild 
+                  size="lg" 
+                  className="text-lg px-8 py-6 font-body border-2 border-foreground hover:bg-foreground hover:text-background transition-colors"
+                  variant="outline"
+                >
+                  <a href="https://note.com/pogohopper8" target="_blank" rel="noopener noreferrer">
+                    note
+                  </a>
+                </Button>
+                <Button 
+                  asChild 
+                  size="lg" 
+                  className="text-lg px-8 py-6 font-body border-2 border-foreground hover:bg-foreground hover:text-background transition-colors"
+                  variant="outline"
+                >
+                  <a href="https://twitter.com/pogohopper8" target="_blank" rel="noopener noreferrer">
+                    X (Twitter)
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t-2 border-foreground/10 py-8">
+        <div className="container">
+          <p className="text-sm text-muted-foreground font-body">
+            © 2025 Ginga Moriki. All rights reserved.
+          </p>
+        </div>
+      </footer>
+
       {/* Detail Dialog */}
       <Dialog open={!!selectedDetail} onOpenChange={closeDetail}>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto border-2 border-foreground/20">
           <DialogHeader>
-            <DialogTitle className="text-2xl md:text-3xl">{selectedDetail?.title}</DialogTitle>
-            <DialogDescription className="text-base md:text-lg">
+            <DialogTitle className="text-3xl font-display font-bold">{selectedDetail?.title}</DialogTitle>
+            <DialogDescription className="text-lg font-body">
               {selectedDetail?.description}
             </DialogDescription>
           </DialogHeader>
           {selectedDetail?.items && (
-            <ul className="space-y-4 text-base md:text-lg">
+            <ul className="space-y-4 text-base font-body leading-relaxed">
               {selectedDetail.items.map((item, index) => (
-                <li key={index} className="leading-relaxed">
+                <li key={index} className="border-l-2 border-primary pl-4">
                   {item}
                 </li>
               ))}
