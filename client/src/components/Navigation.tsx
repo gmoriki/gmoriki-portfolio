@@ -150,7 +150,6 @@ export default function Navigation() {
               <Dialog>
                 <DialogTrigger asChild>
                   <button 
-                    onClick={() => setIsMobileMenuOpen(false)}
                     className="text-left text-base font-medium hover:opacity-70 transition-opacity py-2"
                   >
                     ABOUT ME
