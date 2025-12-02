@@ -62,7 +62,7 @@ export default function Home() {
                         大学のFD/SDのほか、教育機関・企業向けの生成AI研修プログラム。実務で使える実践的な内容を提供。
                       </p>
                       <div className="mt-4">
-                        <img src="/service-training-impact.png" alt="知識から行動変容・インパクト創出へ" className="w-full h-auto rounded-lg" />
+                        <img src="/service-training-impact-v3.png" alt="知識から行動変容・インパクト創出へ" className="w-full h-auto rounded-lg" />
                         <p className="text-sm text-center mt-2 text-muted-foreground">行動変容によるインパクト創出</p>
                       </div>
                     </div>
@@ -72,7 +72,7 @@ export default function Home() {
                         組織のAI導入戦略立案、ガイドライン策定、AI活用コミュニティ運用、継続的な伴走支援。
                       </p>
                       <div className="mt-4">
-                        <img src="/service-advisory-strategy.png" alt="場当たり的から体系的戦略・継続改善へ" className="w-full h-auto rounded-lg" />
+                        <img src="/service-advisory-strategy-v3.png" alt="場当たり的から体系的戦略・継続改善へ" className="w-full h-auto rounded-lg" />
                         <p className="text-sm text-center mt-2 text-muted-foreground">研修の改善や戦略支援</p>
                       </div>
                     </div>
@@ -82,7 +82,7 @@ export default function Home() {
                         生成AIの最新動向、大学DX、AI人材育成に関する講演・ワークショップ。
                       </p>
                       <div className="mt-4">
-                        <img src="/service-lecture-opportunity.png" alt="機運なしから対話・気づき・推進の契機へ" className="w-full h-auto rounded-lg" />
+                        <img src="/service-lecture-opportunity-v3.png" alt="機運なしから対話・気づき・推進の契機へ" className="w-full h-auto rounded-lg" />
                         <p className="text-sm text-center mt-2 text-muted-foreground">機会創出</p>
                       </div>
                     </div>
