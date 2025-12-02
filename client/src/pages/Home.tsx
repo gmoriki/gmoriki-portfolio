@@ -39,7 +39,7 @@ export default function Home() {
       <section id="expertise" className="w-full">
         <div className="container max-w-6xl mx-auto py-16 md:py-24">
           <div className="space-y-8">
-          <h3 className="font-display text-4xl md:text-5xl font-bold mb-8">Services</h3>          
+          <h3 className="font-display text-4xl md:text-5xl font-bold mb-8">SERVICES</h3>          
             <Card className="p-8 md:p-12 bg-card">
               <div className="space-y-6">
                 <div>
@@ -150,7 +150,7 @@ export default function Home() {
               </DialogTrigger>
               <DialogContent className="max-w-2xl">
                 <DialogHeader>
-                  <DialogTitle className="font-display text-2xl md:text-3xl">ABOUT</DialogTitle>
+                  <DialogTitle className="font-display text-2xl md:text-3xl">ABOUT ME</DialogTitle>
                 </DialogHeader>
                 <div className="space-y-6 pt-4">
                   <div className="flex items-start gap-6">
