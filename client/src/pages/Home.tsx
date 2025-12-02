@@ -9,13 +9,15 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import WorksStats from "@/components/WorksStats";
+import Navigation from "@/components/Navigation";
 import { Mail } from "lucide-react";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
+      <Navigation />
       {/* Hero Section */}
-      <section className="w-full">
+      <section className="w-full" style={{ paddingTop: '80px' }}>
         <div className="container max-w-6xl mx-auto py-24 md:py-32">
           <div className="space-y-6">
             <div className="space-y-4">
@@ -34,7 +36,7 @@ export default function Home() {
       </section>
 
       {/* Expertise Section */}
-      <section className="w-full">
+      <section id="expertise" className="w-full">
         <div className="container max-w-6xl mx-auto py-16 md:py-24">
           <div className="space-y-8">
             <h3 className="font-display text-3xl md:text-4xl font-bold">EXPERTISE</h3>
@@ -82,7 +84,7 @@ export default function Home() {
       </section>
 
       {/* Works Section */}
-      <section className="w-full">
+      <section id="works" className="w-full">
         <div className="container max-w-6xl mx-auto py-16 md:py-24">
           <div className="space-y-8">
             <h3 className="font-display text-3xl md:text-4xl font-bold">WORKS</h3>
@@ -94,7 +96,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="w-full">
+      <section id="contact" className="w-full">
         <div className="container max-w-6xl mx-auto py-16 md:py-24">
           <div className="space-y-8">
             <h3 className="font-display text-3xl md:text-4xl font-bold">CONTACT</h3>
