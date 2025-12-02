@@ -53,28 +53,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="border-t pt-6">
-                  <h2 className="font-display text-4xl md:text-6xl font-bold mb-4">大学のAI組織開発パートナー</h2>                  <div className="grid md:grid-cols-3 gap-6">
-                    <div className="space-y-2">
-                      <h6 className="font-display text-lg md:text-xl font-bold">研修</h6>
-                      <p className="text-base md:text-lg text-foreground">
-                        大学・企業向けの生成AI研修プログラム。実務で使える実践的な内容を提供。
-                      </p>
-                    </div>
-                    <div className="space-y-2">
-                      <h6 className="font-display text-lg md:text-xl font-bold">アドバイザリー</h6>
-                      <p className="text-base md:text-lg text-foreground">
-                        組織のAI導入戦略立案、ガイドライン策定、継続的な伴走支援。
-                      </p>
-                    </div>
-                    <div className="space-y-2">
-                      <h6 className="font-display text-lg md:text-xl font-bold">講演・ワークショップ</h6>
-                      <p className="text-base md:text-lg text-foreground">
-                        生成AIの最新動向、大学DX、AI人材育成に関する講演・ワークショップ。
-                      </p>
-                    </div>
-                  </div>
-                </div>
+
               </div>
             </Card>
           </div>
