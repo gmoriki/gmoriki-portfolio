@@ -152,13 +152,22 @@ export default function Home() {
                 <DialogHeader>
                   <DialogTitle className="font-display text-2xl md:text-3xl">ABOUT</DialogTitle>
                 </DialogHeader>
-                <div className="space-y-4 pt-4">
-                  <p className="text-lg md:text-xl leading-relaxed">
-                    森木 銀河(もりき・ぎんが)
-                  </p>
-                  <p className="text-lg md:text-xl leading-relaxed text-foreground">
-                    gmoriki代表。民間企業で生成AIの活用推進を担当。個人事業主として大学のDX支援やAI人材育成を手がける。「AIとヒトをつなぐ」を信条に、企業とアカデミア、二つの領域で実践的なAI導入を推進している。
-                  </p>
+                <div className="space-y-6 pt-4">
+                  <div className="flex items-start gap-6">
+                    <img 
+                      src="/gmoriki.png" 
+                      alt="森木銀河" 
+                      className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover flex-shrink-0"
+                    />
+                    <div className="space-y-4">
+                      <p className="text-lg md:text-xl leading-relaxed font-semibold">
+                        森木 銀河(もりき・ぎんが)
+                      </p>
+                      <p className="text-base md:text-lg leading-relaxed text-foreground">
+                        gmoriki代表。民間企業で生成AIの活用推進を担当。個人事業主として大学のDX支援やAI人材育成を手がける。「AIとヒトをつなぐ」を信条に、企業とアカデミア、二つの領域で実践的なAI導入を推進している。
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </DialogContent>
             </Dialog>
