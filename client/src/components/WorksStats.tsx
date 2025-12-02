@@ -16,28 +16,61 @@ const stats: StatItem[] = [
 
 const notableWorks = [
   {
-    date: "2024年",
-    title: "大学職員のためのプロンプトガイド開発",
-    description: "実務で使えるプロンプト集を体系化。多数の大学に引用され、大学業務における生成AI活用のスタンダードとして広く利用されています",
-    link: "https://promptforus.com/",
-    image: "/prompt-guide.webp",
+    year: "2023年",
+    items: [
+      {
+        date: "2023年",
+        title: "国内大学の生成AIポリシー データベース公開",
+        description: "国内大学の生成AIに関するポリシーやガイドラインを体系的にまとめたデータベース。多数の大学に参考資料として引用されています",
+        link: "https://docs.google.com/spreadsheets/d/1cDOqaIdu9JKOYuF0ThG33oixE09m210z/edit#gid=1530250804",
+        image: "/ai-policy-db.webp",
+      },
+      {
+        date: "2023年12月6-7日",
+        title: "大学職員のための生成AIコーディネーター養成講座",
+        description: "SPADEスキル体系に基づく人材育成プログラム。156ページにわたる包括的な研修で、日常業務における生成AI活用と組織体制の整備を学びます",
+        organization: "愛媛大学教育企画室",
+      },
+    ],
   },
   {
-    date: "2023年",
-    title: "国内大学の生成AIポリシー データベース公開",
-    description: "国内大学の生成AIに関するポリシーやガイドラインを体系的にまとめたデータベース。多数の大学に参考資料として引用されています",
-    link: "https://docs.google.com/spreadsheets/d/1cDOqaIdu9JKOYuF0ThG33oixE09m210z/edit#gid=1530250804",
-    image: "/ai-policy-db.webp",
+    year: "2024年",
+    items: [
+      {
+        date: "2024年",
+        title: "大学職員のためのプロンプトガイド開発",
+        description: "実務で使えるプロンプト集を体系化。多数の大学に引用され、大学業務における生成AI活用のスタンダードとして広く利用されています",
+        link: "https://promptforus.com/",
+        image: "/prompt-guide.webp",
+      },
+      {
+        date: "2024年8月27日",
+        title: "大学業務における生成AI利活用セミナー",
+        description: "「大学職員は生成AIを「実際に」活用できるのか」をテーマに、日本マイクロソフトと佐賀大学が共催した実践的なセミナー。基調講演を担当",
+        organization: "日本マイクロソフト、佐賀大学共催",
+      },
+    ],
   },
   {
-    date: "2024年8月",
-    title: "愛媛大学 生成AIコーディネーター養成講座",
-    description: "SPADEスキル体系に基づく人材育成プログラム",
-  },
-  {
-    date: "2024年",
-    title: "大学業務における生成AI利活用セミナー",
-    description: "日本マイクロソフト、佐賀大学と共同開催",
+    year: "2025年",
+    items: [
+      {
+        date: "2025年10月27日",
+        title: "金沢大学 令和7年度DX研修（生成AI活用（応用編））",
+        description: "「生成AI活用の本質的理解：大学DXを加速する「プロトタイプ起点業務」」をテーマに、AIを「エイリアン・インテリジェンス（異質な知性）」として捉え、プロトタイプ思考で業務を変革する次世代の研修",
+        organization: "金沢大学情報推進室",
+        link: "https://note.com/pogohopper8/n/ne605cfd9b08b",
+        image: "/kanazawa-dx-training.webp",
+      },
+      {
+        date: "2025年10月27日",
+        title: "プロトタイプ起点型の業務を体験しよう（ワークショップ）",
+        description: "Google AI Studio「Build with Gemini」を活用した実践的ワークショップ。専門知識不要でWebアプリケーションのプロトタイプを構築し、全職員が当たり前に使える「思考ツール」としてのAI活用を体験",
+        organization: "金沢大学情報推進室",
+        link: "https://note.com/pogohopper8/n/n391a90174a5f",
+        image: "/kanazawa-workshop.webp",
+      },
+    ],
   },
 ];
 
@@ -128,49 +161,51 @@ export default function WorksStats() {
       </div>
 
       {/* Notable Works */}
-      <div className="space-y-6">
-        <h4 className="font-display text-2xl md:text-3xl font-bold">特筆すべき実績</h4>
-        <div className="space-y-6">
-          {notableWorks.map((work, index) => (
-            <div key={index} className="border-l-2 pl-6 py-2" style={{ borderColor: "oklch(0.35 0.08 160)" }}>
-              <div className="flex flex-col gap-3">
-                <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4">
-                  <span
-                    className="text-sm md:text-base font-semibold min-w-[140px]"
-                    style={{ color: "oklch(0.35 0.08 160)" }}
-                  >
-                    {work.date}
-                  </span>
-                  <div className="flex-1">
-                    {work.link ? (
-                      <a
-                        href={work.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-base md:text-lg font-semibold hover:underline"
-                      >
-                        {work.title}
-                      </a>
-                    ) : (
-                      <p className="text-base md:text-lg font-semibold">{work.title}</p>
-                    )}
-                    <p className="text-sm md:text-base text-muted-foreground mt-1">{work.description}</p>
+      <div className="space-y-8">
+        <h4 className="font-display text-2xl md:text-3xl font-bold">主な実績</h4>
+        <div className="space-y-12">
+          {notableWorks.map((yearGroup, yearIndex) => (
+            <div key={yearIndex} className="space-y-6">
+              <h5 className="text-xl md:text-2xl font-bold" style={{ color: "oklch(0.35 0.08 160)" }}>
+                {yearGroup.year}
+              </h5>
+              <div className="space-y-6">
+                {yearGroup.items.map((work, workIndex) => (
+                  <div key={workIndex} className="border-l-2 pl-6 py-2" style={{ borderColor: "oklch(0.35 0.08 160)" }}>
+                    <div className="flex flex-col gap-3">
+                      <div className="flex flex-col gap-2">
+                        {work.link ? (
+                          <a
+                            href={work.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-base md:text-lg font-semibold hover:underline"
+                          >
+                            {work.title}
+                          </a>
+                        ) : (
+                          <p className="text-base md:text-lg font-semibold">{work.title}</p>
+                        )}
+                        <p className="text-sm text-muted-foreground">{work.date}{work.organization && ` | ${work.organization}`}</p>
+                        <p className="text-sm md:text-base text-muted-foreground">{work.description}</p>
+                      </div>
+                      {work.image && (
+                        <a
+                          href={work.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block"
+                        >
+                          <img
+                            src={work.image}
+                            alt={work.title}
+                            className="w-full max-w-3xl rounded-lg border hover:opacity-90 transition-opacity"
+                          />
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </div>
-                {work.image && (
-                  <a
-                    href={work.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                  >
-                    <img
-                      src={work.image}
-                      alt={work.title}
-                      className="w-full max-w-3xl rounded-lg border hover:opacity-90 transition-opacity"
-                    />
-                  </a>
-                )}
+                ))}
               </div>
             </div>
           ))}
