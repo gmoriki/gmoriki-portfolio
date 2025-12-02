@@ -54,8 +54,7 @@ export default function Home() {
                 </div>
 
                 <div className="border-t pt-6">
-                  <h5 className="font-display text-xl md:text-2xl font-bold mb-6">提供サービス</h5>
-                  <div className="grid md:grid-cols-3 gap-6">
+                  <h2 className="font-display text-4xl md:text-6xl font-bold mb-4">大学のAI組織開発パートナー</h2>                  <div className="grid md:grid-cols-3 gap-6">
                     <div className="space-y-2">
                       <h6 className="font-display text-lg md:text-xl font-bold">研修</h6>
                       <p className="text-base md:text-lg text-foreground">

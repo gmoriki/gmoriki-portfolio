@@ -62,15 +62,15 @@ export function JapanMap() {
       (pref as SVGElement).style.transition = "all 0.5s ease";
       
       if (hasUniversity) {
-        (pref as SVGElement).style.fill = "oklch(0.35 0.08 160)";
-        (pref as SVGElement).style.fillOpacity = "0.7";
-        (pref as SVGElement).style.stroke = "oklch(0.25 0.08 160)";
-        (pref as SVGElement).style.strokeWidth = "1.5";
+        (pref as SVGElement).style.fill = "oklch(0.75 0.15 160)"; // 明るいティールグリーン
+        (pref as SVGElement).style.fillOpacity = "0.85";
+        (pref as SVGElement).style.stroke = "oklch(0.55 0.12 160)";
+        (pref as SVGElement).style.strokeWidth = "1.8";
         (pref as SVGElement).style.cursor = "pointer";
       } else {
-        (pref as SVGElement).style.fill = "#f0f0f0";
+        (pref as SVGElement).style.fill = "#f9fafb";
         (pref as SVGElement).style.fillOpacity = "1";
-        (pref as SVGElement).style.stroke = "#999";
+        (pref as SVGElement).style.stroke = "#d1d5db";
         (pref as SVGElement).style.strokeWidth = "0.8";
         (pref as SVGElement).style.cursor = "default";
       }
@@ -88,6 +88,7 @@ export function JapanMap() {
 
         (pref as SVGElement).style.fillOpacity = "1";
         (pref as SVGElement).style.strokeWidth = "2.5";
+        (pref as SVGElement).style.filter = "brightness(1.1)";
       });
 
       pref.addEventListener("mousemove", (e: Event) => {
@@ -104,8 +105,9 @@ export function JapanMap() {
         if (!hasUniversity) return;
 
         setHoveredPrefecture(null);
-        (pref as SVGElement).style.fillOpacity = "0.7";
-        (pref as SVGElement).style.strokeWidth = "1.5";
+        (pref as SVGElement).style.fillOpacity = "0.85";
+        (pref as SVGElement).style.strokeWidth = "1.8";
+        (pref as SVGElement).style.filter = "none";
       });
     });
 
@@ -142,11 +144,11 @@ export function JapanMap() {
         // グロー効果とストローク強調
         pref.style.fillOpacity = "1";
         pref.style.strokeWidth = "3";
-        pref.style.filter = "drop-shadow(0 0 8px oklch(0.35 0.08 160)) drop-shadow(0 0 16px oklch(0.35 0.08 160))";
+        pref.style.filter = "drop-shadow(0 0 12px oklch(0.65 0.18 160)) drop-shadow(0 0 20px oklch(0.65 0.18 160)) brightness(1.15)";
         
         setTimeout(() => {
-          pref.style.fillOpacity = "0.7";
-          pref.style.strokeWidth = "1.5";
+          pref.style.fillOpacity = "0.85";
+          pref.style.strokeWidth = "1.8";
           pref.style.filter = "none";
         }, 500);
       }, index * 100);
@@ -176,10 +178,10 @@ export function JapanMap() {
           style={{
             left: `${tooltipPosition.x + 15}px`,
             top: `${tooltipPosition.y + 15}px`,
-            borderColor: "oklch(0.35 0.08 160)",
+            borderColor: "oklch(0.65 0.15 160)",
           }}
         >
-          <h4 className="font-semibold mb-2 text-base" style={{ color: "oklch(0.35 0.08 160)" }}>
+          <h4 className="font-semibold mb-2 text-base" style={{ color: "oklch(0.55 0.12 160)" }}>
             {hoveredUniversities[0].prefecture}
           </h4>
           <ul className="space-y-2">
