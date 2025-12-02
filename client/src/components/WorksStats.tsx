@@ -128,16 +128,16 @@ export default function WorksStats() {
     <div className="space-y-12">
       {/* Japan Map */}
       <div>
-        <h4 className="font-display text-2xl md:text-3xl font-bold mb-6">日本全国の大学に貢献</h4>
+        <h4 className="font-display text-2xl md:text-3xl font-bold mb-6">日本全国の大学を支援しています</h4>
         <JapanMap />
         <p className="text-sm md:text-base text-center mt-4 text-muted-foreground italic">
-          👆 地図をタッチして、各地域の大学を確認！
+          👆 地図をタッチして、各都道府県の実績を確認！
         </p>
       </div>
 
       {/* Period indicator */}
       <p className="text-base md:text-lg text-muted-foreground">
-        ChatGPTリリース以降の活動実績
+        ChatGPT登場以降の活動実績
       </p>
 
       {/* Stats Grid with scroll animation */}

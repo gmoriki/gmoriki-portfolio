@@ -25,7 +25,7 @@ export default function Home() {
                 gmoriki
               </h1>
               <h2 className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold" style={{ color: "oklch(0.35 0.08 160)", marginTop: '10px' }}>
-                大学のAI人材・組織開発パートナー
+                職場としての大学に、AI人材育成を。
               </h2>
             </div>
             <p className="text-xl md:text-2xl text-foreground max-w-3xl leading-relaxed">
@@ -47,7 +47,7 @@ export default function Home() {
                     AI人材開発 / AI組織開発
                   </h4>
                   <p className="text-lg md:text-xl leading-relaxed text-foreground mb-6">
-                    生成AIを実務で活用できる人材を育成し、組織のAI導入を推進します。大学・企業向けの研修プログラムを通じて、実践的なスキルを習得できる環境を提供しています。
+                    生成AIを実務で活用できる人材を育成し、組織のAI導入を推進します。大学・教育機関向けの研修プログラムを通じて、実践的なスキルを習得できる環境を提供しています。
                   </p>
                   <p className="text-lg md:text-xl leading-relaxed text-foreground">
                     また、組織のAI導入戦略立案やガイドライン策定など、継続的な伴走支援も行っています。
@@ -69,7 +69,7 @@ export default function Home() {
                     <div className="space-y-4">
                       <h6 className="font-display text-lg md:text-xl font-bold">🤝 アドバイザリー</h6>
                       <p className="text-base md:text-lg text-foreground">
-                        組織のAI導入戦略立案、ガイドライン策定、AI活用コミュニティ運用、継続的な伴走支援。
+                        組織のAI導入戦略立案、ガイドライン策定、AI活用コミュニティ運用、研修改善。
                       </p>
                       <div className="mt-4 flex flex-col items-center">
                         <img src="/service-advisory-strategy-v4.png" alt="場当たり的から体系的戦略・継続改善へ" className="w-[70%] h-auto" />
