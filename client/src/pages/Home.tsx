@@ -39,8 +39,7 @@ export default function Home() {
       <section id="expertise" className="w-full">
         <div className="container max-w-6xl mx-auto py-16 md:py-24">
           <div className="space-y-8">
-            <h3 className="font-display text-3xl md:text-4xl font-bold">EXPERTISE</h3>
-            
+          <h3 className="font-display text-4xl md:text-5xl font-bold mb-8">ご支援内容</h3>          
             <Card className="p-8 md:p-12 bg-card">
               <div className="space-y-6">
                 <div>
@@ -58,19 +57,19 @@ export default function Home() {
                 <div className="border-t pt-6">
                   <div className="grid md:grid-cols-3 gap-6">
                     <div className="space-y-2">
-                      <h6 className="font-display text-lg md:text-xl font-bold">研修</h6>
+                      <h6 className="font-display text-lg md:text-xl font-bold">📚 研修</h6>
                       <p className="text-base md:text-lg text-foreground">
                         大学のFD/SDのほか、教育機関・企業向けの生成AI研修プログラム。実務で使える実践的な内容を提供。
                       </p>
                     </div>
                     <div className="space-y-2">
-                      <h6 className="font-display text-lg md:text-xl font-bold">アドバイザリー</h6>
+                      <h6 className="font-display text-lg md:text-xl font-bold">🤝 アドバイザリー</h6>
                       <p className="text-base md:text-lg text-foreground">
                         組織のAI導入戦略立案、ガイドライン策定、AI活用コミュニティ運用、継続的な伴走支援。
                       </p>
                     </div>
                     <div className="space-y-2">
-                      <h6 className="font-display text-lg md:text-xl font-bold">講演・ワークショップ</h6>
+                      <h6 className="font-display text-lg md:text-xl font-bold">🎤 講演・ワークショップ</h6>
                       <p className="text-base md:text-lg text-foreground">
                         生成AIの最新動向、大学DX、AI人材育成に関する講演・ワークショップ。
                       </p>
