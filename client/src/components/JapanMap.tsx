@@ -5,7 +5,9 @@ export function JapanMap() {
   const [svgContent, setSvgContent] = useState<string>("");
   const [hoveredPrefecture, setHoveredPrefecture] = useState<string | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // SVGファイルを読み込む
@@ -14,6 +16,29 @@ export function JapanMap() {
       .then((svg) => {
         setSvgContent(svg);
       });
+  }, []);
+
+  // スクロールアニメーション用のIntersectionObserver
+  useEffect(() => {
+    const currentRef = wrapperRef.current;
+    if (!currentRef) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(currentRef);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   useEffect(() => {
@@ -34,7 +59,7 @@ export function JapanMap() {
       const hasUniversity = prefecturesWithUniversities.includes(prefCode);
 
       // 基本スタイルを設定
-      (pref as SVGElement).style.transition = "all 0.3s ease";
+      (pref as SVGElement).style.transition = "all 0.5s ease";
       
       if (hasUniversity) {
         (pref as SVGElement).style.fill = "oklch(0.35 0.08 160)";
@@ -92,12 +117,49 @@ export function JapanMap() {
     });
   }, [svgContent]);
 
+  // スクロールで表示されたときに順次アニメーション
+  useEffect(() => {
+    if (!isVisible || !containerRef.current || !svgContent) return;
+
+    const container = containerRef.current;
+    const svgElement = container.querySelector("svg");
+    if (!svgElement) return;
+
+    const prefectures = svgElement.querySelectorAll(".prefecture");
+    
+    // 実績のある都道府県のみを抽出
+    const highlightedPrefs: SVGElement[] = [];
+    prefectures.forEach((pref) => {
+      const prefCode = pref.getAttribute("data-code");
+      if (prefCode && prefecturesWithUniversities.includes(prefCode)) {
+        highlightedPrefs.push(pref as SVGElement);
+      }
+    });
+
+    // 各都道府県を順次アニメーション
+    highlightedPrefs.forEach((pref, index) => {
+      setTimeout(() => {
+        // パルスアニメーション
+        pref.style.transform = "scale(1.08)";
+        pref.style.transformOrigin = "center";
+        pref.style.fillOpacity = "1";
+        pref.style.filter = "drop-shadow(0 4px 8px rgba(0,0,0,0.3))";
+        
+        setTimeout(() => {
+          pref.style.transform = "scale(1)";
+          pref.style.fillOpacity = "0.7";
+          pref.style.filter = "none";
+        }, 400);
+      }, index * 80);
+    });
+  }, [isVisible, svgContent]);
+
   const hoveredUniversities = hoveredPrefecture
     ? universitiesByPrefecture[hoveredPrefecture] || []
     : [];
 
   return (
-    <div className="relative">
+    <div ref={wrapperRef} className="relative">
       <div
         ref={containerRef}
         className="w-full max-w-2xl mx-auto"
