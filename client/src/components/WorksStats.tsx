@@ -130,6 +130,9 @@ export default function WorksStats() {
       <div>
         <h4 className="font-display text-2xl md:text-3xl font-bold mb-6">日本全国の大学に貢献</h4>
         <JapanMap />
+        <p className="text-sm md:text-base text-center mt-4 text-muted-foreground italic">
+          👆 地図をタッチして、各地域の大学を確認！
+        </p>
       </div>
 
       {/* Period indicator */}
