@@ -1,6 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 import { JapanMap } from "./JapanMap";
 
+// Tag component
+const Tag = ({ label }: { label: string }) => (
+  <span className="inline-block px-3 py-1 text-sm font-medium text-white rounded-full" style={{ backgroundColor: 'oklch(0.35 0.08 160)' }}>
+    {label}
+  </span>
+);
+
 interface StatItem {
   label: string;
   value: number;
@@ -24,12 +31,14 @@ const notableWorks = [
         description: "国内大学の生成AIに関するポリシーやガイドラインを体系的にまとめたデータベース。多数の大学に参考資料として引用されています",
         link: "https://docs.google.com/spreadsheets/d/1cDOqaIdu9JKOYuF0ThG33oixE09m210z/edit#gid=1530250804",
         image: "/ai-policy-db.webp",
+        tags: ["プロダクト", "論文・発表", "オープンソース"],
       },
       {
         date: "2023年12月6-7日",
         title: "大学職員のための生成AIコーディネーター養成講座",
         description: "SPADEスキル体系に基づく人材育成プログラム。156ページにわたる包括的な研修で、日常業務における生成AI活用と組織体制の整備を学びます",
         organization: "愛媛大学教育企画室",
+        tags: ["研修"],
       },
     ],
   },
@@ -42,12 +51,14 @@ const notableWorks = [
         description: "実務で使えるプロンプト集を体系化。多数の大学に引用され、大学業務における生成AI活用のスタンダードとして広く利用されています",
         link: "https://promptforus.com/",
         image: "/prompt-guide.webp",
+        tags: ["プロダクト", "論文・発表", "オープンソース"],
       },
       {
         date: "2024年8月27日",
         title: "大学業務における生成AI利活用セミナー",
         description: "「大学職員は生成AIを「実際に」活用できるのか」をテーマに、日本マイクロソフトと佐賀大学が共催した実践的なセミナー。基調講演を担当",
         organization: "日本マイクロソフト、佐賀大学共催",
+        tags: ["講演"],
       },
     ],
   },
@@ -61,6 +72,7 @@ const notableWorks = [
         organization: "金沢大学情報推進室",
         link: "https://note.com/pogohopper8/n/ne605cfd9b08b",
         image: "/kanazawa-dx-training.webp",
+        tags: ["研修", "講演", "アドバイザリー"],
       },
       {
         date: "2025年10月27日",
@@ -69,6 +81,7 @@ const notableWorks = [
         organization: "金沢大学情報推進室",
         link: "https://note.com/pogohopper8/n/n391a90174a5f",
         image: "/kanazawa-workshop.webp",
+        tags: ["研修", "プロダクト", "教材開発"],
       },
     ],
   },
@@ -190,6 +203,13 @@ export default function WorksStats() {
                           <p className="text-base md:text-lg font-semibold">{work.title}</p>
                         )}
                         <p className="text-sm text-muted-foreground">{work.date}{work.organization && ` | ${work.organization}`}</p>
+                        {work.tags && work.tags.length > 0 && (
+                          <div className="flex flex-wrap gap-2 mt-1">
+                            {work.tags.map((tag, tagIndex) => (
+                              <Tag key={tagIndex} label={tag} />
+                            ))}
+                          </div>
+                        )}
                         <p className="text-sm md:text-base text-muted-foreground">{work.description}</p>
                       </div>
                       {work.image && (
