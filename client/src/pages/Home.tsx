@@ -24,7 +24,7 @@ export default function Home() {
               <h1 className="font-display text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight">
                 gmoriki
               </h1>
-              <h2 className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold" style={{ color: "oklch(0.35 0.08 160)", marginTop: '10px' }}>
+              <h2 className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold" style={{ color: "oklch(0.35 0.08 160)", marginTop: '25px' }}>
                 職場としての大学に、AI人材育成を。
               </h2>
             </div>
