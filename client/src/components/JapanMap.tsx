@@ -136,21 +136,20 @@ export function JapanMap() {
       }
     });
 
-    // 各都道府県を順次アニメーション
+    // 各都道府県を順次アニメーション（transformを使わずにfilterとstrokeのみ）
     highlightedPrefs.forEach((pref, index) => {
       setTimeout(() => {
-        // パルスアニメーション
-        pref.style.transform = "scale(1.08)";
-        pref.style.transformOrigin = "center";
+        // グロー効果とストローク強調
         pref.style.fillOpacity = "1";
-        pref.style.filter = "drop-shadow(0 4px 8px rgba(0,0,0,0.3))";
+        pref.style.strokeWidth = "3";
+        pref.style.filter = "drop-shadow(0 0 8px oklch(0.35 0.08 160)) drop-shadow(0 0 16px oklch(0.35 0.08 160))";
         
         setTimeout(() => {
-          pref.style.transform = "scale(1)";
           pref.style.fillOpacity = "0.7";
+          pref.style.strokeWidth = "1.5";
           pref.style.filter = "none";
-        }, 400);
-      }, index * 80);
+        }, 500);
+      }, index * 100);
     });
   }, [isVisible, svgContent]);
 
