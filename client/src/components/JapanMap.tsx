@@ -5,9 +5,7 @@ export function JapanMap() {
   const [svgContent, setSvgContent] = useState<string>("");
   const [hoveredPrefecture, setHoveredPrefecture] = useState<string | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
-  const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // SVGファイルを読み込む
@@ -18,30 +16,6 @@ export function JapanMap() {
       });
   }, []);
 
-  // スクロールアニメーション用のIntersectionObserver
-  useEffect(() => {
-    const currentRef = wrapperRef.current;
-    if (!currentRef) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    observer.observe(currentRef);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  // SVG要素の基本スタイル設定
   useEffect(() => {
     if (!svgContent || !containerRef.current) return;
 
@@ -49,24 +23,25 @@ export function JapanMap() {
     const svgElement = container.querySelector("svg");
     if (!svgElement) return;
 
+    // すべての都道府県要素を取得
     const prefectures = svgElement.querySelectorAll(".prefecture");
 
     prefectures.forEach((pref) => {
       const prefCode = pref.getAttribute("data-code");
       if (!prefCode) return;
 
+      // 実績のある都道府県かチェック
       const hasUniversity = prefecturesWithUniversities.includes(prefCode);
 
       // 基本スタイルを設定
-      (pref as SVGElement).style.transition = "all 0.6s ease";
+      (pref as SVGElement).style.transition = "all 0.3s ease";
       
       if (hasUniversity) {
         (pref as SVGElement).style.fill = "oklch(0.35 0.08 160)";
-        (pref as SVGElement).style.fillOpacity = isVisible ? "0.7" : "0.3";
+        (pref as SVGElement).style.fillOpacity = "0.7";
         (pref as SVGElement).style.stroke = "oklch(0.25 0.08 160)";
-        (pref as SVGElement).style.strokeWidth = isVisible ? "1.5" : "0.5";
+        (pref as SVGElement).style.strokeWidth = "1.5";
         (pref as SVGElement).style.cursor = "pointer";
-        (pref as SVGElement).style.filter = isVisible ? "drop-shadow(0 2px 4px rgba(0,0,0,0.2))" : "none";
       } else {
         (pref as SVGElement).style.fill = "#f0f0f0";
         (pref as SVGElement).style.fillOpacity = "1";
@@ -115,47 +90,14 @@ export function JapanMap() {
       (line as SVGElement).style.stroke = "#666";
       (line as SVGElement).style.strokeWidth = "1";
     });
-  }, [svgContent, isVisible]);
-
-  // isVisibleが変わったときに実績のある都道府県を順次強調
-  useEffect(() => {
-    if (!isVisible || !containerRef.current) return;
-
-    const container = containerRef.current;
-    const svgElement = container.querySelector("svg");
-    if (!svgElement) return;
-
-    const prefectures = svgElement.querySelectorAll(".prefecture");
-    const highlightedPrefs: SVGElement[] = [];
-
-    prefectures.forEach((pref) => {
-      const prefCode = pref.getAttribute("data-code");
-      if (prefCode && prefecturesWithUniversities.includes(prefCode)) {
-        highlightedPrefs.push(pref as SVGElement);
-      }
-    });
-
-    // 順次アニメーション
-    highlightedPrefs.forEach((pref, index) => {
-      setTimeout(() => {
-        pref.style.transform = "scale(1.05)";
-        pref.style.transformOrigin = "center";
-        pref.style.fillOpacity = "0.9";
-        
-        setTimeout(() => {
-          pref.style.transform = "scale(1)";
-          pref.style.fillOpacity = "0.7";
-        }, 300);
-      }, index * 50);
-    });
-  }, [isVisible]);
+  }, [svgContent]);
 
   const hoveredUniversities = hoveredPrefecture
     ? universitiesByPrefecture[hoveredPrefecture] || []
     : [];
 
   return (
-    <div ref={wrapperRef} className="relative">
+    <div className="relative">
       <div
         ref={containerRef}
         className="w-full max-w-2xl mx-auto"

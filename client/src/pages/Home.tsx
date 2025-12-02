@@ -55,41 +55,20 @@ export default function Home() {
 
                 <div className="border-t pt-6">
                   <h5 className="font-display text-xl md:text-2xl font-bold mb-6">提供サービス</h5>
-                  <div className="grid md:grid-cols-3 gap-8">
-                    <div className="space-y-4">
-                      <div className="aspect-square rounded-lg overflow-hidden">
-                        <img 
-                          src="/service-training.png" 
-                          alt="研修サービス" 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <div className="space-y-2">
                       <h6 className="font-display text-lg md:text-xl font-bold">研修</h6>
                       <p className="text-base md:text-lg text-foreground">
                         大学・企業向けの生成AI研修プログラム。実務で使える実践的な内容を提供。
                       </p>
                     </div>
-                    <div className="space-y-4">
-                      <div className="aspect-square rounded-lg overflow-hidden">
-                        <img 
-                          src="/service-advisory.png" 
-                          alt="アドバイザリーサービス" 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
+                    <div className="space-y-2">
                       <h6 className="font-display text-lg md:text-xl font-bold">アドバイザリー</h6>
                       <p className="text-base md:text-lg text-foreground">
                         組織のAI導入戦略立案、ガイドライン策定、継続的な伴走支援。
                       </p>
                     </div>
-                    <div className="space-y-4">
-                      <div className="aspect-square rounded-lg overflow-hidden">
-                        <img 
-                          src="/service-workshop.png" 
-                          alt="講演・ワークショップサービス" 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
+                    <div className="space-y-2">
                       <h6 className="font-display text-lg md:text-xl font-bold">講演・ワークショップ</h6>
                       <p className="text-base md:text-lg text-foreground">
                         生成AIの最新動向、大学DX、AI人材育成に関する講演・ワークショップ。
@@ -154,30 +133,20 @@ export default function Home() {
             <Dialog>
               <DialogTrigger asChild>
                 <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent hover:bg-accent hover:text-accent-foreground h-11 px-8 text-lg">
-                  ABOUT ME
+                  ABOUT
                 </button>
               </DialogTrigger>
               <DialogContent className="max-w-2xl">
                 <DialogHeader>
-                  <DialogTitle className="font-display text-2xl md:text-3xl">ABOUT ME</DialogTitle>
+                  <DialogTitle className="font-display text-2xl md:text-3xl">ABOUT</DialogTitle>
                 </DialogHeader>
                 <div className="space-y-4 pt-4">
-                  <div className="space-y-2">
-                    <p className="text-2xl md:text-3xl font-bold leading-relaxed" style={{ color: "oklch(0.35 0.08 160)" }}>
-                      森木 銀河
-                    </p>
-                    <p className="text-lg md:text-xl text-muted-foreground">
-                      もりき・ぎんが | Ginga Moriki
-                    </p>
-                  </div>
-                  <div className="border-t pt-4 space-y-3">
-                    <p className="text-lg md:text-xl leading-relaxed text-foreground">
-                      <span className="font-semibold" style={{ color: "oklch(0.35 0.08 160)" }}>gmoriki代表</span>。民間企業で生成AIの活用推進を担当。個人事業主として大学のDX支援やAI人材育成を手がける。
-                    </p>
-                    <p className="text-lg md:text-xl leading-relaxed text-foreground">
-                      「AIとヒトをつなぐ」を信条に、企業とアカデミア、二つの領域で実践的なAI導入を推進している。
-                    </p>
-                  </div>
+                  <p className="text-lg md:text-xl leading-relaxed">
+                    森木 銀河(もりき・ぎんが)
+                  </p>
+                  <p className="text-lg md:text-xl leading-relaxed text-foreground">
+                    gmoriki代表。民間企業で生成AIの活用推進を担当。個人事業主として大学のDX支援やAI人材育成を手がける。「AIとヒトをつなぐ」を信条に、企業とアカデミア、二つの領域で実践的なAI導入を推進している。
+                  </p>
                 </div>
               </DialogContent>
             </Dialog>
