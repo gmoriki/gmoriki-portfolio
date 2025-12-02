@@ -39,7 +39,7 @@ export default function Home() {
       <section id="expertise" className="w-full">
         <div className="container max-w-6xl mx-auto py-16 md:py-24">
           <div className="space-y-8">
-          <h3 className="font-display text-4xl md:text-5xl font-bold mb-8">ご支援内容</h3>          
+          <h3 className="font-display text-4xl md:text-5xl font-bold mb-8">Services</h3>          
             <Card className="p-8 md:p-12 bg-card">
               <div className="space-y-6">
                 <div>
@@ -56,23 +56,35 @@ export default function Home() {
 
                 <div className="border-t pt-6">
                   <div className="grid md:grid-cols-3 gap-6">
-                    <div className="space-y-2">
+                    <div className="space-y-4">
                       <h6 className="font-display text-lg md:text-xl font-bold">📚 研修</h6>
                       <p className="text-base md:text-lg text-foreground">
                         大学のFD/SDのほか、教育機関・企業向けの生成AI研修プログラム。実務で使える実践的な内容を提供。
                       </p>
+                      <div className="mt-4">
+                        <img src="/service-training-impact.png" alt="知識から行動変容・インパクト創出へ" className="w-full h-auto rounded-lg" />
+                        <p className="text-sm text-center mt-2 text-muted-foreground">行動変容によるインパクト創出</p>
+                      </div>
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-4">
                       <h6 className="font-display text-lg md:text-xl font-bold">🤝 アドバイザリー</h6>
                       <p className="text-base md:text-lg text-foreground">
                         組織のAI導入戦略立案、ガイドライン策定、AI活用コミュニティ運用、継続的な伴走支援。
                       </p>
+                      <div className="mt-4">
+                        <img src="/service-advisory-strategy.png" alt="場当たり的から体系的戦略・継続改善へ" className="w-full h-auto rounded-lg" />
+                        <p className="text-sm text-center mt-2 text-muted-foreground">研修の改善や戦略支援</p>
+                      </div>
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-4">
                       <h6 className="font-display text-lg md:text-xl font-bold">🎤 講演・ワークショップ</h6>
                       <p className="text-base md:text-lg text-foreground">
                         生成AIの最新動向、大学DX、AI人材育成に関する講演・ワークショップ。
                       </p>
+                      <div className="mt-4">
+                        <img src="/service-lecture-opportunity.png" alt="機運なしから対話・気づき・推進の契機へ" className="w-full h-auto rounded-lg" />
+                        <p className="text-sm text-center mt-2 text-muted-foreground">機会創出</p>
+                      </div>
                     </div>
                   </div>
                 </div>
