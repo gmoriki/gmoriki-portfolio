@@ -3,7 +3,7 @@ import { JapanMap } from "./JapanMap";
 
 // Tag component
 const Tag = ({ label }: { label: string }) => (
-  <span className="inline-block px-3 py-1 text-sm font-sans font-medium text-white rounded-full" style={{ backgroundColor: 'oklch(0.35 0.08 160)' }}>
+  <span className="inline-block px-3 py-1 text-sm font-bold text-white rounded-md" style={{ backgroundColor: 'oklch(0.35 0.08 160)', fontFamily: '"Noto Sans JP", sans-serif' }}>
     {label}
   </span>
 );
