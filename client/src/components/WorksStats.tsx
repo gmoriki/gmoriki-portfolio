@@ -128,13 +128,13 @@ export default function WorksStats() {
     <div className="space-y-12">
       {/* Japan Map */}
       <div>
-        <h4 className="font-display text-2xl md:text-3xl font-bold mb-6">全国津々浦々の大学に貢献</h4>
+        <h4 className="font-display text-2xl md:text-3xl font-bold mb-6">日本全国の大学に貢献</h4>
         <JapanMap />
       </div>
 
       {/* Period indicator */}
       <p className="text-base md:text-lg text-muted-foreground">
-        ここ2年間（2024-2025年）の主な活動実績
+        ChatGPTリリース以降の活動実績
       </p>
 
       {/* Stats Grid with scroll animation */}

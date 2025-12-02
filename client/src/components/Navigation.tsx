@@ -64,7 +64,7 @@ export default function Navigation() {
             <Dialog>
               <DialogTrigger asChild>
                 <button className="text-base font-medium hover:opacity-70 transition-opacity">
-                  ABOUT
+                  ABOUT ME
                 </button>
               </DialogTrigger>
               <DialogContent className="max-w-2xl">

@@ -45,7 +45,7 @@ export default function Home() {
               <div className="space-y-6">
                 <div>
                   <h4 className="font-display text-2xl md:text-3xl font-bold mb-4" style={{ color: "oklch(0.35 0.08 160)" }}>
-                    AI人材育成
+                    AI人材開発 / AI組織開発
                   </h4>
                   <p className="text-lg md:text-xl leading-relaxed text-foreground mb-6">
                     生成AIを実務で活用できる人材を育成し、組織のAI導入を推進します。大学・企業向けの研修プログラムを通じて、実践的なスキルを習得できる環境を提供しています。
@@ -60,13 +60,13 @@ export default function Home() {
                     <div className="space-y-2">
                       <h6 className="font-display text-lg md:text-xl font-bold">研修</h6>
                       <p className="text-base md:text-lg text-foreground">
-                        大学・企業向けの生成AI研修プログラム。実務で使える実践的な内容を提供。
+                        大学のFD/SDのほか、教育機関・企業向けの生成AI研修プログラム。実務で使える実践的な内容を提供。
                       </p>
                     </div>
                     <div className="space-y-2">
                       <h6 className="font-display text-lg md:text-xl font-bold">アドバイザリー</h6>
                       <p className="text-base md:text-lg text-foreground">
-                        組織のAI導入戦略立案、ガイドライン策定、継続的な伴走支援。
+                        組織のAI導入戦略立案、ガイドライン策定、AI活用コミュニティ運用、継続的な伴走支援。
                       </p>
                     </div>
                     <div className="space-y-2">
@@ -134,7 +134,7 @@ export default function Home() {
             <Dialog>
               <DialogTrigger asChild>
                 <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-transparent hover:bg-accent hover:text-accent-foreground h-11 px-8 text-lg">
-                  ABOUT
+                  ABOUT ME
                 </button>
               </DialogTrigger>
               <DialogContent className="max-w-2xl">
