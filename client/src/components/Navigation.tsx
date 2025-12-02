@@ -47,9 +47,13 @@ export default function Navigation() {
           <div className="flex items-center justify-between">
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="font-display text-xl md:text-2xl font-bold hover:opacity-70 transition-opacity"
+              className="hover:opacity-70 transition-opacity"
             >
-              gmoriki
+              <img 
+                src="/logo.png" 
+                alt="gmoriki" 
+                className="h-8 md:h-10 w-auto"
+              />
             </button>
 
             {/* Desktop Navigation */}
@@ -95,7 +99,7 @@ export default function Navigation() {
                           森木 銀河(もりき・ぎんが)
                         </p>
                         <p className="text-base md:text-lg leading-relaxed text-foreground">
-                          gmoriki代表。民間企業で生成AIの活用推進を担当。個人事業主として大学のDX支援やAI人材育成を手がける。「AIとヒトをつなぐ」を信条に、企業とアカデミア、二つの領域で実践的なAI導入を推進している。
+                          gmoriki 代表。民間企業にて生成AI活用推進に従事する働ら、個人事業主として大学・教育機関のAI人材育成を手がける。元大学職員としての実務経験と修士号（教育学）を持ち、大学という組織特有の文化や課題に精通していることが強み。教員・職員双方を対象とした研修企画、登壇、アドバイジングなど、現場に即した実践的なAI活用支援を行っている。
                         </p>
                       </div>
                     </div>
@@ -171,7 +175,7 @@ export default function Navigation() {
                           森木 銀河(もりき・ぎんが)
                         </p>
                         <p className="text-base md:text-lg leading-relaxed text-foreground">
-                          gmoriki代表。民間企業で生成AIの活用推進を担当。個人事業主として大学のDX支援やAI人材育成を手がける。「AIとヒトをつなぐ」を信条に、企業とアカデミア、二つの領域で実践的なAI導入を推進している。
+                          gmoriki 代表。民間企業にて生成AI活用推進に従事する働ら、個人事業主として大学・教育機関のAI人材育成を手がける。元大学職員としての実務経験と修士号（教育学）を持ち、大学という組織特有の文化や課題に精通していることが強み。教員・職員双方を対象とした研修企画、登壇、アドバイジングなど、現場に即した実践的なAI活用支援を行っている。
                         </p>
                       </div>
                     </div>
