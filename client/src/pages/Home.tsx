@@ -23,7 +23,7 @@ export default function Home() {
                 gmoriki
               </h1>
               <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold" style={{ color: "oklch(0.35 0.08 160)" }}>
-                AI人材育成
+                大学のAI組織開発パートナー
               </h2>
             </div>
             <p className="text-xl md:text-2xl text-foreground max-w-3xl leading-relaxed">
