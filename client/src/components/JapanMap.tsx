@@ -44,12 +44,16 @@ export function JapanMap() {
   useEffect(() => {
     if (!svgContent || !containerRef.current) return;
 
-    const container = containerRef.current;
-    const svgElement = container.querySelector("svg");
-    if (!svgElement) return;
+    // DOMが完全に更新されるまで待つ
+    const timeoutId = setTimeout(() => {
+      const container = containerRef.current;
+      if (!container) return;
 
-    // すべての都道府県要素を取得
-    const prefectures = svgElement.querySelectorAll(".prefecture");
+      const svgElement = container.querySelector("svg.geolonia-svg-map");
+      if (!svgElement) return;
+
+      // すべての都道府県要素を取得
+      const prefectures = svgElement.querySelectorAll(".prefecture");
 
     prefectures.forEach((pref) => {
       const prefCode = pref.getAttribute("data-code");
@@ -111,12 +115,15 @@ export function JapanMap() {
       });
     });
 
-    // 境界線のスタイルを設定（より見やすく）
-    const boundaryLines = svgElement.querySelectorAll(".boundary-line");
-    boundaryLines.forEach((line) => {
-      (line as SVGElement).style.stroke = "#666";
-      (line as SVGElement).style.strokeWidth = "1";
-    });
+      // 境界線のスタイルを設定（より見やすく）
+      const boundaryLines = svgElement.querySelectorAll(".boundary-line");
+      boundaryLines.forEach((line) => {
+        (line as SVGElement).style.stroke = "#666";
+        (line as SVGElement).style.strokeWidth = "1";
+      });
+    }, 0);
+
+    return () => clearTimeout(timeoutId);
   }, [svgContent]);
 
   // スクロールで表示されたときに順次アニメーション
@@ -124,7 +131,7 @@ export function JapanMap() {
     if (!isVisible || !containerRef.current || !svgContent) return;
 
     const container = containerRef.current;
-    const svgElement = container.querySelector("svg");
+    const svgElement = container.querySelector("svg.geolonia-svg-map");
     if (!svgElement) return;
 
     const prefectures = svgElement.querySelectorAll(".prefecture");
