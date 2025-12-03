@@ -52,7 +52,6 @@ export function JapanMap() {
         if (prefecturesWithUniversities.includes(prefCode)) {
           setHoveredPrefecture(prefCode);
           setTooltipPosition({ x: mouseEvent.clientX, y: mouseEvent.clientY });
-          element.style.filter = "brightness(1.1)";
         }
       });
 
@@ -65,9 +64,33 @@ export function JapanMap() {
 
       element.addEventListener("mouseleave", () => {
         setHoveredPrefecture(null);
-        element.style.filter = "none";
+      });
+
+      // タッチイベント（モバイル対応）
+      element.addEventListener("touchstart", (e: Event) => {
+        e.preventDefault();
+        const touchEvent = e as TouchEvent;
+        if (prefecturesWithUniversities.includes(prefCode)) {
+          const touch = touchEvent.touches[0];
+          setHoveredPrefecture(prefCode);
+          setTooltipPosition({ x: touch.clientX, y: touch.clientY });
+        }
       });
     });
+
+    // 地図の外をタップしたらツールチップを閉じる
+    const handleOutsideTouch = (e: TouchEvent) => {
+      const target = e.target as Element;
+      if (!target.closest('.prefecture')) {
+        setHoveredPrefecture(null);
+      }
+    };
+
+    document.addEventListener('touchstart', handleOutsideTouch);
+
+    return () => {
+      document.removeEventListener('touchstart', handleOutsideTouch);
+    };
   }, [svgContent]);
 
   const hoveredUniversities: University[] = hoveredPrefecture
@@ -84,27 +107,44 @@ export function JapanMap() {
 
       {/* ツールチップ */}
       {hoveredPrefecture && hoveredUniversities.length > 0 && (
-        <div
-          className="fixed z-50 bg-white border-2 border-primary rounded-lg shadow-xl p-4 max-w-sm pointer-events-none"
-          style={{
-            left: `${tooltipPosition.x + 15}px`,
-            top: `${tooltipPosition.y + 15}px`,
-          }}
-        >
-          <h4 className="font-bold text-lg mb-2 text-primary">
-            {hoveredUniversities[0].prefecture}
-          </h4>
-          <p className="text-sm text-muted-foreground mb-2">
-            実績: {hoveredUniversities.length}校
-          </p>
-          <ul className="text-sm space-y-1">
-            {hoveredUniversities.map((uni, idx) => (
-              <li key={idx} className="text-foreground">
-                • {uni.name}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <>
+          {/* 背景オーバーレイ（タップで閉じる） */}
+          <div
+            className="fixed inset-0 z-40 md:hidden"
+            onClick={() => setHoveredPrefecture(null)}
+          />
+          
+          <div
+            className="fixed z-50 bg-white border-2 border-primary rounded-lg shadow-xl p-4 max-w-sm"
+            style={{
+              left: `${tooltipPosition.x + 15}px`,
+              top: `${tooltipPosition.y + 15}px`,
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h4 className="font-bold text-lg mb-2 text-primary">
+              {hoveredUniversities[0].prefecture}
+            </h4>
+            <p className="text-sm text-muted-foreground mb-2">
+              実績: {hoveredUniversities.length}校
+            </p>
+            <ul className="text-sm space-y-1">
+              {hoveredUniversities.map((uni, idx) => (
+                <li key={idx} className="text-foreground">
+                  • {uni.name}
+                </li>
+              ))}
+            </ul>
+            
+            {/* モバイル用の閉じるボタン */}
+            <button
+              className="mt-3 w-full py-2 px-4 bg-primary text-primary-foreground rounded-md text-sm font-medium md:hidden"
+              onClick={() => setHoveredPrefecture(null)}
+            >
+              閉じる
+            </button>
+          </div>
+        </>
       )}
     </div>
   );
