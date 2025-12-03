@@ -202,7 +202,7 @@ export default function Home() {
       <footer className="w-full border-t">
         <div className="container max-w-6xl mx-auto py-8">
           <p className="text-sm text-muted-foreground">
-            © 2025 Ginga Moriki. All rights reserved.
+            © 2025 gmoriki. All rights reserved.
           </p>
         </div>
       </footer>
