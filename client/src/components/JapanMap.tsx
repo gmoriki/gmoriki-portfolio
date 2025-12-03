@@ -1,16 +1,14 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { universitiesByPrefecture, prefecturesWithUniversities, type University } from "@/data/universities";
 
 export function JapanMap() {
   const [svgContent, setSvgContent] = useState<string>("");
   const [hoveredPrefecture, setHoveredPrefecture] = useState<string | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
-  const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
 
+  // SVGファイルを読み込む
   useEffect(() => {
-    // SVGファイルを読み込む
     fetch("/japan-map.svg")
       .then((res) => res.text())
       .then((svg) => {
@@ -18,186 +16,91 @@ export function JapanMap() {
       });
   }, []);
 
-  // スクロールアニメーション用のIntersectionObserver
-  useEffect(() => {
-    const currentRef = wrapperRef.current;
-    if (!currentRef) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(currentRef);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
+  // 実績のある都道府県を緑色で塗る
   useEffect(() => {
     if (!svgContent || !containerRef.current) return;
-
-    // DOMが完全に更新されるまで待つ
-    const timeoutId = setTimeout(() => {
-      const container = containerRef.current;
-      if (!container) return;
-
-      const svgElement = container.querySelector("svg.geolonia-svg-map");
-      if (!svgElement) return;
-
-      // すべての都道府県要素を取得
-      const prefectures = svgElement.querySelectorAll(".prefecture");
-
-    prefectures.forEach((pref) => {
-      const prefCode = pref.getAttribute("data-code");
-      if (!prefCode) return;
-
-      // 実績のある都道府県かチェック
-      const hasUniversity = prefecturesWithUniversities.includes(prefCode);
-
-      // 基本スタイルを設定
-      (pref as SVGElement).style.transition = "all 0.5s ease";
-      
-      if (hasUniversity) {
-        (pref as SVGElement).style.fill = "oklch(0.75 0.15 160)"; // 明るいティールグリーン
-        (pref as SVGElement).style.fillOpacity = "0.85";
-        (pref as SVGElement).style.stroke = "oklch(0.55 0.12 160)";
-        (pref as SVGElement).style.strokeWidth = "1.8";
-        (pref as SVGElement).style.cursor = "pointer";
-      } else {
-        (pref as SVGElement).style.fill = "#f9fafb";
-        (pref as SVGElement).style.fillOpacity = "1";
-        (pref as SVGElement).style.stroke = "#d1d5db";
-        (pref as SVGElement).style.strokeWidth = "0.8";
-        (pref as SVGElement).style.cursor = "default";
-      }
-
-      // マウスオーバーイベント
-      pref.addEventListener("mouseenter", (e: Event) => {
-        if (!hasUniversity) return;
-
-        const mouseEvent = e as MouseEvent;
-        setHoveredPrefecture(prefCode);
-        setTooltipPosition({
-          x: mouseEvent.clientX,
-          y: mouseEvent.clientY,
-        });
-
-        (pref as SVGElement).style.fillOpacity = "1";
-        (pref as SVGElement).style.strokeWidth = "2.5";
-        (pref as SVGElement).style.filter = "brightness(1.1)";
-      });
-
-      pref.addEventListener("mousemove", (e: Event) => {
-        if (!hasUniversity) return;
-
-        const mouseEvent = e as MouseEvent;
-        setTooltipPosition({
-          x: mouseEvent.clientX,
-          y: mouseEvent.clientY,
-        });
-      });
-
-      pref.addEventListener("mouseleave", () => {
-        if (!hasUniversity) return;
-
-        setHoveredPrefecture(null);
-        (pref as SVGElement).style.fillOpacity = "0.85";
-        (pref as SVGElement).style.strokeWidth = "1.8";
-        (pref as SVGElement).style.filter = "none";
-      });
-    });
-
-      // 境界線のスタイルを設定（より見やすく）
-      const boundaryLines = svgElement.querySelectorAll(".boundary-line");
-      boundaryLines.forEach((line) => {
-        (line as SVGElement).style.stroke = "#666";
-        (line as SVGElement).style.strokeWidth = "1";
-      });
-    }, 0);
-
-    return () => clearTimeout(timeoutId);
-  }, [svgContent]);
-
-  // スクロールで表示されたときに順次アニメーション
-  useEffect(() => {
-    if (!isVisible || !containerRef.current || !svgContent) return;
 
     const container = containerRef.current;
     const svgElement = container.querySelector("svg.geolonia-svg-map");
     if (!svgElement) return;
 
+    // すべての都道府県要素を取得
     const prefectures = svgElement.querySelectorAll(".prefecture");
-    
-    // 実績のある都道府県のみを抽出
-    const highlightedPrefs: SVGElement[] = [];
+
     prefectures.forEach((pref) => {
       const prefCode = pref.getAttribute("data-code");
-      if (prefCode && prefecturesWithUniversities.includes(prefCode)) {
-        highlightedPrefs.push(pref as SVGElement);
+      if (!prefCode) return;
+
+      const element = pref as SVGElement;
+
+      // 実績のある都道府県は緑色、それ以外はグレー
+      if (prefecturesWithUniversities.includes(prefCode)) {
+        element.style.fill = "oklch(0.75 0.15 160)";
+        element.style.stroke = "oklch(0.55 0.12 160)";
+        element.style.strokeWidth = "1.8";
+        element.style.cursor = "pointer";
+      } else {
+        element.style.fill = "#EEEEEE";
+        element.style.stroke = "#CCCCCC";
+        element.style.strokeWidth = "1";
+        element.style.cursor = "default";
       }
-    });
 
-    // 各都道府県を順次アニメーション（transformを使わずにfilterとstrokeのみ）
-    highlightedPrefs.forEach((pref, index) => {
-      setTimeout(() => {
-        // グロー効果とストローク強調
-        pref.style.fillOpacity = "1";
-        pref.style.strokeWidth = "3";
-        pref.style.filter = "drop-shadow(0 0 12px oklch(0.65 0.18 160)) drop-shadow(0 0 20px oklch(0.65 0.18 160)) brightness(1.15)";
-        
-        setTimeout(() => {
-          pref.style.fillOpacity = "0.85";
-          pref.style.strokeWidth = "1.8";
-          pref.style.filter = "none";
-        }, 500);
-      }, index * 100);
-    });
-  }, [isVisible, svgContent]);
+      // マウスオーバーイベント
+      element.addEventListener("mouseenter", (e: Event) => {
+        const mouseEvent = e as MouseEvent;
+        if (prefecturesWithUniversities.includes(prefCode)) {
+          setHoveredPrefecture(prefCode);
+          setTooltipPosition({ x: mouseEvent.clientX, y: mouseEvent.clientY });
+          element.style.filter = "brightness(1.1)";
+        }
+      });
 
-  const hoveredUniversities = hoveredPrefecture
+      element.addEventListener("mousemove", (e: Event) => {
+        const mouseEvent = e as MouseEvent;
+        if (prefecturesWithUniversities.includes(prefCode)) {
+          setTooltipPosition({ x: mouseEvent.clientX, y: mouseEvent.clientY });
+        }
+      });
+
+      element.addEventListener("mouseleave", () => {
+        setHoveredPrefecture(null);
+        element.style.filter = "none";
+      });
+    });
+  }, [svgContent]);
+
+  const hoveredUniversities: University[] = hoveredPrefecture
     ? universitiesByPrefecture[hoveredPrefecture] || []
     : [];
 
   return (
-    <div ref={wrapperRef} className="relative">
+    <div className="relative w-full">
       <div
         ref={containerRef}
-        className="w-full max-w-2xl mx-auto"
+        className="w-full max-w-3xl mx-auto"
         dangerouslySetInnerHTML={{ __html: svgContent }}
       />
-      
-      <p className="text-center text-sm text-muted-foreground mt-4">
-        ● 講演・研修実績のある大学（21校）
-      </p>
 
       {/* ツールチップ */}
       {hoveredPrefecture && hoveredUniversities.length > 0 && (
         <div
-          className="fixed z-50 bg-background border-2 rounded-lg shadow-xl p-4 max-w-sm pointer-events-none"
+          className="fixed z-50 bg-white border-2 border-primary rounded-lg shadow-xl p-4 max-w-sm pointer-events-none"
           style={{
             left: `${tooltipPosition.x + 15}px`,
             top: `${tooltipPosition.y + 15}px`,
-            borderColor: "oklch(0.65 0.15 160)",
           }}
         >
-          <h4 className="font-semibold mb-2 text-base" style={{ color: "oklch(0.55 0.12 160)" }}>
+          <h4 className="font-bold text-lg mb-2 text-primary">
             {hoveredUniversities[0].prefecture}
           </h4>
-          <ul className="space-y-2">
-            {hoveredUniversities.map((uni, index) => (
-              <li key={index} className="text-sm">
-                <p className="font-medium">{uni.name}</p>
-                <p className="text-xs text-muted-foreground">
-                  {uni.date} - {uni.title}
-                </p>
+          <p className="text-sm text-muted-foreground mb-2">
+            実績: {hoveredUniversities.length}校
+          </p>
+          <ul className="text-sm space-y-1">
+            {hoveredUniversities.map((uni, idx) => (
+              <li key={idx} className="text-foreground">
+                • {uni.name}
               </li>
             ))}
           </ul>
