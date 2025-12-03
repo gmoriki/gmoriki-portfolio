@@ -16,16 +16,16 @@ export function JapanMap() {
       });
   }, []);
 
-  // 実績のある都道府県を緑色で塗る
-  useEffect(() => {
-    if (!svgContent || !containerRef.current) return;
-
+  // 都道府県にスタイルを適用する関数
+  const applyStyles = () => {
     const container = containerRef.current;
-    const svgElement = container.querySelector("svg.geolonia-svg-map");
-    if (!svgElement) return;
+    if (!container) return false;
 
-    // すべての都道府県要素を取得
+    const svgElement = container.querySelector("svg.geolonia-svg-map");
+    if (!svgElement) return false;
+
     const prefectures = svgElement.querySelectorAll(".prefecture");
+    if (prefectures.length === 0) return false;
 
     prefectures.forEach((pref) => {
       const prefCode = pref.getAttribute("data-code");
@@ -34,64 +34,92 @@ export function JapanMap() {
       const element = pref as SVGElement;
       const hasUniversity = prefecturesWithUniversities.includes(prefCode);
 
-      // 色を設定する関数
-      const setColors = () => {
-        if (hasUniversity) {
-          element.style.fill = "oklch(0.75 0.15 160)";
-          element.style.stroke = "oklch(0.55 0.12 160)";
-          element.style.strokeWidth = "1.8";
-          element.style.cursor = "pointer";
-        } else {
-          element.style.fill = "#EEEEEE";
-          element.style.stroke = "#CCCCCC";
-          element.style.strokeWidth = "1";
-          element.style.cursor = "default";
-        }
-      };
+      // 実績のある都道府県は緑色、それ以外はグレー
+      if (hasUniversity) {
+        element.setAttribute("fill", "oklch(0.75 0.15 160)");
+        element.setAttribute("stroke", "oklch(0.55 0.12 160)");
+        element.setAttribute("stroke-width", "1.8");
+        element.style.cursor = "pointer";
+      } else {
+        element.setAttribute("fill", "#EEEEEE");
+        element.setAttribute("stroke", "#CCCCCC");
+        element.setAttribute("stroke-width", "1");
+        element.style.cursor = "default";
+      }
 
-      // 初期色を設定
-      setColors();
+      // イベントリスナーが重複しないようにチェック
+      if (!element.hasAttribute("data-listeners-attached")) {
+        element.setAttribute("data-listeners-attached", "true");
 
-      // マウスオーバーイベント
-      element.addEventListener("mouseenter", (e: Event) => {
-        const mouseEvent = e as MouseEvent;
-        if (hasUniversity) {
-          setHoveredPrefecture(prefCode);
-          setTooltipPosition({ x: mouseEvent.clientX, y: mouseEvent.clientY });
-        }
-      });
+        // マウスオーバーイベント
+        element.addEventListener("mouseenter", (e: Event) => {
+          const mouseEvent = e as MouseEvent;
+          if (hasUniversity) {
+            setHoveredPrefecture(prefCode);
+            setTooltipPosition({ x: mouseEvent.clientX, y: mouseEvent.clientY });
+          }
+        });
 
-      element.addEventListener("mousemove", (e: Event) => {
-        const mouseEvent = e as MouseEvent;
-        if (hasUniversity) {
-          setTooltipPosition({ x: mouseEvent.clientX, y: mouseEvent.clientY });
-        }
-      });
+        element.addEventListener("mousemove", (e: Event) => {
+          const mouseEvent = e as MouseEvent;
+          if (hasUniversity) {
+            setTooltipPosition({ x: mouseEvent.clientX, y: mouseEvent.clientY });
+          }
+        });
 
-      element.addEventListener("mouseleave", () => {
-        setHoveredPrefecture(null);
-        // 色を元に戻す
-        setColors();
-      });
+        element.addEventListener("mouseleave", () => {
+          setHoveredPrefecture(null);
+        });
 
-      // タッチイベント（モバイル対応）
-      element.addEventListener("touchstart", (e: Event) => {
-        e.preventDefault();
-        const touchEvent = e as TouchEvent;
-        if (hasUniversity) {
-          const touch = touchEvent.touches[0];
-          setHoveredPrefecture(prefCode);
-          setTooltipPosition({ x: touch.clientX, y: touch.clientY });
-        }
-      });
-
-      // タッチ終了時も色を維持
-      element.addEventListener("touchend", () => {
-        setColors();
-      });
+        // タッチイベント（モバイル対応）
+        element.addEventListener("touchstart", (e: Event) => {
+          e.preventDefault();
+          const touchEvent = e as TouchEvent;
+          if (hasUniversity) {
+            const touch = touchEvent.touches[0];
+            setHoveredPrefecture(prefCode);
+            setTooltipPosition({ x: touch.clientX, y: touch.clientY });
+          }
+        });
+      }
     });
 
-    // 地図の外をタップしたらツールチップを閉じる
+    return true;
+  };
+
+  // SVGが読み込まれたらスタイルを適用
+  useEffect(() => {
+    if (!svgContent || !containerRef.current) return;
+
+    // 初回適用を試みる
+    const tryApply = () => {
+      const success = applyStyles();
+      if (!success) {
+        // 失敗した場合は少し待ってから再試行
+        setTimeout(tryApply, 50);
+      }
+    };
+
+    // DOMの更新を待ってから適用
+    setTimeout(tryApply, 0);
+
+    // MutationObserverでDOM変更を監視
+    const observer = new MutationObserver(() => {
+      applyStyles();
+    });
+
+    observer.observe(containerRef.current, {
+      childList: true,
+      subtree: true,
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [svgContent]);
+
+  // 地図の外をタップしたらツールチップを閉じる
+  useEffect(() => {
     const handleOutsideTouch = (e: TouchEvent) => {
       const target = e.target as Element;
       if (!target.closest('.prefecture')) {
@@ -100,11 +128,10 @@ export function JapanMap() {
     };
 
     document.addEventListener('touchstart', handleOutsideTouch);
-
     return () => {
       document.removeEventListener('touchstart', handleOutsideTouch);
     };
-  }, [svgContent]);
+  }, []);
 
   const hoveredUniversities: University[] = hoveredPrefecture
     ? universitiesByPrefecture[hoveredPrefecture] || []
