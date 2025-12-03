@@ -36,6 +36,7 @@ const notableWorks = [
       {
         date: "2023年12月6-7日",
         title: "大学職員のための生成AIコーディネーター養成講座",
+        subtitle: "研修名：大学職員のための生成AIコーディネーター養成講座",
         description: "大学の現場で生成AI活用を推進する人材を育成プログラム。一泊二日にわたる包括的な研修で、日常業務における生成AI活用と組織体制の整備をインプット。修了生の多くは生成AIコーディネーターとして活躍中（金沢大学、滋賀大学、岐阜聖徳学園大学等）。",
         organization: "愛媛大学教育企画室",
         tags: ["研修"],
@@ -56,7 +57,8 @@ const notableWorks = [
       {
         date: "2024年8月27日",
         title: "大学業務における生成AI利活用セミナー",
-        description: "「大学職員は生成AIを「実際に」活用できるのか」をテーマに、日本マイクロソフトと佐賀大学が共催した実践的なセミナー。基調講演を担当",
+        subtitle: "講演名：大学職員は生成AIを「実際に」活用できるのか",
+        description: "日本マイクロソフトと佐賀大学が共催した実践的なセミナー。基調講演を担当",
         organization: "日本マイクロソフト、佐賀大学共催",
         tags: ["講演"],
       },
@@ -68,7 +70,8 @@ const notableWorks = [
       {
         date: "2025年10月27日",
         title: "金沢大学 令和7年度DX研修（生成AI活用（応用編））",
-        description: "「生成AI活用の本質的理解：大学DXを加速する「プロトタイプ起点業務」」をテーマに、AIを「エイリアン・インテリジェンス（異質な知性）」として捉え、プロトタイプ思考で業務を変革する次世代の研修",
+        subtitle: "研修名：生成AI活用の本質的理解：大学DXを加速する「プロトタイプ起点業務」",
+        description: "AIを「エイリアン・インテリジェンス（異質な知性）」として捉え、プロトタイプ思考で業務を変革する次世代の研修",
         organization: "金沢大学情報推進室",
         link: "https://note.com/pogohopper8/n/ne605cfd9b08b",
         image: "/kanazawa-dx-training.webp",
@@ -77,6 +80,7 @@ const notableWorks = [
       {
         date: "2025年10月27日",
         title: "プロトタイプ起点型の業務を体験しよう（ワークショップ）",
+        subtitle: "ワークショップ名：プロトタイプ起点型の業務を体験しよう",
         description: "Google AI Studio「Build with Gemini」を活用した実践的ワークショップ。専門知識不要でWebアプリケーションのプロトタイプを構築し、全職員が当たり前に使える「思考ツール」としてのAI活用を体験",
         organization: "金沢大学情報推進室",
         link: "https://note.com/pogohopper8/n/n391a90174a5f",
@@ -154,24 +158,24 @@ export default function WorksStats() {
       </p>
 
       {/* Stats Grid with scroll animation */}
-      <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+      <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
         {stats.map((stat, index) => (
           <div
             key={index}
-            className="space-y-2 text-center"
+            className="space-y-1 text-center p-4 rounded-lg border bg-card/50"
             style={{
               transitionDelay: `${index * 100}ms`,
             }}
           >
             <span
-              className={`font-display text-5xl md:text-6xl font-bold transition-all duration-700 ${
+              className={`font-display text-3xl md:text-4xl font-bold transition-all duration-700 ${
                 isVisible ? "opacity-100 scale-100" : "opacity-0 scale-50"
               }`}
               style={{ color: "oklch(0.35 0.08 160)" }}
             >
               {counts[index]}{stat.suffix}
             </span>
-            <p className="text-base md:text-lg text-foreground">{stat.label}</p>
+            <p className="text-sm md:text-base text-foreground">{stat.label}</p>
           </div>
         ))}
       </div>
@@ -203,6 +207,9 @@ export default function WorksStats() {
                           <p className="text-base md:text-lg font-semibold">{work.title}</p>
                         )}
                         <p className="text-sm text-muted-foreground">{work.date}{work.organization && ` | ${work.organization}`}</p>
+                        {(work as any).subtitle && (
+                          <p className="text-sm font-medium text-foreground mt-1">{(work as any).subtitle}</p>
+                        )}
                         {work.tags && work.tags.length > 0 && (
                           <div className="flex flex-wrap gap-2 mt-1">
                             {work.tags.map((tag, tagIndex) => (
