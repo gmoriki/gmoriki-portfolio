@@ -1,4 +1,4 @@
-import { useAuth } from "@/_core/hooks/useAuth";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -13,10 +13,6 @@ import Navigation from "@/components/Navigation";
 import { Mail } from "lucide-react";
 
 export default function Home() {
-  // The userAuth hooks provides authentication state
-  // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
-  // let { user, loading, error, isAuthenticated, logout } = useAuth();
-
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
