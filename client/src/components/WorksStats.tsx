@@ -158,24 +158,24 @@ export default function WorksStats() {
       </p>
 
       {/* Stats Grid with scroll animation */}
-      <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+      <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
         {stats.map((stat, index) => (
           <div
             key={index}
-            className="space-y-1 text-center p-4 rounded-lg border bg-card/50"
+            className="space-y-2 text-center"
             style={{
               transitionDelay: `${index * 100}ms`,
             }}
           >
             <span
-              className={`font-display text-3xl md:text-4xl font-bold transition-all duration-700 ${
+              className={`font-display text-4xl md:text-5xl font-bold transition-all duration-700 ${
                 isVisible ? "opacity-100 scale-100" : "opacity-0 scale-50"
               }`}
               style={{ color: "oklch(0.35 0.08 160)" }}
             >
               {counts[index]}{stat.suffix}
             </span>
-            <p className="text-sm md:text-base text-foreground">{stat.label}</p>
+            <p className="text-base md:text-lg text-foreground">{stat.label}</p>
           </div>
         ))}
       </div>
