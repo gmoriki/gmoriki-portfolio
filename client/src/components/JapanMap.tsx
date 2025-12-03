@@ -32,24 +32,30 @@ export function JapanMap() {
       if (!prefCode) return;
 
       const element = pref as SVGElement;
+      const hasUniversity = prefecturesWithUniversities.includes(prefCode);
 
-      // 実績のある都道府県は緑色、それ以外はグレー
-      if (prefecturesWithUniversities.includes(prefCode)) {
-        element.style.fill = "oklch(0.75 0.15 160)";
-        element.style.stroke = "oklch(0.55 0.12 160)";
-        element.style.strokeWidth = "1.8";
-        element.style.cursor = "pointer";
-      } else {
-        element.style.fill = "#EEEEEE";
-        element.style.stroke = "#CCCCCC";
-        element.style.strokeWidth = "1";
-        element.style.cursor = "default";
-      }
+      // 色を設定する関数
+      const setColors = () => {
+        if (hasUniversity) {
+          element.style.fill = "oklch(0.75 0.15 160)";
+          element.style.stroke = "oklch(0.55 0.12 160)";
+          element.style.strokeWidth = "1.8";
+          element.style.cursor = "pointer";
+        } else {
+          element.style.fill = "#EEEEEE";
+          element.style.stroke = "#CCCCCC";
+          element.style.strokeWidth = "1";
+          element.style.cursor = "default";
+        }
+      };
+
+      // 初期色を設定
+      setColors();
 
       // マウスオーバーイベント
       element.addEventListener("mouseenter", (e: Event) => {
         const mouseEvent = e as MouseEvent;
-        if (prefecturesWithUniversities.includes(prefCode)) {
+        if (hasUniversity) {
           setHoveredPrefecture(prefCode);
           setTooltipPosition({ x: mouseEvent.clientX, y: mouseEvent.clientY });
         }
@@ -57,24 +63,31 @@ export function JapanMap() {
 
       element.addEventListener("mousemove", (e: Event) => {
         const mouseEvent = e as MouseEvent;
-        if (prefecturesWithUniversities.includes(prefCode)) {
+        if (hasUniversity) {
           setTooltipPosition({ x: mouseEvent.clientX, y: mouseEvent.clientY });
         }
       });
 
       element.addEventListener("mouseleave", () => {
         setHoveredPrefecture(null);
+        // 色を元に戻す
+        setColors();
       });
 
       // タッチイベント（モバイル対応）
       element.addEventListener("touchstart", (e: Event) => {
         e.preventDefault();
         const touchEvent = e as TouchEvent;
-        if (prefecturesWithUniversities.includes(prefCode)) {
+        if (hasUniversity) {
           const touch = touchEvent.touches[0];
           setHoveredPrefecture(prefCode);
           setTooltipPosition({ x: touch.clientX, y: touch.clientY });
         }
+      });
+
+      // タッチ終了時も色を維持
+      element.addEventListener("touchend", () => {
+        setColors();
       });
     });
 
