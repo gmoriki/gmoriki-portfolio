@@ -168,10 +168,12 @@ export function JapanMap() {
             <p className="text-sm text-muted-foreground mb-2">
               実績: {hoveredUniversities.length}校
             </p>
-            <ul className="text-sm space-y-1">
+            <ul className="text-sm space-y-2">
               {hoveredUniversities.map((uni, idx) => (
                 <li key={idx} className="text-foreground">
-                  • {uni.name}
+                  <div className="font-semibold">• {uni.name}</div>
+                  <div className="text-xs text-muted-foreground ml-3">{uni.title}</div>
+                  <div className="text-xs text-muted-foreground ml-3">{uni.date}</div>
                 </li>
               ))}
             </ul>
