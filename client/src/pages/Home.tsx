@@ -62,7 +62,22 @@ export default function Home() {
                         大学のFD/SDのほか、教育機関・企業向けの生成AI研修プログラム。実務で使える実践的な内容を提供。
                       </p>
                       <div className="mt-4 flex flex-col items-center">
-                        <img src="/service-training-impact-v4.png" alt="知識から行動変容・インパクト創出へ" className="w-[70%] h-auto" />
+                        <div className="w-full max-w-md mx-auto">
+                          <div className="grid grid-cols-[1fr_auto_1fr] gap-4 items-center py-8">
+                            {/* Before */}
+                            <div className="flex flex-col items-center gap-3">
+                              <img src="/training-before.png" alt="知識習得段階" className="w-24 h-24 object-contain" />
+                            </div>
+                            {/* Arrow */}
+                            <svg className="w-12 h-12 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M8 24h32m-8-8l8 8-8 8" stroke="oklch(0.35 0.08 160)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                            {/* After */}
+                            <div className="flex flex-col items-center gap-3">
+                              <img src="/training-after.png" alt="行動変容・インパクト創出" className="w-24 h-24 object-contain" />
+                            </div>
+                          </div>
+                        </div>
                         <p className="text-sm text-center mt-2 text-muted-foreground">行動変容によるインパクト創出</p>
                       </div>
                     </div>
@@ -72,7 +87,22 @@ export default function Home() {
                         組織のAI導入戦略立案、ガイドライン策定、AI活用コミュニティ運用、研修改善。
                       </p>
                       <div className="mt-4 flex flex-col items-center">
-                        <img src="/service-advisory-strategy-v4.png" alt="場当たり的から体系的戦略・継続改善へ" className="w-[70%] h-auto" />
+                        <div className="w-full max-w-md mx-auto">
+                          <div className="grid grid-cols-[1fr_auto_1fr] gap-4 items-center py-8">
+                            {/* Before */}
+                            <div className="flex flex-col items-center gap-3">
+                              <img src="/advisory-before.png" alt="場当たり的アプローチ" className="w-24 h-24 object-contain" />
+                            </div>
+                            {/* Arrow */}
+                            <svg className="w-12 h-12 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M8 24h32m-8-8l8 8-8 8" stroke="oklch(0.35 0.08 160)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                            {/* After */}
+                            <div className="flex flex-col items-center gap-3">
+                              <img src="/advisory-after.png" alt="体系的戦略・継続改善" className="w-24 h-24 object-contain" />
+                            </div>
+                          </div>
+                        </div>
                         <p className="text-sm text-center mt-2 text-muted-foreground">研修の改善や戦略支援</p>
                       </div>
                     </div>
@@ -82,7 +112,22 @@ export default function Home() {
                         生成AIの最新動向、大学DX、AI人材育成に関する講演・ワークショップ。
                       </p>
                       <div className="mt-4 flex flex-col items-center">
-                        <img src="/service-lecture-opportunity-v4.png" alt="機運なしから対話・気づき・推進の契機へ" className="w-[70%] h-auto" />
+                        <div className="w-full max-w-md mx-auto">
+                          <div className="grid grid-cols-[1fr_auto_1fr] gap-4 items-center py-8">
+                            {/* Before */}
+                            <div className="flex flex-col items-center gap-3">
+                              <img src="/lecture-before.png" alt="機運なし" className="w-24 h-24 object-contain" />
+                            </div>
+                            {/* Arrow */}
+                            <svg className="w-12 h-12 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M8 24h32m-8-8l8 8-8 8" stroke="oklch(0.35 0.08 160)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                            {/* After */}
+                            <div className="flex flex-col items-center gap-3">
+                              <img src="/lecture-after.png" alt="対話・気づき・推進の契機" className="w-24 h-24 object-contain" />
+                            </div>
+                          </div>
+                        </div>
                         <p className="text-sm text-center mt-2 text-muted-foreground">機会創出</p>
                       </div>
                     </div>
