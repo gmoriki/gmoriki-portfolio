@@ -15,10 +15,10 @@ interface StatItem {
 }
 
 const stats: StatItem[] = [
-  { label: "論文・発表", value: 5, suffix: "件" },
-  { label: "講演・研修", value: 45, suffix: "件" },
-  { label: "社会貢献活動", value: 9, suffix: "件" },
-  { label: "Works(作品等)", value: 5, suffix: "件" },
+  { label: "論文・発表", value: 2, suffix: "件" },
+  { label: "講演・研修", value: 47, suffix: "件" },
+  { label: "社会貢献活動", value: 10, suffix: "件" },
+  { label: "Works(作品等)", value: 3, suffix: "件" },
 ];
 
 const notableWorks = [
@@ -154,7 +154,7 @@ export default function WorksStats() {
 
       {/* Period indicator */}
       <p className="text-base md:text-lg text-muted-foreground">
-        ChatGPT登場以降の活動実績
+        主な活動実績
       </p>
 
       {/* Stats Grid with scroll animation */}
