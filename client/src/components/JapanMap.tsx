@@ -137,6 +137,30 @@ export function JapanMap() {
     ? universitiesByPrefecture[hoveredPrefecture] || []
     : [];
 
+  // ポップアップの位置を計算（画面端で自動調整）
+  const getAdjustedTooltipPosition = () => {
+    const tooltipWidth = 384; // max-w-sm ≈ 384px
+    const tooltipHeight = 300; // 概算高さ
+    const padding = 16; // 画面端からのパディング
+
+    let left = tooltipPosition.x + 15;
+    let top = tooltipPosition.y + 15;
+
+    // 右側がはみ出す場合は左側に配置
+    if (left + tooltipWidth + padding > window.innerWidth) {
+      left = Math.max(padding, tooltipPosition.x - tooltipWidth - 15);
+    }
+
+    // 下側がはみ出す場合は上側に配置
+    if (top + tooltipHeight + padding > window.innerHeight) {
+      top = Math.max(padding, tooltipPosition.y - tooltipHeight - 15);
+    }
+
+    return { left, top };
+  };
+
+  const adjustedPosition = getAdjustedTooltipPosition();
+
   return (
     <div className="relative w-full">
       <div
@@ -153,12 +177,12 @@ export function JapanMap() {
             className="fixed inset-0 z-40 md:hidden"
             onClick={() => setHoveredPrefecture(null)}
           />
-          
+
           <div
             className="fixed z-50 bg-white border-2 border-primary rounded-lg shadow-xl p-4 max-w-sm"
             style={{
-              left: `${tooltipPosition.x + 15}px`,
-              top: `${tooltipPosition.y + 15}px`,
+              left: `${adjustedPosition.left}px`,
+              top: `${adjustedPosition.top}px`,
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -177,7 +201,7 @@ export function JapanMap() {
                 </li>
               ))}
             </ul>
-            
+
             {/* モバイル用の閉じるボタン */}
             <button
               className="mt-3 w-full py-2 px-4 bg-primary text-primary-foreground rounded-md text-sm font-medium md:hidden"
