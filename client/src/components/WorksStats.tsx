@@ -30,7 +30,7 @@ const notableWorks = [
         title: "国内大学の生成AIポリシー データベース公開",
         description: "国内大学の生成AIに関するポリシーやガイドラインを体系的にまとめたデータベース。2023年3月から2024年9月までリアルタイムに更新。多数の論文やリサーチペーパー、大学HP（東北大学等）に参考資料として引用されています",
         link: "https://docs.google.com/spreadsheets/d/1cDOqaIdu9JKOYuF0ThG33oixE09m210z/edit#gid=1530250804",
-        image: "/ai-policy-db.webp",
+        image: "/policy-database.png",
         tags: ["プロダクト", "論文・発表", "オープンソース"],
       },
       {
