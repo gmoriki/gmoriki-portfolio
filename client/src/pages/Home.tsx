@@ -33,7 +33,7 @@ export default function Home() {
               </h2>
             </div>
             <p className="text-xl md:text-2xl text-foreground max-w-3xl leading-relaxed">
-              AIとヒトをつなぎ、誰もが技術の恩恵を受けられる社会を創る
+              AIとヒトの共生環境を築き、普遍的価値を探求する「場」を守り抜く
             </p>
           </div>
         </div>
