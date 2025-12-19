@@ -16,7 +16,7 @@ interface StatItem {
 
 const stats: StatItem[] = [
   { label: "論文・発表", value: 2, suffix: "件" },
-  { label: "講演・研修", value: 47, suffix: "件" },
+  { label: "講演・研修", value: 48, suffix: "件" },
   { label: "社会貢献活動", value: 10, suffix: "件" },
   { label: "Works(作品等)", value: 3, suffix: "件" },
 ];
@@ -96,6 +96,8 @@ export default function WorksStats() {
   const [counts, setCounts] = useState([0, 0, 0, 0]);
   const statsRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
+  const [visibleWorks, setVisibleWorks] = useState<Set<number>>(new Set());
+  const workRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const currentRef = statsRef.current;
@@ -138,6 +140,33 @@ export default function WorksStats() {
 
     return () => {
       observer.disconnect();
+    };
+  }, []);
+
+  // 主な実績のスクロールアニメーション
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    workRefs.current.forEach((ref, index) => {
+      if (!ref) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setVisibleWorks((prev) => new Set(prev).add(index));
+            }
+          });
+        },
+        { threshold: 0.2, rootMargin: '0px 0px -50px 0px' }
+      );
+
+      observer.observe(ref);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
     };
   }, []);
 
@@ -190,8 +219,19 @@ export default function WorksStats() {
                 {yearGroup.year}
               </h5>
               <div className="space-y-6">
-                {yearGroup.items.map((work, workIndex) => (
-                  <div key={workIndex} className="border-l-2 pl-6 py-2" style={{ borderColor: "oklch(0.35 0.08 160)" }}>
+                {yearGroup.items.map((work, workIndex) => {
+                  const globalIndex = notableWorks.slice(0, yearIndex).reduce((acc, yg) => acc + yg.items.length, 0) + workIndex;
+                  const isWorkVisible = visibleWorks.has(globalIndex);
+                  
+                  return (
+                  <div 
+                    key={workIndex} 
+                    ref={(el) => { workRefs.current[globalIndex] = el; }}
+                    className={`border-l-2 pl-6 py-2 transition-all duration-700 ${
+                      isWorkVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                    }`}
+                    style={{ borderColor: "oklch(0.35 0.08 160)" }}
+                  >
                     <div className="flex flex-col gap-3">
                       <div className="flex flex-col gap-2">
                         {work.link ? (
@@ -235,7 +275,8 @@ export default function WorksStats() {
                       )}
                     </div>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           ))}

@@ -8,6 +8,7 @@ export interface University {
 
 export const universities: University[] = [
   // 2025年
+  { name: "福島県立医科大学", prefecture: "福島県", prefectureCode: "7", date: "2025年12月18日", title: "大学教員のための生成AI基礎講座" },
   { name: "愛知教育大学", prefecture: "愛知県", prefectureCode: "23", date: "2025年9月24日", title: "大学授業での生成AI活用方法" },
   { name: "新潟大学", prefecture: "新潟県", prefectureCode: "15", date: "2025年9月19日", title: "AIと一緒に働こう！今日から始める生成AI入門セミナー in 新潟大学" },
   { name: "岐阜聖徳学園大学", prefecture: "岐阜県", prefectureCode: "21", date: "2025年9月10日", title: "生成AI入門業務活用編" },
