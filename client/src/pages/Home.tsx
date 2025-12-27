@@ -164,6 +164,13 @@ export default function Home() {
               <p className="text-lg md:text-xl text-foreground mb-6">
                 研修・講演・アドバイザリーのご依頼、その他お問い合わせは、以下の方法でお気軽にご連絡ください。
               </p>
+              <div className="mb-6 p-4 bg-accent/30 rounded-lg">
+                <p className="text-base md:text-lg text-foreground">
+                  🏠 メインサイトは <a href="http://gmoriki.com/" target="_blank" rel="noopener noreferrer" className="font-semibold underline hover:no-underline" style={{ color: "oklch(0.35 0.08 160)" }}>gmoriki.com</a> です<br />
+                  📚 ここでは <a href="https://gmoriki.notion.site/cafe" target="_blank" rel="noopener noreferrer" className="font-semibold underline hover:no-underline" style={{ color: "oklch(0.35 0.08 160)" }}>Notion</a> 上で詳しい情報や補足を置いています<br />
+                  🌱 のんびり更新中です
+                </p>
+              </div>
               <div className="flex flex-wrap gap-4">
                 <Button asChild size="lg" className="text-lg">
                   <a href="mailto:info@gmoriki.com">
@@ -216,9 +223,16 @@ export default function Home() {
                         もりき ぎんが
                       </p>
                         <p className="text-base md:text-lg leading-relaxed text-foreground">
-                          gmoriki 代表。民間企業にて生成AI活用推進に従事する傍ら、個人事業主として大学・教育機関のAI人材育成を手がける。私立・国立大学職員としての実務経験を持ち、大学という組織特有の文化や課題に精通していることが強み。教員・職員双方を対象とした研修企画、登壇、アドバイジングなど、現場に即した実践的なAI活用支援を行っている。
+                          gmoriki 代表。民間企業にて生成AI活用推進に従事する働ら、個人事業主として大学・教育機関のAI人材育成を手がける。私立・国立大学職員としての実務経験を持ち、大学という組織特有の文化や課題に精通していることが強み。教員・職員双方を対象とした研修企画、登壇、アドバイジングなど、現場に即した実践的なAI活用支援を行っている。
                         </p>
                     </div>
+                  </div>
+                  <div className="mt-6 p-4 bg-accent/30 rounded-lg">
+                    <p className="text-sm md:text-base text-foreground">
+                      🏠 メインサイトは <a href="http://gmoriki.com/" target="_blank" rel="noopener noreferrer" className="font-semibold underline hover:no-underline" style={{ color: "oklch(0.35 0.08 160)" }}>gmoriki.com</a> です<br />
+                      📚 ここでは <a href="https://gmoriki.notion.site/cafe" target="_blank" rel="noopener noreferrer" className="font-semibold underline hover:no-underline" style={{ color: "oklch(0.35 0.08 160)" }}>Notion</a> 上で詳しい情報や補足を置いています<br />
+                      🌱 のんびり更新中です
+                    </p>
                   </div>
                 </div>
               </DialogContent>
