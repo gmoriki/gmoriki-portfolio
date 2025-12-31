@@ -166,9 +166,7 @@ export default function Home() {
               </p>
               <div className="mb-6 p-4 bg-accent/30 rounded-lg">
                 <p className="text-base md:text-lg text-foreground">
-                  🏠 メインサイトは <a href="http://gmoriki.com/" target="_blank" rel="noopener noreferrer" className="font-semibold underline hover:no-underline" style={{ color: "oklch(0.35 0.08 160)" }}>gmoriki.com</a> です<br />
-                  📚 ここでは <a href="https://gmoriki.notion.site/uekibachi" target="_blank" rel="noopener noreferrer" className="font-semibold underline hover:no-underline" style={{ color: "oklch(0.35 0.08 160)" }}>Notion</a> 上で詳しい情報や補足を置いています<br />
-                  🌱 のんびり更新中です
+                  🌱 <a href="https://gmoriki.notion.site/uekibachi" target="_blank" rel="noopener noreferrer" className="font-semibold underline hover:no-underline" style={{ color: "oklch(0.35 0.08 160)" }}>うえきばちポータル</a>では、AI活用のヒントや研修資料、大学職員向けのお役立ち情報など、様々な補足コンテンツを公開しています。ぜひご覧ください。
                 </p>
               </div>
               <div className="flex flex-wrap gap-4">
@@ -229,9 +227,7 @@ export default function Home() {
                   </div>
                   <div className="mt-6 p-4 bg-accent/30 rounded-lg">
                     <p className="text-sm md:text-base text-foreground">
-                      🏠 メインサイトは <a href="http://gmoriki.com/" target="_blank" rel="noopener noreferrer" className="font-semibold underline hover:no-underline" style={{ color: "oklch(0.35 0.08 160)" }}>gmoriki.com</a> です<br />
-                      📚 ここでは <a href="https://gmoriki.notion.site/uekibachi" target="_blank" rel="noopener noreferrer" className="font-semibold underline hover:no-underline" style={{ color: "oklch(0.35 0.08 160)" }}>Notion</a> 上で詳しい情報や補足を置いています<br />
-                      🌱 のんびり更新中です
+                      🌱 <a href="https://gmoriki.notion.site/uekibachi" target="_blank" rel="noopener noreferrer" className="font-semibold underline hover:no-underline" style={{ color: "oklch(0.35 0.08 160)" }}>うえきばちポータル</a>では、AI活用のヒントや研修資料、大学職員向けのお役立ち情報など、様々な補足コンテンツを公開しています。ぜひご覧ください。
                     </p>
                   </div>
                 </div>
