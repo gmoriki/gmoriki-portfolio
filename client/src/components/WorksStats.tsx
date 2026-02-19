@@ -202,21 +202,6 @@ export default function WorksStats() {
         </div>
       </div>
 
-      {/* External Link */}
-      <div className="pt-6 border-t">
-        <p className="text-base md:text-lg text-muted-foreground">
-          全ての実績は{" "}
-          <a
-            href="https://researchmap.jp/gmoriki"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold underline hover:no-underline text-primary"
-          >
-            researchmap
-          </a>{" "}
-          でご覧いただけます。
-        </p>
-      </div>
     </div>
   );
 }
