@@ -80,6 +80,26 @@ export default function Navigation() {
               <Dialog>
                 <DialogTrigger asChild>
                   <button className="text-base font-medium hover:opacity-70 transition-opacity">
+                    MVV
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl">
+                  <DialogHeader>
+                    <DialogTitle className="font-display text-2xl md:text-3xl">MISSION · VISION · VALUES</DialogTitle>
+                  </DialogHeader>
+                  <div className="pt-4">
+                    <img
+                      src="/mvv-slide.png"
+                      alt="Mission, Vision, Values"
+                      className="w-full h-auto"
+                    />
+                  </div>
+                </DialogContent>
+              </Dialog>
+
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button className="text-base font-medium hover:opacity-70 transition-opacity">
                     ABOUT ME
                   </button>
                 </DialogTrigger>
@@ -156,7 +176,26 @@ export default function Navigation() {
               </button>
               <Dialog>
                 <DialogTrigger asChild>
-                  <button 
+                  <button className="text-left text-base font-medium hover:opacity-70 transition-opacity py-2">
+                    MVV
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl">
+                  <DialogHeader>
+                    <DialogTitle className="font-display text-2xl md:text-3xl">MISSION · VISION · VALUES</DialogTitle>
+                  </DialogHeader>
+                  <div className="pt-4">
+                    <img
+                      src="/mvv-slide.png"
+                      alt="Mission, Vision, Values"
+                      className="w-full h-auto"
+                    />
+                  </div>
+                </DialogContent>
+              </Dialog>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button
                     className="text-left text-base font-medium hover:opacity-70 transition-opacity py-2"
                   >
                     ABOUT ME
