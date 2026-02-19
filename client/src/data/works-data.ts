@@ -77,7 +77,46 @@ export interface StatItem {
 // ============================================================
 export const works: WorkItem[] = [
 
+  // ---- 2019年 ----
+
+  {
+    date: "2019年3月",
+    title: "理科教育と科学史分野における研究の展開に対する考察",
+    organization: "修士論文",
+    tags: ["論文・発表"],
+  },
+
+  // ---- 2022年 ----
+
+  {
+    date: "2022年11月",
+    title: "学内研究分野ネットワーク可視化システムの開発",
+    organization: "第11回大学情報・機関調査研究集会",
+    tags: ["論文・発表"],
+  },
+
   // ---- 2023年 ----
+
+  {
+    date: "2023年2月",
+    title: "jsonkeysearch",
+    description: "JSONファイルのキーを検索するPythonパッケージ。PyPI公開。",
+    link: "https://pypi.org/project/jsonkeysearch/",
+    tags: ["プロダクト"],
+  },
+  {
+    date: "2023年4月",
+    title: "excel-data-splitter",
+    description: "Excelファイルを指定列でデータ分割するPythonツール。",
+    link: "https://github.com/gmoriki/excel-data-splitter",
+    tags: ["プロダクト"],
+  },
+  {
+    date: "2023年5月",
+    title: "C4RA Python勉強会資料",
+    description: "大学リサーチアドミニストレーター向けPythonプログラミング勉強会資料。",
+    tags: ["プロダクト"],
+  },
 
   {
     date: "2023年",
@@ -98,11 +137,47 @@ export const works: WorkItem[] = [
     tags: ["講演"],
   },
   {
+    date: "2023年8月9日",
+    title: "研究力分析の高度化に向けた自主的なプログラミング勉強会の取り組み",
+    organization: "RA協議会第9回年次大会",
+    tags: ["講演"],
+  },
+  {
+    date: "2023年9月2日",
+    title: "生成AIの現在地：大学運営における現状認識から活用まで",
+    organization: "大学行政管理学会第27回定期総会・研究集会",
+    tags: ["講演"],
+  },
+  {
+    date: "2023年9月3日",
+    title: "大学の事務業務における生成AI導入のための思考的枠組みに関する考察",
+    organization: "大学行政管理学会第27回定期総会・研究集会",
+    tags: ["講演"],
+  },
+  {
     date: "2023年9月29日",
     title: "生成AI利用の本質的理解―大学の授業のために―",
     university: "愛媛大学",
     prefectureCode: "38",
     prefectureName: "愛媛県",
+    tags: ["講演"],
+  },
+  {
+    date: "2023年11月",
+    title: "IRではデータ収集がどのように実施・認識されてきたのか",
+    organization: "第12回大学情報・機関調査研究集会",
+    tags: ["論文・発表"],
+  },
+  {
+    date: "2023年11月",
+    title: "ユネスコによる教育・研究における生成AI利用ガイダンス",
+    organization: "カレントアウェアネス-E (MISC)",
+    tags: ["論文・発表"],
+  },
+  {
+    date: "2023年11月19日",
+    title: "大学IRにおける生成AI利用の試み",
+    organization: "第12回大学情報・機関調査研究集会",
     tags: ["講演"],
   },
   {
@@ -212,6 +287,12 @@ export const works: WorkItem[] = [
     tags: ["研修"],
   },
   {
+    date: "2024年8月",
+    title: "大学の管理運営業務における生成AI利用",
+    organization: "IDE現代の高等教育 No.663",
+    tags: ["論文・発表"],
+  },
+  {
     date: "2024年8月20日",
     title: "大学業務における生成AI活用の現在地 -実践編-",
     university: "九州大学",
@@ -230,6 +311,22 @@ export const works: WorkItem[] = [
     prefectureName: "佐賀県",
     tags: ["講演"],
     featured: true,
+  },
+  {
+    date: "2024年9月4日",
+    title: "大学業務の観点から生成AI利用を考える",
+    university: "大学コンソーシアムひょうご神戸",
+    prefectureCode: "28",
+    prefectureName: "兵庫県",
+    tags: ["講演"],
+  },
+  {
+    date: "2024年9月18日",
+    title: "業務のための画像/テキスト生成AI入門",
+    university: "学校法人東放学園",
+    prefectureCode: "13",
+    prefectureName: "東京都",
+    tags: ["研修"],
   },
   {
     date: "2024年9月24日",
@@ -295,6 +392,35 @@ export const works: WorkItem[] = [
     prefectureName: "広島県",
     tags: ["講演"],
   },
+  {
+    date: "2024年11月",
+    title: "大学職員のためのプロンプトガイドの開発",
+    organization: "第13回大学情報・機関調査研究集会",
+    tags: ["論文・発表"],
+  },
+  {
+    date: "2024年12月12日",
+    title: "大学職員の内省を促すAIエージェントの試行的開発",
+    organization: "大学ICT推進協議会（AXIES）2024年度年次大会",
+    tags: ["講演"],
+  },
+  {
+    date: "2024年12月13日",
+    title: "大学事務における生成AIの活用方法",
+    university: "愛知県私立大学教務研究会",
+    prefectureCode: "23",
+    prefectureName: "愛知県",
+    tags: ["講演"],
+  },
+  {
+    date: "2024年12月20日",
+    title: "生成AIと歩むこれからの大学",
+    organization: "SPOD（四国地区大学教職員能力開発ネットワーク）",
+    university: "愛媛大学（SPOD）",
+    prefectureCode: "38",
+    prefectureName: "愛媛県",
+    tags: ["講演"],
+  },
 
   // ---- 2025年 ----
 
@@ -355,6 +481,12 @@ export const works: WorkItem[] = [
     tags: ["研修"],
   },
   {
+    date: "2025年8月7日",
+    title: "AI-Readyな人材を育成することについて",
+    organization: "全国情報技術教育研究会",
+    tags: ["講演"],
+  },
+  {
     date: "2025年8月26日",
     title: "大学教職員のためのAIリテラシー基礎研修—今すぐ始めるAI活用で変わる働き方—",
     university: "岡山大学",
@@ -369,6 +501,12 @@ export const works: WorkItem[] = [
     prefectureCode: "13",
     prefectureName: "東京都",
     tags: ["研修"],
+  },
+  {
+    date: "2025年9月5日",
+    title: "生成AIの基本講座・リスク",
+    organization: "大学評価・IR担当者集会2025",
+    tags: ["講演"],
   },
   {
     date: "2025年9月10日",
@@ -393,6 +531,14 @@ export const works: WorkItem[] = [
     prefectureCode: "23",
     prefectureName: "愛知県",
     tags: ["講演"],
+  },
+  {
+    date: "2025年10月24日",
+    title: "生成AIを頼れるパートナーに！大学職員のためのAI活用・習慣化講座",
+    university: "大学コンソーシアム大阪",
+    prefectureCode: "27",
+    prefectureName: "大阪府",
+    tags: ["研修"],
   },
   {
     date: "2025年10月27日",
