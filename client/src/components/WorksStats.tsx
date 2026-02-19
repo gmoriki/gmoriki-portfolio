@@ -1,6 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import { JapanMap } from "./JapanMap";
-import { stats, notableWorks } from "@/data/works-data";
+import { works, computeStats, getNotableWorks } from "@/data/works-data";
+
+const stats = computeStats(works);
+const notableWorks = getNotableWorks();
 
 // Tag component
 const Tag = ({ label }: { label: string }) => (
@@ -163,8 +166,8 @@ export default function WorksStats() {
                           <p className="text-base md:text-lg font-semibold">{work.title}</p>
                         )}
                         <p className="text-sm text-muted-foreground">{work.date}{work.organization && ` | ${work.organization}`}</p>
-                        {(work as any).subtitle && (
-                          <p className="text-sm font-medium text-foreground mt-1">{(work as any).subtitle}</p>
+                        {work.subtitle && (
+                          <p className="text-sm font-medium text-foreground mt-1">{work.subtitle}</p>
                         )}
                         {work.tags && work.tags.length > 0 && (
                           <div className="flex flex-wrap gap-2 mt-1">
