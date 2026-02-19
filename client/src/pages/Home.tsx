@@ -118,13 +118,13 @@ export default function Home() {
                     <div className="w-full max-w-md mx-auto">
                       <div className="grid grid-cols-[1fr_auto_1fr] gap-4 items-center py-8">
                         <div className="flex flex-col items-center gap-3">
-                          <img src="/training-before.png" alt="知識習得段階" className="w-24 h-24 object-contain" />
+                          <img src="/training-before.webp" alt="知識習得段階" className="w-24 h-24 object-contain" />
                         </div>
-                        <svg className="w-12 h-12 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M8 24h32m-8-8l8 8-8 8" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" className="text-primary" style={{ stroke: "oklch(0.35 0.08 160)" }} />
+                        <svg className="w-12 h-12 flex-shrink-0 text-primary" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 24h32m-8-8l8 8-8 8" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <div className="flex flex-col items-center gap-3">
-                          <img src="/training-after.png" alt="行動変容・インパクト創出" className="w-24 h-24 object-contain" />
+                          <img src="/training-after.webp" alt="行動変容・インパクト創出" className="w-24 h-24 object-contain" />
                         </div>
                       </div>
                     </div>
@@ -151,13 +151,13 @@ export default function Home() {
                     <div className="w-full max-w-md mx-auto">
                       <div className="grid grid-cols-[1fr_auto_1fr] gap-4 items-center py-8">
                         <div className="flex flex-col items-center gap-3">
-                          <img src="/advisory-before.png" alt="場当たり的アプローチ" className="w-24 h-24 object-contain" />
+                          <img src="/advisory-before.webp" alt="場当たり的アプローチ" className="w-24 h-24 object-contain" />
                         </div>
-                        <svg className="w-12 h-12 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M8 24h32m-8-8l8 8-8 8" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" style={{ stroke: "oklch(0.35 0.08 160)" }} />
+                        <svg className="w-12 h-12 flex-shrink-0 text-primary" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 24h32m-8-8l8 8-8 8" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <div className="flex flex-col items-center gap-3">
-                          <img src="/advisory-after.png" alt="体系的戦略・継続改善" className="w-24 h-24 object-contain" />
+                          <img src="/advisory-after.webp" alt="体系的戦略・継続改善" className="w-24 h-24 object-contain" />
                         </div>
                       </div>
                     </div>
@@ -184,13 +184,13 @@ export default function Home() {
                     <div className="w-full max-w-md mx-auto">
                       <div className="grid grid-cols-[1fr_auto_1fr] gap-4 items-center py-8">
                         <div className="flex flex-col items-center gap-3">
-                          <img src="/lecture-before.png" alt="機運なし" className="w-24 h-24 object-contain" />
+                          <img src="/lecture-before.webp" alt="機運なし" className="w-24 h-24 object-contain" />
                         </div>
-                        <svg className="w-12 h-12 flex-shrink-0" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M8 24h32m-8-8l8 8-8 8" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" style={{ stroke: "oklch(0.35 0.08 160)" }} />
+                        <svg className="w-12 h-12 flex-shrink-0 text-primary" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 24h32m-8-8l8 8-8 8" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <div className="flex flex-col items-center gap-3">
-                          <img src="/lecture-after.png" alt="対話・気づき・推進の契機" className="w-24 h-24 object-contain" />
+                          <img src="/lecture-after.webp" alt="対話・気づき・推進の契機" className="w-24 h-24 object-contain" />
                         </div>
                       </div>
                     </div>
