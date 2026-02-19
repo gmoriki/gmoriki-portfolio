@@ -647,6 +647,27 @@ export const works: WorkItem[] = [
     tags: ["研修"],
   },
 
+  // ---- 2026年 ----
+
+  {
+    date: "2026年2月6日",
+    title: "大学業務への生成AIの活かし方 — Microsoft 365 Copilot分析機能編 —",
+    university: "東京大学",
+    organization: "東京大学 情報システムゼミ",
+    prefectureCode: "13",
+    prefectureName: "東京都",
+    tags: ["講演"],
+  },
+  {
+    date: "2026年2月18日",
+    title: "都留文科大学における教育現場の生成AI活用入門",
+    university: "都留文科大学",
+    organization: "都留文科大学 FD研修",
+    prefectureCode: "19",
+    prefectureName: "山梨県",
+    tags: ["研修"],
+  },
+
   // ---- ここから下に新しい実績を追加 ----
   // {
   //   date: "2026年●月●日",
