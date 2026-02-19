@@ -1,16 +1,12 @@
 import { useState, useEffect } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
+import { Link } from "wouter";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme, switchable } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,12 +23,14 @@ export default function Navigation() {
       const headerOffset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth"
       });
       setIsMobileMenuOpen(false);
+    } else {
+      // Works ページ等からアクセスした場合はホームへ戻る
+      window.location.href = `/#${sectionId}`;
     }
   };
 
@@ -49,9 +47,9 @@ export default function Navigation() {
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="hover:opacity-70 transition-opacity"
             >
-              <img 
-                src="/logo.png" 
-                alt="gmoriki" 
+              <img
+                src="/logo.png"
+                alt="gmoriki"
                 className="h-8 md:h-10 w-auto"
               />
             </button>
@@ -64,11 +62,14 @@ export default function Navigation() {
               >
                 SERVICES
               </button>
+              <Link href="/works" className="text-base font-medium hover:opacity-70 transition-opacity">
+                WORKS
+              </Link>
               <button
-                onClick={() => scrollToSection("works")}
+                onClick={() => scrollToSection("about")}
                 className="text-base font-medium hover:opacity-70 transition-opacity"
               >
-                WORKS
+                ABOUT
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
@@ -76,59 +77,15 @@ export default function Navigation() {
               >
                 CONTACT
               </button>
-
-              <Dialog>
-                <DialogTrigger asChild>
-                  <button className="text-base font-medium hover:opacity-70 transition-opacity">
-                    MVV
-                  </button>
-                </DialogTrigger>
-                <DialogContent className="max-w-4xl">
-                  <DialogHeader>
-                    <DialogTitle className="font-display text-2xl md:text-3xl">MISSION · VISION · VALUES</DialogTitle>
-                  </DialogHeader>
-                  <div className="pt-4">
-                    <img
-                      src="/mvv-slide.png"
-                      alt="Mission, Vision, Values"
-                      className="w-full h-auto"
-                    />
-                  </div>
-                </DialogContent>
-              </Dialog>
-
-              <Dialog>
-                <DialogTrigger asChild>
-                  <button className="text-base font-medium hover:opacity-70 transition-opacity">
-                    ABOUT ME
-                  </button>
-                </DialogTrigger>
-                <DialogContent className="max-w-2xl">
-                  <DialogHeader>
-                    <DialogTitle className="font-display text-2xl md:text-3xl">ABOUT ME</DialogTitle>
-                  </DialogHeader>
-                  <div className="space-y-6 pt-4">
-                    <div className="flex items-start gap-6">
-                      <img 
-                        src="/gmoriki.png" 
-                        alt="森木銀河" 
-                        className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover flex-shrink-0"
-                      />
-                      <div className="space-y-4">
-                        <p className="text-lg md:text-xl leading-relaxed font-semibold">
-                          森木 銀河
-                        </p>
-                        <p className="text-sm md:text-base text-muted-foreground mb-2">
-                          もりき ぎんが
-                        </p>
-                        <p className="text-base md:text-lg leading-relaxed text-foreground">
-                          gmoriki 代表。民間企業にて生成AI活用推進に従事する傍ら、個人事業主として大学・教育機関のAI人材育成を手がける。私立・国立大学職員としての実務経験を持ち、大学という組織特有の文化や課題に精通していることが強み。教員・職員双方を対象とした研修企画、登壇、アドバイジングなど、現場に即した実践的なAI活用支援を行っている。
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </DialogContent>
-              </Dialog>
+              {switchable && toggleTheme && (
+                <button
+                  onClick={toggleTheme}
+                  className="p-2 hover:opacity-70 transition-opacity"
+                  aria-label="Toggle dark mode"
+                >
+                  {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+                </button>
+              )}
             </div>
 
             {/* Mobile Menu Button */}
@@ -162,11 +119,18 @@ export default function Navigation() {
               >
                 SERVICES
               </button>
-              <button
-                onClick={() => scrollToSection("works")}
+              <Link
+                href="/works"
+                onClick={() => setIsMobileMenuOpen(false)}
                 className="text-left text-base font-medium hover:opacity-70 transition-opacity py-2"
               >
                 WORKS
+              </Link>
+              <button
+                onClick={() => scrollToSection("about")}
+                className="text-left text-base font-medium hover:opacity-70 transition-opacity py-2"
+              >
+                ABOUT
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
@@ -174,59 +138,15 @@ export default function Navigation() {
               >
                 CONTACT
               </button>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <button className="text-left text-base font-medium hover:opacity-70 transition-opacity py-2">
-                    MVV
-                  </button>
-                </DialogTrigger>
-                <DialogContent className="max-w-4xl">
-                  <DialogHeader>
-                    <DialogTitle className="font-display text-2xl md:text-3xl">MISSION · VISION · VALUES</DialogTitle>
-                  </DialogHeader>
-                  <div className="pt-4">
-                    <img
-                      src="/mvv-slide.png"
-                      alt="Mission, Vision, Values"
-                      className="w-full h-auto"
-                    />
-                  </div>
-                </DialogContent>
-              </Dialog>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <button
-                    className="text-left text-base font-medium hover:opacity-70 transition-opacity py-2"
-                  >
-                    ABOUT ME
-                  </button>
-                </DialogTrigger>
-                <DialogContent className="max-w-2xl">
-                  <DialogHeader>
-                    <DialogTitle className="font-display text-2xl md:text-3xl">ABOUT ME</DialogTitle>
-                  </DialogHeader>
-                  <div className="space-y-6 pt-4">
-                    <div className="flex items-start gap-6">
-                      <img 
-                        src="/gmoriki.png" 
-                        alt="森木銀河" 
-                        className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover flex-shrink-0"
-                      />
-                      <div className="space-y-4">
-                        <p className="text-lg md:text-xl leading-relaxed font-semibold">
-                          森木 銀河
-                        </p>
-                        <p className="text-sm md:text-base text-muted-foreground mb-2">
-                          もりき ぎんが
-                        </p>
-                        <p className="text-base md:text-lg leading-relaxed text-foreground">
-                          gmoriki 代表。民間企業にて生成AI活用推進に従事する傍ら、個人事業主として大学・教育機関のAI人材育成を手がける。私立・国立大学職員としての実務経験を持ち、大学という組織特有の文化や課題に精通していることが強み。教員・職員双方を対象とした研修企画、登壇、アドバイジングなど、現場に即した実践的なAI活用支援を行っている。
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </DialogContent>
-              </Dialog>
+              {switchable && toggleTheme && (
+                <button
+                  onClick={() => { toggleTheme(); setIsMobileMenuOpen(false); }}
+                  className="text-left text-base font-medium hover:opacity-70 transition-opacity py-2 flex items-center gap-2"
+                >
+                  {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+                  {theme === "dark" ? "ライトモード" : "ダークモード"}
+                </button>
+              )}
             </div>
           </div>
         </div>
