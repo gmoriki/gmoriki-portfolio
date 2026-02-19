@@ -3,7 +3,7 @@ import { JapanMap } from "./JapanMap";
 
 // Tag component
 const Tag = ({ label }: { label: string }) => (
-  <span className="inline-block px-3 py-1 text-sm font-bold text-white rounded-md" style={{ backgroundColor: 'oklch(0.35 0.08 160)', fontFamily: '"Noto Sans JP", sans-serif' }}>
+  <span className="inline-block px-3 py-1 text-sm font-bold bg-primary text-primary-foreground" style={{ fontFamily: '"Noto Sans JP", sans-serif' }}>
     {label}
   </span>
 );
@@ -197,10 +197,9 @@ export default function WorksStats() {
             }}
           >
             <span
-              className={`font-display text-4xl md:text-5xl font-bold transition-all duration-700 ${
+              className={`font-display text-4xl md:text-5xl font-bold text-primary transition-all duration-700 ${
                 isVisible ? "opacity-100 scale-100" : "opacity-0 scale-50"
               }`}
-              style={{ color: "oklch(0.35 0.08 160)" }}
             >
               {counts[index]}{stat.suffix}
             </span>
@@ -215,7 +214,7 @@ export default function WorksStats() {
         <div className="space-y-12">
           {notableWorks.map((yearGroup, yearIndex) => (
             <div key={yearIndex} className="space-y-6">
-              <h5 className="text-xl md:text-2xl font-bold" style={{ color: "oklch(0.35 0.08 160)" }}>
+              <h5 className="text-xl md:text-2xl font-bold text-primary">
                 {yearGroup.year}
               </h5>
               <div className="space-y-6">
@@ -227,10 +226,9 @@ export default function WorksStats() {
                   <div 
                     key={workIndex} 
                     ref={(el) => { workRefs.current[globalIndex] = el; }}
-                    className={`border-l-2 pl-6 py-2 transition-all duration-700 ${
+                    className={`border-l-2 border-primary pl-6 py-2 transition-all duration-700 ${
                       isWorkVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                     }`}
-                    style={{ borderColor: "oklch(0.35 0.08 160)" }}
                   >
                     <div className="flex flex-col gap-3">
                       <div className="flex flex-col gap-2">
@@ -291,8 +289,7 @@ export default function WorksStats() {
             href="https://researchmap.jp/gmoriki"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold underline hover:no-underline"
-            style={{ color: "oklch(0.35 0.08 160)" }}
+            className="font-semibold underline hover:no-underline text-primary"
           >
             researchmap
           </a>{" "}
