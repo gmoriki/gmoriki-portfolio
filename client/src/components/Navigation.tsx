@@ -65,6 +65,9 @@ export default function Navigation() {
               <Link href="/works" className="text-base font-medium hover:opacity-70 transition-opacity">
                 WORKS
               </Link>
+              <Link href="/dashboard" className="text-base font-medium hover:opacity-70 transition-opacity">
+                DASHBOARD
+              </Link>
               <button
                 onClick={() => scrollToSection("about")}
                 className="text-base font-medium hover:opacity-70 transition-opacity"
@@ -125,6 +128,13 @@ export default function Navigation() {
                 className="text-left text-base font-medium hover:opacity-70 transition-opacity py-2"
               >
                 WORKS
+              </Link>
+              <Link
+                href="/dashboard"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-left text-base font-medium hover:opacity-70 transition-opacity py-2"
+              >
+                DASHBOARD
               </Link>
               <button
                 onClick={() => scrollToSection("about")}
