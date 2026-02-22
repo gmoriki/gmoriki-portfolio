@@ -18,25 +18,25 @@ import Navigation from "@/components/Navigation";
 // コンテンツデータ
 // ─────────────────────────────────────────
 const SLIDES = [
-  { title: "生成AIの大学業務での新たな活用可能性を発見する",               url: "https://speakerdeck.com/gmoriki/sheng-cheng-ainoda-xue-ye-wu-denoxin-tanahuo-yong-ke-neng-xing-wofa-jian-suru",                                                                       date: "2026-02-05", views: 250  },
-  { title: "生成AI活用の本質的理解：大学DXを加速する「プロトタイプ起点業務」", url: "https://speakerdeck.com/gmoriki/sheng-cheng-aihuo-yong-noben-zhi-de-li-jie-da-xue-dxwojia-su-suru-purototaipuqi-dian-ye-wu",                                              date: "2025-10-31", views: 420  },
-  { title: "AIエージェントのコモディティ化と大学職員の生存戦略2030",        url: "https://speakerdeck.com/gmoriki/aiezientonokomodeiteihua-toda-xue-zhi-yuan-nosheng-cun-zhan-lue-2030",                                                                           date: "2025-01-31", views: 1700 },
-  { title: "生成AIと歩むこれからの大学",                                  url: "https://speakerdeck.com/gmoriki/sheng-cheng-aitobu-mukorekaranoda-xue",                                                                                                             date: "2024-12-20", views: 2300 },
-  { title: "Difyを活用した「内省支援」エージェント開発の所感",             url: "https://speakerdeck.com/gmoriki/difywohuo-yong-sita-nei-sheng-zhi-yuan-ezientokai-fa-nosuo-gan",                                                                                  date: "2024-09-20", views: 2200 },
-  { title: "大学業務における生成AI活用の現在地 -基本編-",                 url: "https://speakerdeck.com/gmoriki/da-xue-ye-wu-niokerusheng-cheng-aihuo-yong-noxian-zai-di-ji-ben-bian",                                                                             date: "2024-06-20", views: 6200 },
-  { title: "生成AIを活用できる大学教職員になる-基本と実践-",              url: "https://speakerdeck.com/gmoriki/sheng-cheng-aiwohuo-yong-dekiruda-xue-jiao-zhi-yuan-ninaru-ji-ben-toshi-jian",                                                                     date: "2024-03-21", views: 1600 },
-  { title: "大学業務における生成AI利用の体系",                            url: "https://speakerdeck.com/gmoriki/da-xue-ye-wu-niokerusheng-cheng-aili-yong-noti-xi",                                                                                                 date: "2023-12-12", views: 2000 },
-  { title: "Copilotとして理解する生成AI利用の基本",                       url: "https://speakerdeck.com/gmoriki/copilottositeli-jie-surusheng-cheng-aili-yong-noji-ben",                                                                                            date: "2023-11-01", views: 710  },
-  { title: "大学職員のためのプロンプトガイドの開発",                      url: "https://speakerdeck.com/gmoriki/da-xue-zhi-yuan-notamenopuronputogaidonokai-fa-ren-cai-kai-fa-niokerusheng-cheng-ai-li-yong-zhe-tosheng-cheng-ai-noguan-warinijiao-dian-wodang-tete", date: "2023-09-01", views: 580  },
+  { title: "生成AIの大学業務での新たな活用可能性を発見する",               url: "https://speakerdeck.com/gmoriki/sheng-cheng-ainoda-xue-ye-wu-denoxin-tanahuo-yong-ke-neng-xing-wofa-jian-suru",                                                                       date: "2026-02-05", views: 250,  image: "https://files.speakerdeck.com/presentations/ab910e11c1c8411ea6c57c937e0587c1/slide_0.jpg?38314704" },
+  { title: "生成AI活用の本質的理解：大学DXを加速する「プロトタイプ起点業務」", url: "https://speakerdeck.com/gmoriki/sheng-cheng-aihuo-yong-noben-zhi-de-li-jie-da-xue-dxwojia-su-suru-purototaipuqi-dian-ye-wu",                                              date: "2025-10-31", views: 420,  image: "https://files.speakerdeck.com/presentations/ade715f511264bef86bd4a752efe893e/slide_0.jpg?37191399" },
+  { title: "AIエージェントのコモディティ化と大学職員の生存戦略2030",        url: "https://speakerdeck.com/gmoriki/aiezientonokomodeiteihua-toda-xue-zhi-yuan-nosheng-cun-zhan-lue-2030",                                                                           date: "2025-01-31", views: 1700, image: "https://files.speakerdeck.com/presentations/be4d72090a104fa28d8dc779904e7025/slide_0.jpg?33650950" },
+  { title: "生成AIと歩むこれからの大学",                                  url: "https://speakerdeck.com/gmoriki/sheng-cheng-aitobu-mukorekaranoda-xue",                                                                                                             date: "2024-12-20", views: 2300, image: "https://files.speakerdeck.com/presentations/0bef1d9b61d64f9e964d7631fd04cd99/slide_0.jpg?33125127" },
+  { title: "Difyを活用した「内省支援」エージェント開発の所感",             url: "https://speakerdeck.com/gmoriki/difywohuo-yong-sita-nei-sheng-zhi-yuan-ezientokai-fa-nosuo-gan",                                                                                  date: "2024-09-20", views: 2200, image: "https://files.speakerdeck.com/presentations/2fb99dc24e7048e2974dcae5308327db/slide_0.jpg?31810293" },
+  { title: "大学業務における生成AI活用の現在地 -基本編-",                 url: "https://speakerdeck.com/gmoriki/da-xue-ye-wu-niokerusheng-cheng-aihuo-yong-noxian-zai-di-ji-ben-bian",                                                                             date: "2024-06-20", views: 6200, image: "https://files.speakerdeck.com/presentations/ecd0f3d8aa8748d282e5a46f3687b84a/slide_0.jpg?30681772" },
+  { title: "生成AIを活用できる大学教職員になる-基本と実践-",              url: "https://speakerdeck.com/gmoriki/sheng-cheng-aiwohuo-yong-dekiruda-xue-jiao-zhi-yuan-ninaru-ji-ben-toshi-jian",                                                                     date: "2024-03-21", views: 1600, image: "https://files.speakerdeck.com/presentations/10a106da95a94728ae6c0a4c00e97516/slide_0.jpg?29399508" },
+  { title: "大学業務における生成AI利用の体系",                            url: "https://speakerdeck.com/gmoriki/da-xue-ye-wu-niokerusheng-cheng-aili-yong-noti-xi",                                                                                                 date: "2023-12-12", views: 2000, image: "https://files.speakerdeck.com/presentations/ba164fbe7b94459387421df13902b9f1/slide_0.jpg?28161339" },
+  { title: "Copilotとして理解する生成AI利用の基本",                       url: "https://speakerdeck.com/gmoriki/copilottositeli-jie-surusheng-cheng-aili-yong-noji-ben",                                                                                            date: "2023-11-01", views: 710,  image: "https://files.speakerdeck.com/presentations/9e88b52aa3a44c9a8dc07c3634d204cd/slide_0.jpg?29279872" },
+  { title: "大学職員のためのプロンプトガイドの開発",                      url: "https://speakerdeck.com/gmoriki/da-xue-zhi-yuan-notamenopuronputogaidonokai-fa-ren-cai-kai-fa-niokerusheng-cheng-ai-li-yong-zhe-tosheng-cheng-ai-noguan-warinijiao-dian-wodang-tete", date: "2023-09-01", views: 580,  image: "https://files.speakerdeck.com/presentations/02e65306ed774f099871f24d2184da19/slide_0.jpg?32551812" },
 ];
 
-const NOTES_FALLBACK = [
-  { title: "大学職員のためのプロンプトガイド2026", date: "2026-02-14", url: "https://note.com/pogohopper8/n/nced249950cfc" },
-  { title: "「非エンジニア」は誰のための言葉なのか", date: "2026-02-11", url: "https://note.com/pogohopper8/n/n104fd0146499" },
-  { title: "あとから効いてくるAIとの付き合い方", date: "2026-01-12", url: "https://note.com/pogohopper8/n/n6616108810c6" },
-  { title: "NotionAIと一緒に「うえきばちポータル」を作った", date: "2026-01-01", url: "https://note.com/pogohopper8/n/nfba8a7056732" },
-  { title: "[翻訳] AIエージェント時代のコンテキストグラフについて", date: "2025-12-25", url: "https://note.com/pogohopper8/n/n334157e502ca" },
-  { title: "生成AI利用者のためのプロンプトガイドをWeb公開しました", date: "2024-02-02", url: "https://note.com/pogohopper8/n/n85bba164bb7e" },
+const NOTES = [
+  { title: "大学職員のためのプロンプトガイド2026", date: "2026-02-14", url: "https://note.com/pogohopper8/n/nced249950cfc", image: "https://assets.st-note.com/production/uploads/images/251604882/rectangle_large_type_2_5446953b018b72a9bd2261cd6aad8310.png?fit=bounds&quality=85&width=1280" },
+  { title: "「非エンジニア」は誰のための言葉なのか", date: "2026-02-11", url: "https://note.com/pogohopper8/n/n104fd0146499", image: "https://assets.st-note.com/production/uploads/images/250833938/rectangle_large_type_2_042b220d07ec7fa717478a875d023484.png?fit=bounds&quality=85&width=1280" },
+  { title: "あとから効いてくるAIとの付き合い方", date: "2026-01-12", url: "https://note.com/pogohopper8/n/n6616108810c6", image: "https://assets.st-note.com/production/uploads/images/243235615/rectangle_large_type_2_ece79ada89ce516dc7e303f85d77c409.png?fit=bounds&quality=85&width=1280" },
+  { title: "NotionAIと一緒に「うえきばちポータル」を作った", date: "2026-01-01", url: "https://note.com/pogohopper8/n/nfba8a7056732", image: "https://assets.st-note.com/production/uploads/images/240344144/rectangle_large_type_2_811902457784c580a90463de4ff5261e.png?fit=bounds&quality=85&width=1280" },
+  { title: "[翻訳] AIエージェント時代のコンテキストグラフについて", date: "2025-12-25", url: "https://note.com/pogohopper8/n/n334157e502ca", image: "https://assets.st-note.com/production/uploads/images/238688945/rectangle_large_type_2_6e42add3c0ec4ef3d27a410bff48f4ac.jpeg?fit=bounds&quality=85&width=1280" },
+  { title: "生成AI利用者のためのプロンプトガイドをWeb公開しました", date: "2024-02-02", url: "https://note.com/pogohopper8/n/n85bba164bb7e", image: "https://assets.st-note.com/production/uploads/images/129310777/rectangle_large_type_2_cc2b6bbdb57fc8e7134a59b475c6f371.png?fit=bounds&quality=85&width=1280" },
 ];
 
 const SLIDE_GRADIENTS = [
@@ -108,11 +108,10 @@ const COLLAPSE_COUNT = 8;
 interface ContentItem { title: string; url: string; sub?: string; gradient: string; bgImage?: string | null }
 
 function ContentCarousel({
-  items, label, ogpImages,
+  items, label,
 }: {
   items: ContentItem[];
   label: string;
-  ogpImages: Record<string, string | null>;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [failedImgs, setFailedImgs] = useState<Set<string>>(new Set());
@@ -135,7 +134,7 @@ function ContentCarousel({
         className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {items.map((item, i) => {
-          const rawImg = item.bgImage ?? ogpImages[item.url] ?? null;
+          const rawImg = item.bgImage ?? null;
           const imgSrc = rawImg && !failedImgs.has(item.url) ? rawImg : null;
           return (
             <button
@@ -201,77 +200,7 @@ export default function Works() {
   const [tab, setTab] = useState("all");
   const [expanded, setExpanded] = useState(false);
 
-  const [ogpImages, setOgpImages] = useState<Record<string, string | null>>({});
-  const [featuredOgpImages, setFeaturedOgpImages] = useState<Record<string, string | null>>({});
-  const [noteItems, setNoteItems] = useState<ContentItem[]>(
-    NOTES_FALLBACK.map((n, i) => ({ ...n, sub: n.date, gradient: NOTE_GRADIENTS[i % NOTE_GRADIENTS.length] }))
-  );
-  const fetchedOgpUrls = useRef(new Set<string>());
-
   useEffect(() => { window.scrollTo(0, 0); }, []);
-
-  useEffect(() => {
-    featuredWorks.forEach((work) => {
-      if (work.image || !work.link) return;
-      fetch(`/api/ogp?url=${encodeURIComponent(work.link)}`)
-        .then((r) => r.json())
-        .then((data: { image?: string | null }) => {
-          setFeaturedOgpImages((prev) => ({ ...prev, [work.link!]: data.image ?? null }));
-        })
-        .catch(() => {
-          setFeaturedOgpImages((prev) => ({ ...prev, [work.link!]: null }));
-        });
-    });
-  }, []);
-
-  useEffect(() => {
-    SLIDES.forEach((s) => {
-      fetch(`/api/ogp?url=${encodeURIComponent(s.url)}`)
-        .then((r) => r.json())
-        .then((data: { image?: string | null }) => {
-          setOgpImages((prev) => ({ ...prev, [s.url]: data.image ?? null }));
-        })
-        .catch(() => {
-          setOgpImages((prev) => ({ ...prev, [s.url]: null }));
-        });
-    });
-  }, []);
-
-  // note 記事の eyecatch がない場合は OGP をフォールバック取得
-  useEffect(() => {
-    noteItems.forEach((item) => {
-      if (item.bgImage) return;
-      if (fetchedOgpUrls.current.has(item.url)) return;
-      fetchedOgpUrls.current.add(item.url);
-      fetch(`/api/ogp?url=${encodeURIComponent(item.url)}`)
-        .then((r) => r.json())
-        .then((data: { image?: string | null }) => {
-          setOgpImages((prev) => ({ ...prev, [item.url]: data.image ?? null }));
-        })
-        .catch(() => {
-          setOgpImages((prev) => ({ ...prev, [item.url]: null }));
-        });
-    });
-  }, [noteItems]);
-
-  useEffect(() => {
-    fetch("/api/note-articles?page=1")
-      .then((r) => r.json())
-      .then((data: { data?: { contents?: Array<{ key: string; name: string; eyecatch?: string | null; publishAt?: string }> } }) => {
-        const contents = data.data?.contents;
-        if (!contents?.length) return;
-        setNoteItems(
-          contents.slice(0, 8).map((c, i) => ({
-            title: c.name,
-            url: `https://note.com/pogohopper8/n/${c.key}`,
-            sub: c.publishAt?.slice(0, 10) ?? "",
-            gradient: NOTE_GRADIENTS[i % NOTE_GRADIENTS.length],
-            bgImage: c.eyecatch ?? null,
-          }))
-        );
-      })
-      .catch(() => {});
-  }, []);
 
   const filtered = useMemo(() => {
     const rev = [...works].reverse();
@@ -283,7 +212,11 @@ export default function Works() {
   const visibleItems = expanded ? filtered : filtered.slice(0, COLLAPSE_COUNT);
 
   const slideItems = useMemo<ContentItem[]>(() =>
-    SLIDES.map((s, i) => ({ ...s, sub: s.date, gradient: SLIDE_GRADIENTS[i % SLIDE_GRADIENTS.length] }))
+    SLIDES.map((s, i) => ({ ...s, sub: s.date, bgImage: s.image, gradient: SLIDE_GRADIENTS[i % SLIDE_GRADIENTS.length] }))
+  , []);
+
+  const noteItems = useMemo<ContentItem[]>(() =>
+    NOTES.map((n, i) => ({ ...n, sub: n.date, bgImage: n.image, gradient: NOTE_GRADIENTS[i % NOTE_GRADIENTS.length] }))
   , []);
 
   const kpis = [
@@ -331,7 +264,7 @@ export default function Works() {
                   <div key={i} className="float-item" style={{ animationDelay: `${i * 0.5}s` }}>
                   <Card className="flex flex-col hover:shadow-lg transition-shadow duration-300 group h-full">
                     {(() => {
-                      const imgSrc = work.image ?? (work.link ? featuredOgpImages[work.link] : null);
+                      const imgSrc = work.image ?? null;
                       return imgSrc ? (
                         <div className="overflow-hidden rounded-t-lg aspect-[16/9]">
                           <img src={imgSrc} alt={work.title}
@@ -388,10 +321,10 @@ export default function Works() {
                   <TabsTrigger value="notes">記事</TabsTrigger>
                 </TabsList>
                 <TabsContent value="slides" className="mt-4">
-                  <ContentCarousel items={slideItems} label="Slide" ogpImages={ogpImages} />
+                  <ContentCarousel items={slideItems} label="Slide" />
                 </TabsContent>
                 <TabsContent value="notes" className="mt-4">
-                  <ContentCarousel items={noteItems} label="note" ogpImages={ogpImages} />
+                  <ContentCarousel items={noteItems} label="note" />
                 </TabsContent>
               </Tabs>
             </section>
