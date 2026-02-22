@@ -200,6 +200,7 @@ export default function Works() {
   const [noteItems, setNoteItems] = useState<ContentItem[]>(
     NOTES_FALLBACK.map((n, i) => ({ ...n, sub: n.date, gradient: NOTE_GRADIENTS[i % NOTE_GRADIENTS.length] }))
   );
+  const fetchedOgpUrls = useRef(new Set<string>());
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
@@ -229,6 +230,23 @@ export default function Works() {
         });
     });
   }, []);
+
+  // note 記事の eyecatch がない場合は OGP をフォールバック取得
+  useEffect(() => {
+    noteItems.forEach((item) => {
+      if (item.bgImage) return;
+      if (fetchedOgpUrls.current.has(item.url)) return;
+      fetchedOgpUrls.current.add(item.url);
+      fetch(`/api/ogp?url=${encodeURIComponent(item.url)}`)
+        .then((r) => r.json())
+        .then((data: { image?: string | null }) => {
+          setOgpImages((prev) => ({ ...prev, [item.url]: data.image ?? null }));
+        })
+        .catch(() => {
+          setOgpImages((prev) => ({ ...prev, [item.url]: null }));
+        });
+    });
+  }, [noteItems]);
 
   useEffect(() => {
     fetch("/api/note-articles?page=1")

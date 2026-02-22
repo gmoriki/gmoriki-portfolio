@@ -35,19 +35,6 @@ export default function Home() {
                 職場としての大学に、AI人材育成を。
               </h2>
             </div>
-            <p className="text-xl md:text-2xl text-foreground max-w-2xl leading-relaxed">
-              AIとヒトの共生環境を築き、普遍的価値を探求する「場」を守り抜く
-            </p>
-            <div className="flex gap-12 pt-8 border-t border-border">
-              <div className="space-y-1">
-                <p className="font-display text-4xl md:text-5xl font-bold text-primary">{lectureCount}+</p>
-                <p className="text-sm text-muted-foreground">講演・研修</p>
-              </div>
-              <div className="space-y-1">
-                <p className="font-display text-4xl md:text-5xl font-bold text-primary">{uniCount}+</p>
-                <p className="text-sm text-muted-foreground">全国の大学・機関</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
