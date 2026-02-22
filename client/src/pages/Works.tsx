@@ -11,7 +11,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { works, computeStats, type WorkItem } from "@/data/works-data";
 import { JapanMap } from "@/components/JapanMap";
-import { AppSidebar, MobileSidebarToggle } from "@/components/AppSidebar";
+import { AppSidebar } from "@/components/AppSidebar";
 import Navigation from "@/components/Navigation";
 
 // ─────────────────────────────────────────
@@ -115,6 +115,7 @@ function ContentCarousel({
   ogpImages: Record<string, string | null>;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [failedImgs, setFailedImgs] = useState<Set<string>>(new Set());
   const scroll = (dir: number) => {
     scrollRef.current?.scrollBy({ left: dir * 220, behavior: "smooth" });
   };
@@ -133,56 +134,61 @@ function ContentCarousel({
         ref={scrollRef}
         className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        {items.map((item, i) => (
-          <button
-            key={i}
-            onClick={() => window.open(item.url, "_blank", "noopener,noreferrer")}
-            className={cn(
-              "float-item snap-center shrink-0 w-[200px] rounded-xl overflow-hidden text-left",
-              "transition-all duration-300",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-              "opacity-80 hover:opacity-100 hover:shadow-lg hover:ring-2 hover:ring-primary/70 hover:ring-offset-2",
-            )}
-            style={{ animationDelay: `${i * 0.35}s` }}
-            aria-label={item.title}
-          >
-            {(() => {
-              const imgSrc = item.bgImage ?? ogpImages[item.url] ?? null;
-              return (
-                <div className={cn("h-[130px] relative overflow-hidden", !imgSrc && `bg-gradient-to-br ${item.gradient}`)}>
-                  {imgSrc ? (
-                    <img src={imgSrc} alt={item.title} className="w-full h-full object-cover" />
-                  ) : (
-                    <div className="w-full h-full p-3 flex flex-col justify-between">
-                      <Badge variant="secondary" className="text-xs bg-white/20 text-white border-0 backdrop-blur-sm w-fit">
-                        {label}
-                      </Badge>
-                      <div className="space-y-1 opacity-30">
-                        <div className="h-0.5 bg-white w-full rounded" />
-                        <div className="h-0.5 bg-white w-2/3 rounded" />
-                      </div>
-                    </div>
-                  )}
-                  {imgSrc && (
-                    <div className="absolute top-2 left-2">
-                      <Badge variant="secondary" className="text-xs bg-black/40 text-white border-0 backdrop-blur-sm">
-                        {label}
-                      </Badge>
-                    </div>
-                  )}
-                </div>
-              );
-            })()}
-            <div className="bg-card border border-t-0 border-border rounded-b-xl p-3 h-[80px] flex flex-col justify-between">
-              <p className="text-xs font-medium leading-snug line-clamp-3 text-foreground">
-                {item.title}
-              </p>
-              {item.sub && (
-                <p className="text-xs text-muted-foreground mt-1">{item.sub}</p>
+        {items.map((item, i) => {
+          const rawImg = item.bgImage ?? ogpImages[item.url] ?? null;
+          const imgSrc = rawImg && !failedImgs.has(item.url) ? rawImg : null;
+          return (
+            <button
+              key={i}
+              onClick={() => window.open(item.url, "_blank", "noopener,noreferrer")}
+              className={cn(
+                "float-item snap-center shrink-0 w-[200px] rounded-xl overflow-hidden text-left",
+                "transition-all duration-300",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                "opacity-80 hover:opacity-100 hover:shadow-lg hover:ring-2 hover:ring-primary/70 hover:ring-offset-2",
               )}
-            </div>
-          </button>
-        ))}
+              style={{ animationDelay: `${i * 0.35}s` }}
+              aria-label={item.title}
+            >
+              <div className={cn("h-[130px] relative overflow-hidden", !imgSrc && `bg-gradient-to-br ${item.gradient}`)}>
+                {imgSrc ? (
+                  <img
+                    src={imgSrc}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                    onError={() => setFailedImgs((prev) => new Set(prev).add(item.url))}
+                  />
+                ) : (
+                  <div className="w-full h-full p-3 flex flex-col justify-between">
+                    <Badge variant="secondary" className="text-xs bg-white/20 text-white border-0 backdrop-blur-sm w-fit">
+                      {label}
+                    </Badge>
+                    <div className="space-y-1 opacity-30">
+                      <div className="h-0.5 bg-white w-full rounded" />
+                      <div className="h-0.5 bg-white w-2/3 rounded" />
+                    </div>
+                  </div>
+                )}
+                {imgSrc && (
+                  <div className="absolute top-2 left-2">
+                    <Badge variant="secondary" className="text-xs bg-black/40 text-white border-0 backdrop-blur-sm">
+                      {label}
+                    </Badge>
+                  </div>
+                )}
+              </div>
+              <div className="bg-card border border-t-0 border-border rounded-b-xl p-3 h-[80px] flex flex-col justify-between">
+                <p className="text-xs font-medium leading-snug line-clamp-3 text-foreground">
+                  {item.title}
+                </p>
+                {item.sub && (
+                  <p className="text-xs text-muted-foreground mt-1">{item.sub}</p>
+                )}
+              </div>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
@@ -297,15 +303,7 @@ export default function Works() {
         <AppSidebar />
 
         <div className="flex-1 min-w-0 flex flex-col">
-          {/* モバイル用セクションナビ（Navigationの下に sticky） */}
-          <header className="border-b border-border bg-background/95 backdrop-blur sticky top-[72px] z-20 md:hidden">
-            <div className="px-6 h-14 flex items-center gap-3">
-              <MobileSidebarToggle />
-              <span className="font-semibold text-sm">Works</span>
-            </div>
-          </header>
-
-          <main className="flex-1 w-full px-8 md:px-12 lg:px-20 py-12 space-y-16">
+          <main className="flex-1 w-full px-5 md:px-12 lg:px-20 py-8 md:py-12 space-y-12 md:space-y-16">
 
             {/* ページタイトル */}
             <section id="section-overview" className="space-y-3 pt-2 scroll-mt-[88px]">
@@ -337,6 +335,7 @@ export default function Works() {
                       return imgSrc ? (
                         <div className="overflow-hidden rounded-t-lg aspect-[16/9]">
                           <img src={imgSrc} alt={work.title}
+                            referrerPolicy="no-referrer"
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         </div>
                       ) : null;
@@ -434,25 +433,51 @@ export default function Works() {
                       <CardContent className="p-0">
                         <div className="divide-y divide-border">
                           {visibleItems.map((work, i) => (
-                            <div key={i} className="flex items-start gap-4 px-5 py-4 hover:bg-muted/50 transition-colors">
-                              <span className="text-sm text-muted-foreground w-28 shrink-0 pt-0.5 leading-5">{work.date}</span>
-                              <div className="flex-1 min-w-0 space-y-0.5">
+                            <div key={i} className="px-4 md:px-5 py-3 md:py-4 hover:bg-muted/50 transition-colors">
+                              {/* モバイル: 縦積み / デスクトップ: 横並び */}
+                              <div className="hidden md:flex items-start gap-4">
+                                <span className="text-sm text-muted-foreground w-28 shrink-0 pt-0.5 leading-5">{work.date}</span>
+                                <div className="flex-1 min-w-0 space-y-0.5">
+                                  {work.link ? (
+                                    <a href={work.link} target="_blank" rel="noopener noreferrer"
+                                      className="text-sm font-medium hover:underline inline-flex items-center gap-1">
+                                      {work.title}<ExternalLink size={11} className="opacity-35" />
+                                    </a>
+                                  ) : (
+                                    <p className="text-sm font-medium">{work.title}</p>
+                                  )}
+                                  {(work.organization || work.university) && (
+                                    <p className="text-xs text-muted-foreground">{work.organization ?? work.university}</p>
+                                  )}
+                                </div>
+                                <div className="flex flex-wrap gap-1 shrink-0">
+                                  {work.tags.slice(0, 2).map((tag) => (
+                                    <Badge key={tag} variant={TAG_VARIANT[tag] ?? "secondary"}>{tag}</Badge>
+                                  ))}
+                                </div>
+                              </div>
+                              {/* モバイル用レイアウト */}
+                              <div className="md:hidden space-y-1.5">
+                                <div className="flex items-center justify-between gap-2">
+                                  <span className="text-xs text-muted-foreground shrink-0">{work.date}</span>
+                                  <div className="flex gap-1 shrink-0">
+                                    {work.tags.slice(0, 1).map((tag) => (
+                                      <Badge key={tag} variant={TAG_VARIANT[tag] ?? "secondary"} className="text-[10px] px-1.5 py-0">{tag}</Badge>
+                                    ))}
+                                  </div>
+                                </div>
                                 {work.link ? (
                                   <a href={work.link} target="_blank" rel="noopener noreferrer"
-                                    className="text-sm font-medium hover:underline inline-flex items-center gap-1">
-                                    {work.title}<ExternalLink size={11} className="opacity-35" />
+                                    className="text-sm font-medium hover:underline flex items-start gap-1 leading-snug">
+                                    <span>{work.title}</span>
+                                    <ExternalLink size={10} className="opacity-35 shrink-0 mt-1" />
                                   </a>
                                 ) : (
-                                  <p className="text-sm font-medium">{work.title}</p>
+                                  <p className="text-sm font-medium leading-snug">{work.title}</p>
                                 )}
                                 {(work.organization || work.university) && (
                                   <p className="text-xs text-muted-foreground">{work.organization ?? work.university}</p>
                                 )}
-                              </div>
-                              <div className="flex flex-wrap gap-1 shrink-0">
-                                {work.tags.slice(0, 2).map((tag) => (
-                                  <Badge key={tag} variant={TAG_VARIANT[tag] ?? "secondary"}>{tag}</Badge>
-                                ))}
                               </div>
                             </div>
                           ))}
