@@ -242,7 +242,7 @@ export default function Works() {
       <div className="flex pt-[72px]">
         <AppSidebar />
 
-        <div className="flex-1 min-w-0 flex flex-col">
+        <div className="flex-1 min-w-0 flex flex-col overflow-x-hidden">
           <main className="flex-1 w-full px-5 md:px-12 lg:px-20 py-8 md:py-12 space-y-12 md:space-y-16">
 
             {/* ページタイトル */}
@@ -355,7 +355,7 @@ export default function Works() {
             <section id="section-log" className="space-y-5 scroll-mt-[88px]">
               <h2 className="text-xl font-semibold tracking-tight">全活動記録</h2>
               <Tabs value={tab} onValueChange={(v) => { setTab(v); setExpanded(false); }}>
-                <TabsList>
+                <TabsList className="w-full max-w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                   {TABS.map(({ value, label }) => (
                     <TabsTrigger key={value} value={value}>
                       {label}
