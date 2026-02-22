@@ -56,8 +56,9 @@ async function startServer() {
         signal: AbortSignal.timeout(8000),
       }).then((r) => r.text());
       const pick = (prop: string) => {
-        const re1 = new RegExp(`<meta[^>]+property=["']${prop}["'][^>]+content=["']([^"']+)["']`, "i");
-        const re2 = new RegExp(`<meta[^>]+content=["']([^"']+)["'][^>]+property=["']${prop}["']`, "i");
+        const attr = `(?:property|name)`;
+        const re1 = new RegExp(`<meta[^>]+${attr}=["']${prop}["'][^>]+content=["']([^"']+)["']`, "i");
+        const re2 = new RegExp(`<meta[^>]+content=["']([^"']+)["'][^>]+${attr}=["']${prop}["']`, "i");
         return (html.match(re1) ?? html.match(re2))?.[1] ?? null;
       };
       res.setHeader("Cache-Control", "public, max-age=3600");
