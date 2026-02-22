@@ -115,6 +115,7 @@ function ContentCarousel({
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [failedImgs, setFailedImgs] = useState<Set<string>>(new Set());
+  const isNote = label === "note";
   const scroll = (dir: number) => {
     scrollRef.current?.scrollBy({ left: dir * 220, behavior: "smooth" });
   };
@@ -129,9 +130,10 @@ function ContentCarousel({
           <ChevronRight size={14} />
         </Button>
       </div>
+      {/* p-2 で ring/shadow の見切れを防ぐ */}
       <div
         ref={scrollRef}
-        className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex gap-4 overflow-x-auto snap-x snap-mandatory p-2 -m-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {items.map((item, i) => {
           const rawImg = item.bgImage ?? null;
@@ -141,20 +143,25 @@ function ContentCarousel({
               key={i}
               onClick={() => window.open(item.url, "_blank", "noopener,noreferrer")}
               className={cn(
-                "float-item snap-center shrink-0 w-[200px] rounded-xl overflow-hidden text-left",
-                "transition-all duration-300",
+                "float-item snap-center shrink-0 w-[200px] rounded-xl text-left",
+                "transition-all duration-200 ease-out",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                "opacity-80 hover:opacity-100 hover:shadow-lg hover:ring-2 hover:ring-primary/70 hover:ring-offset-2",
+                "hover:shadow-xl hover:-translate-y-1 active:scale-[0.97] active:shadow-md",
+                "border border-border hover:border-primary/40",
               )}
               style={{ animationDelay: `${i * 0.35}s` }}
               aria-label={item.title}
             >
-              <div className={cn("h-[130px] relative overflow-hidden", !imgSrc && `bg-gradient-to-br ${item.gradient}`)}>
+              <div className={cn(
+                "relative overflow-hidden rounded-t-xl",
+                isNote ? "h-[140px]" : "h-[130px]",
+                !imgSrc && `bg-gradient-to-br ${item.gradient}`,
+              )}>
                 {imgSrc ? (
                   <img
                     src={imgSrc}
                     alt={item.title}
-                    className="w-full h-full object-cover"
+                    className={cn("w-full h-full", isNote ? "object-contain bg-white" : "object-cover")}
                     referrerPolicy="no-referrer"
                     onError={() => setFailedImgs((prev) => new Set(prev).add(item.url))}
                   />
@@ -177,7 +184,7 @@ function ContentCarousel({
                   </div>
                 )}
               </div>
-              <div className="bg-card border border-t-0 border-border rounded-b-xl p-3 h-[80px] flex flex-col justify-between">
+              <div className="bg-card rounded-b-xl p-3 h-[80px] flex flex-col justify-between">
                 <p className="text-xs font-medium leading-snug line-clamp-3 text-foreground">
                   {item.title}
                 </p>
