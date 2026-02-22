@@ -43,6 +43,43 @@ async function startServer() {
       createContext,
     })
   );
+
+  // OGP取得 API（og:image / og:title を返す）
+  app.get("/api/ogp", async (req, res) => {
+    const urlParam = req.query.url as string | undefined;
+    if (!urlParam) { res.status(400).json({ error: "url required" }); return; }
+    try {
+      const html = await fetch(urlParam, {
+        headers: { "User-Agent": "Mozilla/5.0 (compatible; OGP-fetcher/1.0; +https://gmoriki.com)", Accept: "text/html" },
+        signal: AbortSignal.timeout(6000),
+      }).then((r) => r.text());
+      const pick = (prop: string) => {
+        const re1 = new RegExp(`<meta[^>]+property=["']${prop}["'][^>]+content=["']([^"']+)["']`, "i");
+        const re2 = new RegExp(`<meta[^>]+content=["']([^"']+)["'][^>]+property=["']${prop}["']`, "i");
+        return (html.match(re1) ?? html.match(re2))?.[1] ?? null;
+      };
+      res.setHeader("Cache-Control", "public, max-age=3600");
+      res.json({ image: pick("og:image"), title: pick("og:title"), publishedTime: pick("article:published_time") });
+    } catch {
+      res.status(500).json({ error: "fetch failed" });
+    }
+  });
+
+  // note記事一覧 API（eyecatch画像込み）
+  app.get("/api/note-articles", async (req, res) => {
+    const page = (req.query.page as string | undefined) ?? "1";
+    try {
+      const data = await fetch(
+        `https://note.com/api/v2/creators/pogohopper8/contents?kind=note&page=${page}`,
+        { headers: { "User-Agent": "Mozilla/5.0 (compatible; Dashboard/1.0)" }, signal: AbortSignal.timeout(8000) }
+      ).then((r) => r.json());
+      res.setHeader("Cache-Control", "public, max-age=1800");
+      res.json(data);
+    } catch {
+      res.status(500).json({ error: "fetch failed" });
+    }
+  });
+
   // development mode uses Vite, production mode uses static files
   if (process.env.NODE_ENV === "development") {
     await setupVite(app, server);
