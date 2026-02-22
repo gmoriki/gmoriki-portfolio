@@ -44,25 +44,16 @@ async function startServer() {
     })
   );
 
+  const BROWSER_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+
   // OGP取得 API（og:image / og:title を返す）
   app.get("/api/ogp", async (req, res) => {
     const urlParam = req.query.url as string | undefined;
     if (!urlParam) { res.status(400).json({ error: "url required" }); return; }
     try {
-      // SpeakerDeck: Cloudflare が HTML fetch をブロックするため oEmbed API を使用
-      if (urlParam.includes("speakerdeck.com")) {
-        const oembedUrl = `https://speakerdeck.com/oembed.json?url=${encodeURIComponent(urlParam)}`;
-        const oembed = await fetch(oembedUrl, {
-          headers: { "User-Agent": "Mozilla/5.0 (compatible; OGP-fetcher/1.0; +https://gmoriki.com)" },
-          signal: AbortSignal.timeout(8000),
-        }).then((r) => r.json()) as { thumbnail_url?: string; title?: string };
-        res.setHeader("Cache-Control", "public, max-age=3600");
-        res.json({ image: oembed.thumbnail_url ?? null, title: oembed.title ?? null, publishedTime: null });
-        return;
-      }
       const html = await fetch(urlParam, {
-        headers: { "User-Agent": "Mozilla/5.0 (compatible; OGP-fetcher/1.0; +https://gmoriki.com)", Accept: "text/html" },
-        signal: AbortSignal.timeout(6000),
+        headers: { "User-Agent": BROWSER_UA, Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" },
+        signal: AbortSignal.timeout(8000),
       }).then((r) => r.text());
       const pick = (prop: string) => {
         const re1 = new RegExp(`<meta[^>]+property=["']${prop}["'][^>]+content=["']([^"']+)["']`, "i");
@@ -82,7 +73,7 @@ async function startServer() {
     try {
       const data = await fetch(
         `https://note.com/api/v2/creators/pogohopper8/contents?kind=note&page=${page}`,
-        { headers: { "User-Agent": "Mozilla/5.0 (compatible; Dashboard/1.0)" }, signal: AbortSignal.timeout(8000) }
+        { headers: { "User-Agent": BROWSER_UA }, signal: AbortSignal.timeout(8000) }
       ).then((r) => r.json());
       res.setHeader("Cache-Control", "public, max-age=1800");
       res.json(data);
