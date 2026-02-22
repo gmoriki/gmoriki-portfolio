@@ -49,6 +49,17 @@ async function startServer() {
     const urlParam = req.query.url as string | undefined;
     if (!urlParam) { res.status(400).json({ error: "url required" }); return; }
     try {
+      // SpeakerDeck: Cloudflare が HTML fetch をブロックするため oEmbed API を使用
+      if (urlParam.includes("speakerdeck.com")) {
+        const oembedUrl = `https://speakerdeck.com/oembed.json?url=${encodeURIComponent(urlParam)}`;
+        const oembed = await fetch(oembedUrl, {
+          headers: { "User-Agent": "Mozilla/5.0 (compatible; OGP-fetcher/1.0; +https://gmoriki.com)" },
+          signal: AbortSignal.timeout(8000),
+        }).then((r) => r.json()) as { thumbnail_url?: string; title?: string };
+        res.setHeader("Cache-Control", "public, max-age=3600");
+        res.json({ image: oembed.thumbnail_url ?? null, title: oembed.title ?? null, publishedTime: null });
+        return;
+      }
       const html = await fetch(urlParam, {
         headers: { "User-Agent": "Mozilla/5.0 (compatible; OGP-fetcher/1.0; +https://gmoriki.com)", Accept: "text/html" },
         signal: AbortSignal.timeout(6000),
