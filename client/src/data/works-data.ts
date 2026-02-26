@@ -210,7 +210,7 @@ export const works: WorkItem[] = [
     description:
       "実務で使えるプロンプト集を体系化。多数の大学（九州大学、立命館大学、北陸大学等）に引用され、大学業務における生成AI活用のスタンダードとして広く利用されています。",
     link: "https://promptforus.com/",
-    image: "https://raw.githubusercontent.com/gmoriki/Prompt4Us/main/img/P4Us.png",
+    image: "/prompt-guide.webp",
     tags: ["プロダクト", "論文・発表", "オープンソース"],
     featured: true,
   },
