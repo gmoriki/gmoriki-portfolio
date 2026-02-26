@@ -31,12 +31,12 @@ const SLIDES = [
 ];
 
 const NOTES = [
-  { title: "大学職員のためのプロンプトガイド2026", date: "2026-02-14", url: "https://note.com/pogohopper8/n/nced249950cfc", image: "https://assets.st-note.com/production/uploads/images/251604882/rectangle_large_type_2_5446953b018b72a9bd2261cd6aad8310.png?fit=bounds&quality=85&width=1280" },
-  { title: "「非エンジニア」は誰のための言葉なのか", date: "2026-02-11", url: "https://note.com/pogohopper8/n/n104fd0146499", image: "https://assets.st-note.com/production/uploads/images/250833938/rectangle_large_type_2_042b220d07ec7fa717478a875d023484.png?fit=bounds&quality=85&width=1280" },
-  { title: "あとから効いてくるAIとの付き合い方", date: "2026-01-12", url: "https://note.com/pogohopper8/n/n6616108810c6", image: "https://assets.st-note.com/production/uploads/images/243235615/rectangle_large_type_2_ece79ada89ce516dc7e303f85d77c409.png?fit=bounds&quality=85&width=1280" },
-  { title: "NotionAIと一緒に「うえきばちポータル」を作った", date: "2026-01-01", url: "https://note.com/pogohopper8/n/nfba8a7056732", image: "https://assets.st-note.com/production/uploads/images/240344144/rectangle_large_type_2_811902457784c580a90463de4ff5261e.png?fit=bounds&quality=85&width=1280" },
-  { title: "[翻訳] AIエージェント時代のコンテキストグラフについて", date: "2025-12-25", url: "https://note.com/pogohopper8/n/n334157e502ca", image: "https://assets.st-note.com/production/uploads/images/238688945/rectangle_large_type_2_6e42add3c0ec4ef3d27a410bff48f4ac.jpeg?fit=bounds&quality=85&width=1280" },
-  { title: "生成AI利用者のためのプロンプトガイドをWeb公開しました", date: "2024-02-02", url: "https://note.com/pogohopper8/n/n85bba164bb7e", image: "https://assets.st-note.com/production/uploads/images/129310777/rectangle_large_type_2_cc2b6bbdb57fc8e7134a59b475c6f371.png?fit=bounds&quality=85&width=1280" },
+  { title: "大学職員のためのプロンプトガイド2026", date: "2026-02-14", url: "https://note.com/pogohopper8/n/nced249950cfc", image: "https://assets.st-note.com/production/uploads/images/251604882/rectangle_large_type_2_5446953b018b72a9bd2261cd6aad8310.png?fit=bounds&quality=85&width=400" },
+  { title: "「非エンジニア」は誰のための言葉なのか", date: "2026-02-11", url: "https://note.com/pogohopper8/n/n104fd0146499", image: "https://assets.st-note.com/production/uploads/images/250833938/rectangle_large_type_2_042b220d07ec7fa717478a875d023484.png?fit=bounds&quality=85&width=400" },
+  { title: "あとから効いてくるAIとの付き合い方", date: "2026-01-12", url: "https://note.com/pogohopper8/n/n6616108810c6", image: "https://assets.st-note.com/production/uploads/images/243235615/rectangle_large_type_2_ece79ada89ce516dc7e303f85d77c409.png?fit=bounds&quality=85&width=400" },
+  { title: "NotionAIと一緒に「うえきばちポータル」を作った", date: "2026-01-01", url: "https://note.com/pogohopper8/n/nfba8a7056732", image: "https://assets.st-note.com/production/uploads/images/240344144/rectangle_large_type_2_811902457784c580a90463de4ff5261e.png?fit=bounds&quality=85&width=400" },
+  { title: "[翻訳] AIエージェント時代のコンテキストグラフについて", date: "2025-12-25", url: "https://note.com/pogohopper8/n/n334157e502ca", image: "https://assets.st-note.com/production/uploads/images/238688945/rectangle_large_type_2_6e42add3c0ec4ef3d27a410bff48f4ac.jpeg?fit=bounds&quality=85&width=400" },
+  { title: "生成AI利用者のためのプロンプトガイドをWeb公開しました", date: "2024-02-02", url: "https://note.com/pogohopper8/n/n85bba164bb7e", image: "https://assets.st-note.com/production/uploads/images/129310777/rectangle_large_type_2_cc2b6bbdb57fc8e7134a59b475c6f371.png?fit=bounds&quality=85&width=400" },
 ];
 
 const SLIDE_GRADIENTS = [
@@ -72,7 +72,7 @@ const UEKIBACHI_PORTAL: WorkItem = {
   title: "うえきばちポータル",
   description: "大学職員向けのAI活用情報ポータル。ツール・事例・研修資料をNotionで一元管理し、NotionAIが記事整理・要約などの定型業務を自動化。スマホからも利用可能。",
   link: "https://gmoriki.notion.site/uekibachi",
-  image: "https://res.cloudinary.com/do97jmk0n/image/upload/v1767757764/uekibachi_notion_header_final_fzjjan.png",
+  image: "https://res.cloudinary.com/do97jmk0n/image/upload/f_auto,q_auto/v1767757764/uekibachi_notion_header_final_fzjjan.png",
   tags: ["プロダクト"],
   featured: true,
 };
@@ -162,6 +162,8 @@ function ContentCarousel({
                     src={imgSrc}
                     alt={item.title}
                     className={cn("w-full h-full", isNote ? "object-contain bg-white" : "object-cover")}
+                    loading="lazy"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                     onError={() => setFailedImgs((prev) => new Set(prev).add(item.url))}
                   />
@@ -275,6 +277,8 @@ export default function Works() {
                       return imgSrc ? (
                         <div className="overflow-hidden rounded-t-lg aspect-[16/9]">
                           <img src={imgSrc} alt={work.title}
+                            loading="lazy"
+                            decoding="async"
                             referrerPolicy="no-referrer"
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         </div>
