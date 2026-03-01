@@ -53,6 +53,17 @@
 
   <body>
     <div id="root"></div>
+    <script>
+      // GitHub Pages SPA redirect: 404.html redirects to /?redirect=/path
+      // Process the redirect param before React mounts so Wouter sees the correct URL
+      (function() {
+        var params = new URLSearchParams(window.location.search);
+        var redirect = params.get('redirect');
+        if (redirect) {
+          window.history.replaceState(null, '', redirect);
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 
