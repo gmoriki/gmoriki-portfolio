@@ -106,11 +106,21 @@ export default function Home() {
           <motion.div {...fadeInUp} className="space-y-10">
             <h3 className="font-display text-4xl md:text-5xl font-bold">ABOUT</h3>
             <div className="grid md:grid-cols-[auto_1fr] gap-10 md:gap-24 items-start">
-              <img
-                src="/gmoriki.png"
-                alt="森木銀河"
-                className="w-32 h-32 md:w-48 md:h-48 object-cover"
-              />
+              <div className="relative w-32 h-32 md:w-48 md:h-48 group">
+                {/* Real photo */}
+                <img
+                  src="https://res.cloudinary.com/do97jmk0n/image/upload/v1772363188/IMG_7945_zucmps.jpg"
+                  alt="森木銀河"
+                  className="w-full h-full rounded-full object-cover"
+                />
+                {/* Original icon peeks from the right on hover */}
+                <img
+                  src="/gmoriki.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute bottom-0 right-0 w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-background translate-x-1/4 translate-y-1/4 opacity-0 scale-75 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-1/4 group-hover:translate-y-0 pointer-events-none"
+                />
+              </div>
               <div className="space-y-4">
                 <p className="text-lg md:text-xl font-semibold">森木 銀河</p>
                 <p className="text-sm text-muted-foreground">もりき ぎんが</p>
