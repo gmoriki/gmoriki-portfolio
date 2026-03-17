@@ -144,7 +144,7 @@ function ContentCarousel({
               onClick={() => window.open(item.url, "_blank", "noopener,noreferrer")}
               className={cn(
                 "float-item snap-center shrink-0 w-[200px] rounded-xl text-left",
-                "transition-all duration-200 ease-out",
+                "transition-[transform,box-shadow,border-color] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)]",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                 "hover:shadow-xl hover:-translate-y-1 active:scale-[0.97] active:shadow-md",
                 "border border-border hover:border-primary/40",
@@ -271,7 +271,7 @@ export default function Works() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {featuredWorks.map((work, i) => (
                   <div key={i} className="float-item" style={{ animationDelay: `${i * 0.5}s` }}>
-                  <Card className="flex flex-col hover:shadow-lg transition-shadow duration-300 group h-full">
+                  <Card className="flex flex-col hover:shadow-lg transition-[box-shadow,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.98] group h-full">
                     {(() => {
                       const imgSrc = work.image ?? null;
                       return imgSrc ? (
@@ -280,7 +280,7 @@ export default function Works() {
                             loading="lazy"
                             decoding="async"
                             referrerPolicy="no-referrer"
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]" />
                         </div>
                       ) : null;
                     })()}

@@ -118,6 +118,12 @@
   --sidebar-ring: oklch(0.45 0.08 160);
 }
 
+/* Custom easing curves */
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
 /* ふわふわアニメーション */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
@@ -199,6 +205,16 @@
     .editorial-grid {
       gap: 2rem;
     }
+  }
+}
+
+/* Touch device: disable transform-based hover effects */
+@media (hover: none) {
+  .group:hover .group-hover\:scale-105 {
+    transform: none;
+  }
+  .hover\:-translate-y-1:hover {
+    transform: none;
   }
 }
 

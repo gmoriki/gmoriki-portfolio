@@ -11,11 +11,13 @@ const lectureCount = allStats.find(s => s.label === "講演・研修")?.value ??
 const uniCount = new Set(works.filter(w => w.university).map(w => w.university)).size;
 const featuredWorks = works.filter(w => w.featured).slice(-3).reverse();
 
+const EASE_OUT = [0.23, 1, 0.32, 1] as const;
+
 const fadeInUp = {
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
+  initial: { opacity: 0, transform: "translateY(16px)" },
+  whileInView: { opacity: 1, transform: "translateY(0px)" },
   viewport: { once: true },
-  transition: { duration: 0.5, ease: "easeOut" },
+  transition: { duration: 0.5, ease: EASE_OUT },
 };
 
 export default function Home() {
@@ -46,10 +48,10 @@ export default function Home() {
             <motion.h3 {...fadeInUp} className="font-display text-4xl md:text-5xl font-bold">SERVICES</motion.h3>
             <div className="grid md:grid-cols-3 gap-6">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, transform: "translateY(20px)" }}
+                whileInView={{ opacity: 1, transform: "translateY(0px)" }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0 }}
+                transition={{ duration: 0.5, ease: EASE_OUT, delay: 0 }}
               >
                 <Card className="p-10 bg-card h-full">
                   <div className="space-y-4">
@@ -63,10 +65,10 @@ export default function Home() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, transform: "translateY(20px)" }}
+                whileInView={{ opacity: 1, transform: "translateY(0px)" }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+                transition={{ duration: 0.5, ease: EASE_OUT, delay: 0.1 }}
               >
                 <Card className="p-10 bg-card h-full">
                   <div className="space-y-4">
@@ -80,10 +82,10 @@ export default function Home() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, transform: "translateY(20px)" }}
+                whileInView={{ opacity: 1, transform: "translateY(0px)" }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+                transition={{ duration: 0.5, ease: EASE_OUT, delay: 0.2 }}
               >
                 <Card className="p-10 bg-card h-full">
                   <div className="space-y-4">
@@ -118,7 +120,7 @@ export default function Home() {
                   src="/gmoriki.png"
                   alt=""
                   aria-hidden="true"
-                  className="absolute bottom-0 right-0 w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-background translate-x-1/4 translate-y-1/4 opacity-0 scale-75 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-1/4 group-hover:translate-y-0 pointer-events-none"
+                  className="absolute bottom-0 right-0 w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-background translate-x-1/4 translate-y-1/4 opacity-0 scale-75 transition-[opacity,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 pointer-events-none"
                 />
               </div>
               <div className="space-y-4">
@@ -180,10 +182,10 @@ export default function Home() {
               {featuredWorks.map((work, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, transform: "translateY(20px)" }}
+                  whileInView={{ opacity: 1, transform: "translateY(0px)" }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
+                  transition={{ duration: 0.5, ease: EASE_OUT, delay: index * 0.1 }}
                 >
                   <Card className="p-6 bg-card h-full flex flex-col gap-3">
                     <div className="flex flex-wrap gap-2">
