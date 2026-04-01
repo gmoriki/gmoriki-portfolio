@@ -8,8 +8,10 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { works, computeStats, type WorkItem } from "@/data/works-data";
+import { pageTransition } from "../App";
 import { JapanMap } from "@/components/JapanMap";
 import { AppSidebar } from "@/components/AppSidebar";
 import Navigation from "@/components/Navigation";
@@ -40,26 +42,26 @@ const NOTES = [
 ];
 
 const SLIDE_GRADIENTS = [
-  "from-blue-600 to-indigo-700",
-  "from-violet-600 to-purple-700",
-  "from-emerald-600 to-teal-700",
-  "from-rose-600 to-pink-700",
-  "from-amber-500 to-orange-600",
-  "from-cyan-600 to-sky-700",
-  "from-fuchsia-600 to-violet-700",
-  "from-teal-600 to-emerald-700",
-  "from-orange-600 to-red-700",
-  "from-indigo-600 to-blue-700",
+  "from-teal-600 to-emerald-800",
+  "from-emerald-600 to-teal-800",
+  "from-cyan-600 to-teal-800",
+  "from-teal-700 to-cyan-900",
+  "from-emerald-700 to-green-900",
+  "from-cyan-700 to-emerald-900",
+  "from-teal-600 to-green-800",
+  "from-green-600 to-teal-800",
+  "from-emerald-600 to-cyan-800",
+  "from-teal-700 to-emerald-900",
 ];
 
 const NOTE_GRADIENTS = [
-  "from-slate-700 to-slate-900",
-  "from-zinc-700 to-neutral-900",
-  "from-gray-700 to-slate-900",
-  "from-neutral-700 to-zinc-900",
-  "from-stone-700 to-neutral-900",
-  "from-slate-600 to-gray-800",
-  "from-zinc-600 to-stone-800",
+  "from-teal-800 to-teal-950",
+  "from-emerald-800 to-emerald-950",
+  "from-cyan-800 to-teal-950",
+  "from-teal-900 to-emerald-950",
+  "from-emerald-900 to-cyan-950",
+  "from-green-800 to-teal-950",
+  "from-teal-800 to-green-950",
 ];
 
 // ─────────────────────────────────────────
@@ -237,11 +239,11 @@ export default function Works() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <motion.div className="min-h-screen bg-background" {...pageTransition}>
       <Navigation />
 
       {/* Navigation(fixed 72px)の下からレイアウト開始 */}
-      <div className="flex pt-[72px]">
+      <div className="flex pt-[72px] max-w-6xl mx-auto">
         <AppSidebar />
 
         <div className="flex-1 min-w-0 flex flex-col overflow-x-hidden">
@@ -452,6 +454,6 @@ export default function Works() {
           </footer>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

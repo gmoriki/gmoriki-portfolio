@@ -2,8 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import { ArrowRight, BookOpen, Users, Mic, Mail } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "wouter";
+import { pageTransition } from "../App";
 import { works, computeStats } from "@/data/works-data";
 
 const allStats = computeStats(works);
@@ -21,14 +22,18 @@ const fadeInUp = {
 };
 
 export default function Home() {
+  const { scrollY } = useScroll();
+  const heroY = useTransform(scrollY, [0, 400], [0, -40]);
+  const heroOpacity = useTransform(scrollY, [0, 300], [1, 0]);
+
   return (
-    <div className="min-h-screen bg-background">
+    <motion.div className="min-h-screen bg-background" {...pageTransition}>
       <Navigation />
 
       {/* Hero Section */}
       <section className="w-full" style={{ paddingTop: '80px' }}>
         <div className="container max-w-6xl mx-auto py-24 md:py-32">
-          <div className="space-y-6">
+          <motion.div className="space-y-6" style={{ y: heroY, opacity: heroOpacity }}>
             <div className="space-y-4">
               <h1 className="font-display text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight">
                 gmoriki
@@ -37,7 +42,7 @@ export default function Home() {
                 職場としての大学に、AI人材育成を。
               </h2>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -256,6 +261,6 @@ export default function Home() {
           </p>
         </div>
       </footer>
-    </div>
+    </motion.div>
   );
 }

@@ -1,24 +1,34 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
+import { AnimatePresence } from "framer-motion";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import Works from "./pages/Works";
 
+export const pageTransition = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  transition: { duration: 0.3, ease: [0.23, 1, 0.32, 1] },
+};
+
 function Router() {
-  // make sure to consider if you need authentication for certain routes
+  const [location] = useLocation();
   return (
-    <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path="/works" component={Works} />
-      <Route path={"/admin"} component={Admin} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
-      <Route component={NotFound} />
-    </Switch>
+    <AnimatePresence mode="wait">
+      <Switch key={location}>
+        <Route path={"/"} component={Home} />
+        <Route path="/works" component={Works} />
+        <Route path={"/admin"} component={Admin} />
+        <Route path={"/404"} component={NotFound} />
+        {/* Final fallback route */}
+        <Route component={NotFound} />
+      </Switch>
+    </AnimatePresence>
   );
 }
 
