@@ -405,7 +405,44 @@ footer {
 }
 footer > div {
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 26px;
+}
+footer > div > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.footer-socials {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: #171b18;
+}
+.footer-social-link svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+.footer-social-link--note svg {
+  width: 21px;
+  height: 21px;
+}
+.footer-social-link:focus-visible {
+  color: var(--green);
+}
+@media (hover: hover) and (pointer: fine) {
+  .footer-social-link:hover {
+    color: var(--green);
+  }
 }
 footer a:hover {
   text-decoration: underline;

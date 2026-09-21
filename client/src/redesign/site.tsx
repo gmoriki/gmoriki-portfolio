@@ -188,19 +188,46 @@ export function Footer() {
       <p>© 2026 gmoriki</p>
       <div>
         <a href={sitePaths.profile}>プロフィール・経歴</a>
-        <a href="https://note.com/pogohopper8" target="_blank" rel="noreferrer">
-          note
-        </a>
-        <a
-          href="https://speakerdeck.com/gmoriki"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Speaker Deck
-        </a>
-        <a href="https://x.com/pogohopper8" target="_blank" rel="noreferrer">
-          X
-        </a>
+        {/* Brand paths: Simple Icons (CC0), v16.0.0; Twitter bird: v11.15.0.
+            https://github.com/simple-icons/simple-icons */}
+        <span className="footer-socials">
+          <a
+            className="footer-social-link footer-social-link--note"
+            href="https://note.com/pogohopper8"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="note（新しいタブで開く）"
+            title="note"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M0 .279c4.623 0 10.953-.235 15.498-.117 6.099.156 8.39 2.813 8.468 9.374.077 3.71 0 14.335 0 14.335h-6.598c0-9.296.04-10.83 0-13.759-.078-2.578-.814-3.807-2.795-4.041-2.097-.235-7.975-.04-7.975-.04v17.84H0Z" />
+            </svg>
+          </a>
+          <a
+            className="footer-social-link"
+            href="https://speakerdeck.com/gmoriki"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Speaker Deck（新しいタブで開く）"
+            title="Speaker Deck"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M10.025 13.875H4.687a4.688 4.688 0 0 1 0-9.375h6.227a1.875 1.875 0 0 1 0 3.75H4.592a.937.937 0 1 0 0 1.875h5.337a4.687 4.687 0 1 1 0 9.375H1.875a1.875 1.875 0 0 1 0-3.75h8.15a.938.938 0 0 0 0-1.875zM13.97 19.5a5.635 5.635 0 0 0 2.396-3.75h3.026a.93.93 0 0 0 .921-.938V9.189a.93.93 0 0 0-.921-.938h-5.497c.438-.498.704-1.155.704-1.875s-.266-1.377-.704-1.875h6.418C22.35 4.5 24 6.179 24 8.25v7.5c0 2.071-1.65 3.75-3.687 3.75H13.97z" />
+            </svg>
+          </a>
+          <a
+            className="footer-social-link"
+            href="https://x.com/pogohopper8"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="X（旧Twitter、新しいタブで開く）"
+            title="X（旧Twitter）"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M21.543 7.104c.015.211.015.423.015.636 0 6.507-4.954 14.01-14.01 14.01v-.003A13.94 13.94 0 0 1 0 19.539a9.88 9.88 0 0 0 7.287-2.041 4.93 4.93 0 0 1-4.6-3.42 4.916 4.916 0 0 0 2.223-.084A4.926 4.926 0 0 1 .96 9.167v-.062a4.887 4.887 0 0 0 2.235.616A4.928 4.928 0 0 1 1.67 3.148 13.98 13.98 0 0 0 11.82 8.292a4.929 4.929 0 0 1 8.39-4.49 9.868 9.868 0 0 0 3.128-1.196 4.941 4.941 0 0 1-2.165 2.724A9.828 9.828 0 0 0 24 4.555a10.019 10.019 0 0 1-2.457 2.549z" />
+            </svg>
+          </a>
+        </span>
       </div>
     </footer>
   );

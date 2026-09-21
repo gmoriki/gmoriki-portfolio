@@ -75,9 +75,9 @@ export function ProfilePage() {
               <p className="profile-role">AIガバナンス支援</p>
               <ReadingScope>
                 <p>
-                  クロステック・マネジメントの業務をお手伝いし、京都芸術大学の
+                  瓜生山学園（京都芸術大学）の
                   <GreenTerm topic="governance">AIガバナンス</GreenTerm>
-                  を担当しています。
+                  を支援しています。
                 </p>
               </ReadingScope>
             </article>
