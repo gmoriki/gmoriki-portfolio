@@ -1,7 +1,6 @@
 // Sites metadata and anonymous access were checked on 2026-09-21 (JST).
 // Evidence: docs/redesign-2026-09/v10/sites-research.md.
-// The Hokkaido lecture site is linked at the owner's request. Its audience
-// remains restricted; only public sites are included in the activity index.
+// Upcoming lecture sites are omitted until the event has taken place.
 export type PublishedSite = {
   id: string;
   title: string;
@@ -14,17 +13,6 @@ export type PublishedSite = {
 };
 
 export const publishedSites: PublishedSite[] = [
-  {
-    id: "site-hokudai-ai-learning",
-    title: "AIができることを人はなぜ学ぶのか",
-    context: "北海道大学 講演サイト",
-    description:
-      "専門性を育て、AIと学び続ける大学へ。経験と学びの関係を考える図解スライド。",
-    href: "https://hokudai-learning.sites.gmoriki.com",
-    createdAt: "2026-09-18",
-    access: "restricted",
-    tags: ["北海道大学", "AI", "学び", "専門性", "講演資料"],
-  },
   {
     id: "site-kanazawa-seiryo-ai-training",
     title: "業務改善係のミッション",

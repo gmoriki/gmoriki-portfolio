@@ -139,6 +139,7 @@ img {
 }
 .hero-identity {
   display: grid;
+  /* Leave the second column empty to preserve the wordmark's size and whitespace. */
   grid-template-columns: minmax(0, 1fr) 23%;
   align-items: center;
   gap: 36px;
@@ -189,13 +190,6 @@ img {
 }
 .diagonal {
   transform: rotate(-45deg);
-}
-.portrait {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1;
-  object-fit: cover;
-  object-position: 49% 50%;
 }
 .works {
   padding: 0 var(--gutter);
@@ -557,22 +551,14 @@ footer a:hover {
     padding-bottom: 84px;
   }
   .hero-identity {
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
-    align-items: stretch;
-    margin-bottom: 40px;
+    display: block;
+    margin-bottom: 52px;
   }
   .masthead {
     font-size: 26vw;
     line-height: 0.98;
     letter-spacing: -0.055em;
     margin-left: -0.025em;
-  }
-  .portrait {
-    width: 100%;
-    aspect-ratio: 1.75;
-    object-position: 50% 34%;
   }
   .hero-bottom {
     display: block;

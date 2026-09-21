@@ -39,14 +39,6 @@ export function HomePage({ typeface }: { typeface?: WordmarkTypeface }) {
         <section className="hero" id="top" aria-labelledby="hero-title">
           <div className="hero-identity">
             <Wordmark face={typeface} className="masthead" id="hero-wordmark" />
-            <img
-              className="portrait"
-              src="/redesign/portrait.webp"
-              width="1600"
-              height="1067"
-              alt="森木銀河"
-              fetchPriority="high"
-            />
           </div>
           <div className="hero-bottom">
             <div className="hero-copy">
