@@ -53,6 +53,24 @@ export function ProfilePage() {
               <p>
                 社内講師の育成やコミュニティ運営を通じて、社員が業務で生成AIを使えるよう支援しています。
               </p>
+              <div className="profile-reading">
+                <a
+                  href="https://nttdocomo-developers.jp/entry/2025/11/05/090000"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span>GenAI講師コミュニティの取り組み — ドコモ</span>
+                  <Arrow diagonal />
+                </a>
+                <a
+                  href="https://cloud.google.com/blog/ja/products/ai-machine-learning/google-cloud-and-ntt-docomo-group-co-host-ai-prism"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span>+AI Prismでの登壇 — Google Cloud</span>
+                  <Arrow diagonal />
+                </a>
+              </div>
             </article>
             <article className="profile-current-entry">
               <h3>gmoriki</h3>
@@ -69,6 +87,19 @@ export function ProfilePage() {
             <article className="profile-current-entry">
               <h3>一橋大学</h3>
               <p className="profile-role">生成AI業務推進アドバイザー</p>
+              <p>
+                2026年度から、大学の事務業務における生成AI活用を支援しています。職員向けの講演や事務DXの活動報告への講評、生成AI利用ガイドラインの作成・見直しへの助言を通じて、日々の仕事に合った使い方と運用のあり方を一緒に考えています。
+              </p>
+              <div className="profile-reading">
+                <a
+                  href="https://www.hit-u.ac.jp/news/16113"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span>事務DX活動報告会での講評・講演 — 一橋大学</span>
+                  <Arrow diagonal />
+                </a>
+              </div>
             </article>
             <article className="profile-current-entry">
               <h3>クロステック・マネジメント</h3>
