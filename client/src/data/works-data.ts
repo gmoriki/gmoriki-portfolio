@@ -57,6 +57,7 @@ export interface WorkItem {
   organization?: string;
   subtitle?: string;
   link?: string;
+  linkLabel?: string;
   image?: string;
 }
 
@@ -76,7 +77,6 @@ export interface StatItem {
 // ここに追記するだけで件数・地図・主な実績が自動更新されます
 // ============================================================
 export const works: WorkItem[] = [
-
   // ---- 2019年 ----
 
   {
@@ -114,7 +114,8 @@ export const works: WorkItem[] = [
   {
     date: "2023年5月",
     title: "C4RA Python勉強会資料",
-    description: "大学リサーチアドミニストレーター向けPythonプログラミング勉強会資料。",
+    description:
+      "大学リサーチアドミニストレーター向けPythonプログラミング勉強会資料。",
     tags: ["プロダクト"],
   },
 
@@ -319,7 +320,8 @@ export const works: WorkItem[] = [
     date: "2024年8月27日",
     title: "大学業務における生成AI利活用セミナー",
     subtitle: "講演名：大学職員は生成AIを「実際に」活用できるのか",
-    description: "日本マイクロソフトと佐賀大学が共催した実践的なセミナー。基調講演を担当",
+    description:
+      "日本マイクロソフトと佐賀大学が共催した実践的なセミナー。基調講演を担当",
     university: "佐賀大学",
     organization: "日本マイクロソフト、佐賀大学共催",
     prefectureCode: "41",
@@ -469,7 +471,8 @@ export const works: WorkItem[] = [
   {
     date: "2024年12月18日",
     title: "大学職員/URAのためのMicrosoft Copilot活用セミナー",
-    organization: "勉強会「生成AIとURA業務」・日本マイクロソフト・株式会社ギブリー",
+    organization:
+      "勉強会「生成AIとURA業務」・日本マイクロソフト・株式会社ギブリー",
     tags: ["社会貢献"],
   },
   {
@@ -510,7 +513,8 @@ export const works: WorkItem[] = [
   },
   {
     date: "2025年1月15日",
-    title: "生成AI活用の基礎とプラクティス -2025年こそ生成AIを活用したい職員のために-",
+    title:
+      "生成AI活用の基礎とプラクティス -2025年こそ生成AIを活用したい職員のために-",
     university: "大学コンソーシアム大阪",
     prefectureCode: "27",
     prefectureName: "大阪府",
@@ -542,7 +546,7 @@ export const works: WorkItem[] = [
   },
   {
     date: "2025年7月23日",
-    title: "大学職員のための生成AI活用講座—\"AIをともに育む当事者\"への第一歩—",
+    title: '大学職員のための生成AI活用講座—"AIをともに育む当事者"への第一歩—',
     university: "早稲田大学アカデミックソリューション",
     prefectureCode: "13",
     prefectureName: "東京都",
@@ -556,7 +560,8 @@ export const works: WorkItem[] = [
   },
   {
     date: "2025年8月26日",
-    title: "大学教職員のためのAIリテラシー基礎研修—今すぐ始めるAI活用で変わる働き方—",
+    title:
+      "大学教職員のためのAIリテラシー基礎研修—今すぐ始めるAI活用で変わる働き方—",
     university: "岡山大学",
     prefectureCode: "33",
     prefectureName: "岡山県",
@@ -611,7 +616,8 @@ export const works: WorkItem[] = [
   {
     date: "2025年10月27日",
     title: "金沢大学 令和7年度DX研修（生成AI活用（応用編））",
-    subtitle: "研修名：生成AI活用の本質的理解：大学DXを加速する「プロトタイプ起点業務」",
+    subtitle:
+      "研修名：生成AI活用の本質的理解：大学DXを加速する「プロトタイプ起点業務」",
     description:
       "AIを「エイリアン・インテリジェンス（異質な知性）」として捉え、プロトタイプ思考で業務を変革する次世代の研修",
     university: "金沢大学",
@@ -650,13 +656,31 @@ export const works: WorkItem[] = [
   // ---- 2026年 ----
 
   {
-    date: "2026年2月6日",
+    date: "2026年1月1日",
+    title: "うえきばちポータル",
+    description:
+      "大学・教育機関向けに、生成AIの活用事例、研修資料、ポリシー情報などを集めたポータル。 日付は本人による公開紹介日。",
+    link: "https://gmoriki.notion.site/uekibachi",
+    tags: ["公開ツール", "プロダクト"],
+  },
+  {
+    date: "2026年2月4日",
     title: "大学業務への生成AIの活かし方 — Microsoft 365 Copilot分析機能編 —",
     university: "東京大学",
     organization: "東京大学 情報システムゼミ",
     prefectureCode: "13",
     prefectureName: "東京都",
     tags: ["講演"],
+  },
+  {
+    date: "2026年2月16日",
+    title: "高校生向け生成AI授業の教材提供",
+    organization: "東京都立科学技術高等学校",
+    university: "東京都立科学技術高等学校",
+    prefectureCode: "13",
+    prefectureName: "東京都",
+    tags: ["教材提供", "教材開発"],
+    description: "教材作成・提供。教材提供。",
   },
   {
     date: "2026年2月18日",
@@ -666,6 +690,168 @@ export const works: WorkItem[] = [
     prefectureCode: "19",
     prefectureName: "山梨県",
     tags: ["研修"],
+  },
+  {
+    date: "2026年2月27日",
+    title: "生成AIの基礎知識・活用とリスク",
+    organization: "中央学院大学／株式会社エデュース",
+    university: "中央学院大学",
+    prefectureCode: "12",
+    prefectureName: "千葉県",
+    tags: ["研修"],
+    description: "講師。オンライン。",
+  },
+  {
+    date: "2026年3月15日",
+    title: "mado web",
+    description:
+      "AIの回答やMarkdownを読みやすく表示し、リンクで共有するために制作したサービス。 日付は本人による公開紹介日。",
+    link: "https://mado-web.com/",
+    tags: ["公開ツール", "プロダクト"],
+  },
+  {
+    date: "2026年3月30日",
+    title: "認定講習の企画・教材開発",
+    organization: "名古屋大学 高等教育研究センター",
+    university: "名古屋大学",
+    prefectureCode: "23",
+    prefectureName: "愛知県",
+    tags: ["教材開発"],
+    description: "講習企画・動画教材／スライド開発。成果物納品。",
+  },
+  {
+    date: "2026年3月31日",
+    title: "生成AI利用ガイドラインのレビュー・整備支援",
+    organization: "一橋大学",
+    university: "一橋大学",
+    prefectureCode: "13",
+    prefectureName: "東京都",
+    tags: ["ガイドライン支援", "アドバイザリー"],
+    description: "レビュー・助言。成果物納品。",
+  },
+  {
+    date: "2026年4月24日",
+    title: "あとから効いてくるAIとの付き合い方",
+    organization: "一橋大学 令和7年度事務DX活動報告会",
+    university: "一橋大学",
+    prefectureCode: "13",
+    prefectureName: "東京都",
+    tags: ["講演"],
+    description: "講評・講演。ハイブリッド。",
+    link: "https://www.hit-u.ac.jp/news/16113",
+    linkLabel: "開催報告",
+  },
+  {
+    date: "2026年5月9日",
+    title: "大学職員のための生成AI最前線",
+    organization: "大学行政管理学会 関東地区研究会／東京都市大学",
+    university: "東京都市大学",
+    prefectureCode: "13",
+    prefectureName: "東京都",
+    tags: ["講演"],
+    description: "講師。対面。",
+    subtitle: "生成AIとデータ基盤 ―大学職員のための業務改革最前線",
+    link: "https://speakerdeck.com/gmoriki/da-xue-zhi-yuan-notamenosheng-cheng-aizui-qian-xian-zui-qian-xian-wo-aigabanansutositedu-mizhi-sutamenotips",
+    linkLabel: "講演資料",
+  },
+  {
+    date: "2026年5月20日",
+    title: "AI for RA：研究アドミニストレーション業務はどこまでAI化できるか？",
+    organization:
+      "メタサイエンス研究会／RA協議会スキルプログラム専門委員会テーマ別勉強会「生成AIとURA業務」",
+    tags: ["講演"],
+    description: "話題提供・共同主催。オンライン。",
+    link: "https://luma.com/5zfo42sw",
+    linkLabel: "イベント概要",
+  },
+  {
+    date: "2026年6月6日",
+    title: "AI時代の大学改革―教育と業務のリデザインを考える",
+    organization: "岐阜大学 医学教育開発研究センター（MEDC）",
+    university: "岐阜大学",
+    prefectureCode: "21",
+    prefectureName: "岐阜県",
+    tags: ["講演"],
+    description: "講師。対面。",
+    subtitle: "第93回医学教育セミナーとワークショップ MEDPark",
+    link: "https://www1.gifu-u.ac.jp/~medc/manabinodaichi/medicaleducation/seminarworkshop/2026/93th/index.html",
+    linkLabel: "イベント概要",
+  },
+  {
+    date: "2026年7月3日",
+    title: "大学事務のための生成AI入門",
+    prefectureCode: "26",
+    prefectureName: "京都府",
+    tags: ["研修"],
+    university: "大学コンソーシアム京都",
+    organization: "公益財団法人 大学コンソーシアム京都",
+    link: "https://www.consortium.or.jp/project/sd/joint-p",
+    linkLabel: "研修案内",
+    description: "対面研修",
+  },
+  {
+    date: "2026年7月24日",
+    title:
+      "大学職員のための生成AI業務活用入門 －業務に定着させる習慣をつくる－",
+    prefectureCode: "13",
+    prefectureName: "東京都",
+    tags: ["研修"],
+    university: "早稲田大学アカデミックソリューション（QuonAcademy）",
+    organization: "株式会社 早稲田大学アカデミックソリューション",
+    link: "https://note.com/pogohopper8/n/n802571eef7d1",
+    linkLabel: "研修開発の記録",
+    description: "オンライン研修",
+  },
+  {
+    date: "2026年8月3日",
+    title: "教職員を対象としたAI活用講座",
+    prefectureCode: "13",
+    prefectureName: "東京都",
+    tags: ["講演", "研修"],
+    university: "東京都立科学技術高等学校",
+    organization: "東京都立科学技術高等学校",
+    description: "対面講演・研修",
+  },
+  {
+    date: "2026年8月7日",
+    title: "生成AI活用に関するFD・SD研修会",
+    prefectureCode: "13",
+    prefectureName: "東京都",
+    tags: ["研修"],
+    university: "戸板女子短期大学",
+    organization: "戸板女子短期大学",
+    description: "対面研修",
+  },
+  {
+    date: "2026年8月31日",
+    title: "専任事務職員夏期研修（録画講演）",
+    prefectureCode: "26",
+    prefectureName: "京都府",
+    tags: ["研修", "教材開発"],
+    university: "京都産業大学",
+    organization: "京都産業大学",
+    description: "録画講演・研修教材の提供",
+  },
+  {
+    date: "2026年9月2日",
+    title: "全学FD・SD特別講演",
+    prefectureCode: "17",
+    prefectureName: "石川県",
+    tags: ["講演", "研修"],
+    university: "金沢星稜大学",
+    organization: "金沢星稜大学",
+    description: "対面講演・演習",
+  },
+  {
+    date: "2026年9月10日",
+    title: "生成AIの活用とコンプライアンス",
+    prefectureCode: "27",
+    prefectureName: "大阪府",
+    tags: ["講演", "研修"],
+    university: "近畿大学",
+    organization: "近畿大学",
+    subtitle: "全学FD・SD研究集会",
+    description: "オンライン講演",
   },
 
   // ---- ここから下に新しい実績を追加 ----
@@ -686,9 +872,12 @@ export const works: WorkItem[] = [
 
 // タグから件数を自動集計
 export function computeStats(workItems: WorkItem[]): StatItem[] {
-  let lecture = 0, paper = 0, social = 0, product = 0;
+  let lecture = 0,
+    paper = 0,
+    social = 0,
+    product = 0;
   for (const w of workItems) {
-    if (w.tags.some((t) => t === "講演" || t === "研修")) lecture++;
+    if (w.tags.some(t => t === "講演" || t === "研修")) lecture++;
     if (w.tags.includes("論文・発表")) paper++;
     if (w.tags.includes("社会貢献")) social++;
     if (w.tags.includes("プロダクト")) product++;
@@ -703,7 +892,7 @@ export function computeStats(workItems: WorkItem[]): StatItem[] {
 
 // featured: true の実績を年別グループに自動変換（WorksStats で使用）
 export function getNotableWorks(): YearGroup[] {
-  const featured = works.filter((w) => w.featured);
+  const featured = works.filter(w => w.featured);
   const yearMap = new Map<string, WorkItem[]>();
   for (const item of featured) {
     const match = item.date.match(/(\d{4})年/);
@@ -712,5 +901,8 @@ export function getNotableWorks(): YearGroup[] {
     if (!yearMap.has(key)) yearMap.set(key, []);
     yearMap.get(key)!.push(item);
   }
-  return Array.from(yearMap.entries()).map(([year, items]) => ({ year, items }));
+  return Array.from(yearMap.entries()).map(([year, items]) => ({
+    year,
+    items,
+  }));
 }

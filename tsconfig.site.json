@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.poc.json",
+  "compilerOptions": {
+    "resolveJsonModule": true
+  },
+  "include": ["client/src/public-site.tsx", "vite.site.config.ts"]
+}

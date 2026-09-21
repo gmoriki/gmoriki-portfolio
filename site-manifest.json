@@ -1,0 +1,34 @@
+{
+  "origin": "https://gmoriki.com",
+  "pages": [
+    {
+      "entry": "index.html",
+      "path": "/",
+      "title": "gmoriki — 森木銀河｜職場としての大学に、AI人材育成を。",
+      "description": "森木銀河（gmoriki）は、大学で働く人の学びと組織のAIガバナンスを支援しています。研修・講演、教材やWebツールの制作、ガイドライン策定に取り組んでいます。"
+    },
+    {
+      "entry": "works/index.html",
+      "path": "/works/",
+      "title": "Works — 森木銀河｜gmoriki",
+      "description": "森木銀河の講演・研修、執筆記事、公開資料、Webツールと研修サイト。大学・教育機関との活動を、地域や年、テーマから探せます。"
+    },
+    {
+      "entry": "profile/index.html",
+      "path": "/profile/",
+      "title": "プロフィール — 森木銀河｜gmoriki",
+      "description": "森木銀河のプロフィール。会社員としての生成AI活用推進と、個人事業gmorikiでの大学支援。現在の活動、考え方、経歴、学歴を紹介します。"
+    }
+  ],
+  "assets": [
+    "CNAME",
+    "logo.png",
+    "redesign/portrait.webp",
+    "redesign/viewer-detail.png",
+    "redesign/viewer-mobile.png",
+    "redesign/governance-detail.jpg",
+    "redesign/p4us.png",
+    "redesign/p4us-mobile.png",
+    "redesign/social-card.png"
+  ]
+}

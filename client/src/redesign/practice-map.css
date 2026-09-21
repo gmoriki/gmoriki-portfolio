@@ -1,0 +1,227 @@
+.practice-map {
+  --map-green: #165940;
+  --map-line: #fff;
+  width: 100%;
+  color: #111;
+  container-type: inline-size;
+}
+
+.practice-map__canvas {
+  position: relative;
+  max-width: 1060px;
+  margin-inline: auto;
+}
+
+.practice-map__drawing {
+  display: block;
+  width: min(100%, 900px);
+  height: auto;
+  margin-inline: auto;
+  overflow: visible;
+}
+
+.practice-map__caption {
+  position: absolute;
+  z-index: 1;
+  left: 1%;
+  top: 3%;
+  width: 36%;
+  pointer-events: none;
+}
+
+.practice-map__place {
+  font-size: clamp(24px, 3.6vw, 52px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.18;
+}
+
+.practice-map__context {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.practice-map__institutions {
+  max-width: 280px;
+  margin-top: 20px;
+  color: #595959;
+  font-size: 13px;
+  line-height: 1.9;
+  text-wrap: pretty;
+}
+
+.practice-map__prefecture {
+  fill: #e5e8e5;
+  stroke: var(--map-line);
+  stroke-width: 1.7;
+  stroke-linejoin: round;
+}
+
+.practice-map__prefecture.has-records {
+  fill: var(--map-green);
+  cursor: pointer;
+  transition: fill 160ms ease;
+  outline: none;
+  touch-action: manipulation;
+}
+
+.practice-map__prefecture.has-records:hover,
+.practice-map__prefecture.is-selected {
+  fill: #071f16;
+}
+
+.practice-map__prefecture.has-records:focus-visible {
+  fill: #071f16;
+  stroke: #000;
+  stroke-width: 4.5;
+  paint-order: stroke fill;
+}
+
+.practice-map__prefecture.is-selected {
+  stroke: #071f16;
+  stroke-width: 3;
+  paint-order: stroke fill;
+}
+
+.practice-map__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 20px;
+  border-top: 1px solid #c7cbc7;
+}
+
+.practice-map__select-label {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.practice-map__select-label select {
+  border: 0;
+  border-bottom: 1px solid #777;
+  border-radius: 0;
+  color: #111;
+  background: transparent;
+  font: inherit;
+  min-height: 44px;
+  min-width: 190px;
+  padding: 7px 28px 7px 5px;
+  cursor: pointer;
+}
+
+.practice-map__select-label select:focus-visible,
+.practice-map__reset:focus-visible {
+  outline: 2px solid var(--map-green);
+  outline-offset: 4px;
+}
+
+.practice-map__reset {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  min-height: 44px;
+  border: 0;
+  padding: 8px 0 8px 10px;
+  background: transparent;
+  font-size: 14px;
+}
+
+.practice-map__reset span {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.practice-map__hint {
+  color: #595959;
+  font-size: 13px;
+}
+
+@media (max-width: 640px) {
+  .practice-map__caption {
+    position: static;
+    width: 100%;
+    min-height: 155px;
+    padding-top: 20px;
+  }
+
+  .practice-map__place {
+    font-size: 32px;
+  }
+
+  .practice-map__context {
+    margin-top: 9px;
+    font-size: 14px;
+  }
+
+  .practice-map__institutions {
+    max-width: 100%;
+    margin-top: 12px;
+    font-size: 12px;
+  }
+
+  .practice-map__controls {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding-block: 15px;
+  }
+
+  .practice-map__select-label {
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+    font-size: 13px;
+  }
+
+  .practice-map__select-label select {
+    min-width: 170px;
+  }
+
+  .practice-map__hint {
+    display: none;
+  }
+}
+
+@container (max-width: 640px) {
+  .practice-map__caption {
+    position: static;
+    width: 100%;
+    min-height: 155px;
+    padding-top: 20px;
+  }
+
+  .practice-map__place {
+    font-size: 32px;
+  }
+
+  .practice-map__institutions {
+    max-width: 100%;
+    margin-top: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .practice-map__prefecture.has-records {
+    transition: none;
+  }
+}
+
+.practice-map__legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.practice-map__legend span {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  background: var(--map-green);
+}
