@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { sitePaths } from "./site-paths";
+import { moveGreenInk, PointerInk } from "./green-interactions";
 
 export type WordmarkTypeface = {
   family: string;
@@ -18,10 +19,12 @@ export function Wordmark({
   face = defaultTypeface,
   className = "",
   id,
+  interactive = false,
 }: {
   face?: WordmarkTypeface;
   className?: string;
   id?: string;
+  interactive?: boolean;
 }) {
   const box = useRef<HTMLDivElement>(null);
   const letters = useRef<HTMLSpanElement>(null);
@@ -56,6 +59,8 @@ export function Wordmark({
     >
       <span
         ref={letters}
+        className={interactive ? "green-pointer" : undefined}
+        onPointerMove={interactive ? moveGreenInk : undefined}
         style={{
           fontFamily: `"${setting.family}", sans-serif`,
           fontWeight: setting.weight,
@@ -65,6 +70,11 @@ export function Wordmark({
         }}
       >
         gmoriki
+        {interactive && (
+          <span className="green-pointer-copy" aria-hidden="true">
+            gmoriki
+          </span>
+        )}
       </span>
     </div>
   );
@@ -151,7 +161,7 @@ export function Navigation({
         aria-hidden={hideName || undefined}
         tabIndex={hideName ? -1 : undefined}
       >
-        <span className="identity__handle">gmoriki</span>
+        <PointerInk text="gmoriki" className="identity__handle" />
       </a>
       <nav aria-label="メインナビゲーション">
         <a

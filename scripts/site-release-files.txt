@@ -18,6 +18,8 @@ client/src/redesign/PracticeMap.tsx
 client/src/redesign/ProfilePage.tsx
 client/src/redesign/WorksPage.tsx
 client/src/redesign/activity-index.ts
+client/src/redesign/green-interactions.css
+client/src/redesign/green-interactions.tsx
 client/src/redesign/legacy-location.ts
 client/src/redesign/magazine-content.ts
 client/src/redesign/map-data.ts

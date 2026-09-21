@@ -1,10 +1,11 @@
 import { Arrow, Footer, Navigation } from "./site";
 import { sitePaths } from "./site-paths";
+import { GreenTerm, ReadingScope, ScrollInk } from "./green-interactions";
 import "./profile-page.css";
 
 export function ProfilePage() {
   return (
-    <>
+    <div className="green-site">
       <a className="skip-link" href="#main">
         本文へ
       </a>
@@ -25,21 +26,26 @@ export function ProfilePage() {
             height="1067"
             fetchPriority="high"
           />
-          <div className="profile-introduction">
+          <ReadingScope className="profile-introduction">
             <p>
-              会社員として生成AIの活用に携わりながら、個人事業gmorikiとして、大学・教育機関のAI人材育成とAIガバナンスを支援しています。
+              会社員として生成AIの活用に携わりながら、個人事業gmorikiとして、大学・教育機関の
+              <GreenTerm topic="learning">AI人材育成</GreenTerm>と
+              <GreenTerm topic="governance">AIガバナンス</GreenTerm>
+              を支援しています。
             </p>
             <p>
               私立大学の総務、国立大学でのデータ分析やシステム運用を経験してきました。大学で働く人の仕事を出発点に、研修や教材づくり、業務の試作、組織としてのルールづくりに取り組んでいます。
             </p>
-          </div>
+          </ReadingScope>
         </header>
 
         <section
           className="profile-section profile-split"
           aria-labelledby="current-title"
         >
-          <h2 id="current-title">現在の活動</h2>
+          <h2 id="current-title">
+            <ScrollInk marker>現在の活動</ScrollInk>
+          </h2>
           <div className="profile-current">
             <article className="profile-current-entry">
               <h3>会社員</h3>
@@ -53,9 +59,12 @@ export function ProfilePage() {
               <p className="profile-role">
                 大学・教育機関のAI人材育成と活用支援
               </p>
-              <p>
-                教職員向けの研修・講演、教材やWebツールの制作、AIガイドラインの策定支援に取り組んでいます。大学職員のためのプロンプトガイド「P4Us」など、実践から得た知見を公開しています。
-              </p>
+              <ReadingScope>
+                <p>
+                  <GreenTerm topic="learning">教職員向けの研修・講演</GreenTerm>
+                  、教材やWebツールの制作、AIガイドラインの策定支援に取り組んでいます。大学職員のためのプロンプトガイド「P4Us」など、実践から得た知見を公開しています。
+                </p>
+              </ReadingScope>
             </article>
             <article className="profile-current-entry">
               <h3>一橋大学</h3>
@@ -64,9 +73,13 @@ export function ProfilePage() {
             <article className="profile-current-entry">
               <h3>クロステック・マネジメント</h3>
               <p className="profile-role">AIガバナンス支援</p>
-              <p>
-                クロステック・マネジメントの業務をお手伝いし、京都芸術大学のAIガバナンスを担当しています。
-              </p>
+              <ReadingScope>
+                <p>
+                  クロステック・マネジメントの業務をお手伝いし、京都芸術大学の
+                  <GreenTerm topic="governance">AIガバナンス</GreenTerm>
+                  を担当しています。
+                </p>
+              </ReadingScope>
             </article>
           </div>
         </section>
@@ -75,7 +88,9 @@ export function ProfilePage() {
           className="profile-section profile-split"
           aria-labelledby="approach-title"
         >
-          <h2 id="approach-title">大切にしていること</h2>
+          <h2 id="approach-title">
+            <ScrollInk>大切にしていること</ScrollInk>
+          </h2>
           <div className="profile-prose">
             <p>
               大学で働く人には、教育・事務・経営、それぞれの専門性があります。その仕事のなかでAIを使い、試しながら、自分たちなりの使い方を見つけていくことを大切にしています。
@@ -109,9 +124,11 @@ export function ProfilePage() {
           aria-labelledby="personal-title"
         >
           <h2 id="personal-title">
-            <span className="profile-keep-words">少し、</span>
-            <wbr />
-            <span className="profile-keep-words">個人的なこと</span>
+            <ScrollInk>
+              <span className="profile-keep-words">少し、</span>
+              <wbr />
+              <span className="profile-keep-words">個人的なこと</span>
+            </ScrollInk>
           </h2>
           <div className="profile-prose">
             <p>佐賀県佐賀市出身。クジラとゾウ、走ることが好きです。</p>
@@ -140,7 +157,9 @@ export function ProfilePage() {
         </section>
 
         <section className="profile-section" aria-labelledby="career-title">
-          <h2 id="career-title">これまでの歩み</h2>
+          <h2 id="career-title">
+            <ScrollInk>これまでの歩み</ScrollInk>
+          </h2>
           <div className="profile-career">
             <article className="profile-career-entry">
               <p className="profile-period">
@@ -206,7 +225,9 @@ export function ProfilePage() {
           className="profile-section profile-split profile-education"
           aria-labelledby="education-title"
         >
-          <h2 id="education-title">学歴</h2>
+          <h2 id="education-title">
+            <ScrollInk>学歴</ScrollInk>
+          </h2>
           <dl>
             <div>
               <dt>京都産業大学</dt>
@@ -226,7 +247,9 @@ export function ProfilePage() {
           className="profile-section profile-split profile-publications"
           aria-labelledby="publications-title"
         >
-          <h2 id="publications-title">活動と公開物</h2>
+          <h2 id="publications-title">
+            <ScrollInk>活動と公開物</ScrollInk>
+          </h2>
           <div>
             <p>
               講演・研修の記録、執筆した記事、公開している資料やツールはWorksにまとめています。
@@ -248,6 +271,6 @@ export function ProfilePage() {
         </section>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }

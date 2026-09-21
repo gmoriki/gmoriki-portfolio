@@ -10,6 +10,7 @@ import { PracticeMap, practiceRegions } from "./PracticeMap";
 import { Arrow, Footer, Navigation } from "./site";
 import { projects } from "./projects";
 import { publishedSites } from "./published-sites";
+import { GreenTerm, ReadingScope, ScrollInk } from "./green-interactions";
 import "./works-page.css";
 
 const feature = editorialItems.find(item => item.id === "note-ai-governance")!;
@@ -117,14 +118,16 @@ export function WorksPage() {
     setVisibleCount(12);
   }
   return (
-    <>
+    <div className="green-site">
       <a className="skip-link" href="#main">
         本文へ
       </a>
       <Navigation current="works" />
       <main id="main" className="works-page">
         <header className="works-page-heading">
-          <h1>Works</h1>
+          <h1>
+            <ScrollInk>Works</ScrollInk>
+          </h1>
           <p>
             大学での研修から、日々の論考まで。
             <br />
@@ -152,7 +155,7 @@ export function WorksPage() {
               height="1080"
             />
           </a>
-          <div className="feature-copy">
+          <ReadingScope className="feature-copy">
             <p className="story-source">
               note<time dateTime={feature.date}>2026.05.09</time>
             </p>
@@ -175,7 +178,7 @@ export function WorksPage() {
               論考を読む
               <Arrow diagonal />
             </a>
-          </div>
+          </ReadingScope>
         </article>
 
         <section
@@ -184,7 +187,9 @@ export function WorksPage() {
           aria-labelledby="field-title"
         >
           <div className="works-section-heading">
-            <h2 id="field-title">各地で、ともに。</h2>
+            <h2 id="field-title">
+              <ScrollInk>各地で、ともに。</ScrollInk>
+            </h2>
             <p>大学・機関との関わりを、地域からたどる。</p>
           </div>
           <div className="field-layout">
@@ -238,7 +243,9 @@ export function WorksPage() {
           aria-labelledby="journal-title"
         >
           <div className="works-section-heading">
-            <h2 id="journal-title">Journal</h2>
+            <h2 id="journal-title">
+              <ScrollInk marker>Journal</ScrollInk>
+            </h2>
             <p>書いた論考、公開した講演資料。</p>
           </div>
           <div className="journal-spread">
@@ -254,7 +261,9 @@ export function WorksPage() {
           aria-labelledby="tools-title"
         >
           <div className="works-section-heading">
-            <h2 id="tools-title">使えるかたちに。</h2>
+            <h2 id="tools-title">
+              <ScrollInk>使えるかたちに。</ScrollInk>
+            </h2>
             <p>知恵を共有するために、公開している道具。</p>
           </div>
           <div className="tool-pair">
@@ -297,10 +306,15 @@ export function WorksPage() {
             id="sites"
             aria-labelledby="sites-title"
           >
-            <div className="sites-heading">
-              <h3 id="sites-title">研修・講演のWebサイト</h3>
-              <p>ChatGPT Sitesで制作した、実践と学びのための教材。</p>
-            </div>
+            <ReadingScope className="sites-heading">
+              <h3 id="sites-title">
+                <ScrollInk>研修・講演のWebサイト</ScrollInk>
+              </h3>
+              <p>
+                ChatGPT Sitesで制作した、実践と
+                <GreenTerm topic="learning">学び</GreenTerm>のための教材。
+              </p>
+            </ReadingScope>
             <div className="sites-list">
               {publishedSites.map(site => (
                 <article className="site-entry" key={site.id}>
@@ -331,7 +345,9 @@ export function WorksPage() {
           aria-labelledby="index-title"
         >
           <div className="works-section-heading">
-            <h2 id="index-title">Index</h2>
+            <h2 id="index-title">
+              <ScrollInk>Index</ScrollInk>
+            </h2>
             <p>講演・研修・論考・資料・公開ツール・サイトを、一覧から。</p>
           </div>
           <div className="index-controls">
@@ -486,6 +502,6 @@ export function WorksPage() {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }

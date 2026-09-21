@@ -8,6 +8,7 @@ import {
   type WordmarkTypeface,
 } from "./site";
 import { sitePaths } from "./site-paths";
+import { GreenTerm, ReadingScope, ScrollInk } from "./green-interactions";
 
 export function HomePage({ typeface }: { typeface?: WordmarkTypeface }) {
   const [selected, setSelected] = useState<(typeof works)[number] | null>(null);
@@ -30,37 +31,47 @@ export function HomePage({ typeface }: { typeface?: WordmarkTypeface }) {
     lastTrigger.current?.focus();
   }
   return (
-    <>
+    <div className="green-site">
       <a className="skip-link" href="#main">
         本文へ
       </a>
       <Navigation current="home" />
       <main id="main">
         <section className="hero" id="top" aria-labelledby="hero-title">
-          <div className="hero-identity">
-            <Wordmark face={typeface} className="masthead" id="hero-wordmark" />
-          </div>
-          <div className="hero-bottom">
-            <div className="hero-copy">
-              <h1 id="hero-title">
-                職場としての大学に、
-                <br />
-                AI人材育成を。
-              </h1>
+          <ReadingScope className="green-hero-reading">
+            <div className="hero-identity">
+              <Wordmark
+                face={typeface}
+                className="masthead"
+                id="hero-wordmark"
+                interactive
+              />
             </div>
-            <div className="hero-description">
-              <p>
-                大学で働く人の学びと、
-                <br className="desktop-break" />
-                組織のAIガバナンスを支援しています。
-              </p>
+            <div className="hero-bottom">
+              <div className="hero-copy">
+                <h1 id="hero-title">
+                  職場としての大学に、
+                  <br />
+                  <GreenTerm topic="learning">AI人材育成</GreenTerm>を。
+                </h1>
+              </div>
+              <div className="hero-description">
+                <p>
+                  大学で働く人の<GreenTerm topic="learning">学び</GreenTerm>と、
+                  <br className="desktop-break" />
+                  組織の<GreenTerm topic="governance">AIガバナンス</GreenTerm>
+                  を支援しています。
+                </p>
+              </div>
             </div>
-          </div>
+          </ReadingScope>
         </section>
 
         <section className="works" id="works" aria-labelledby="works-title">
           <div className="section-intro">
-            <h2 id="works-title">Works</h2>
+            <h2 id="works-title">
+              <ScrollInk>Works</ScrollInk>
+            </h2>
             <a className="text-link" href={sitePaths.works}>
               すべてのWorks
               <Arrow />
@@ -141,7 +152,7 @@ export function HomePage({ typeface }: { typeface?: WordmarkTypeface }) {
           <h2 id="about-title">
             知恵は、
             <br />
-            共有財にする。
+            <ScrollInk marker>共有財にする。</ScrollInk>
           </h2>
           <div className="about-copy">
             <p className="about-lead">
@@ -238,6 +249,6 @@ export function HomePage({ typeface }: { typeface?: WordmarkTypeface }) {
           </>
         )}
       </dialog>
-    </>
+    </div>
   );
 }
