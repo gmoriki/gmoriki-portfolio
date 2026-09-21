@@ -59,7 +59,12 @@ export function ProfilePage() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <span>GenAI講師コミュニティの取り組み — ドコモ</span>
+                  <span>
+                    <span className="profile-keep-words">
+                      GenAI講師コミュニティ
+                    </span>
+                    の取り組み — ドコモ
+                  </span>
                   <Arrow diagonal />
                 </a>
                 <a
