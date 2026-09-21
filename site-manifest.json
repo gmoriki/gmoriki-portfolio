@@ -1,5 +1,9 @@
 {
   "origin": "https://gmoriki.com",
+  "socialImage": {
+    "source": "redesign/social-card.png",
+    "alt": "gmoriki — 職場としての大学に、AI人材育成を。"
+  },
   "pages": [
     {
       "entry": "index.html",

@@ -11,6 +11,8 @@
 
 本番入口は `client/site/` と `client/src/public-site.tsx`、ビルド設定は `vite.site.config.ts`。公開画像とページ情報は `site-manifest.json` に限定して管理する。出力は `dist/public/`。比較ページ、制作資料、元画像、ログは配信対象に含めない。
 
+共有画像は `site-manifest.json` の `socialImage` で管理する。ビルド時に画像内容のハッシュを付けたURLを生成し、全ページのOGP・X用メタ情報に設定する。旧URLも同じ新画像を配信する。トップの写真やロゴを変更するときは、共有画像とその説明文も合わせて確認する。プロフィール本文の写真は共有画像とは別に扱う。
+
 従来の `/works` は `/works/` へ移動する。旧Worksの5種類の `#section-*`、トップの `#expertise`、旧404が生成した `/?redirect=/works` を新ページの対応箇所へ案内する。存在しないURLは404とし、トップへの一律転送はしない。
 
 ## ローカル検証

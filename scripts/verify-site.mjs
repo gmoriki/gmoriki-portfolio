@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,6 +9,13 @@ const root = path.join(project, "dist/public");
 const manifest = JSON.parse(
   await readFile(path.join(project, "site-manifest.json"), "utf8")
 );
+const card = await readFile(path.join(root, manifest.socialImage.source));
+const cardHash = createHash("sha256").update(card).digest("hex").slice(0, 12);
+const cardFile = manifest.socialImage.source.replace(
+  /\.png$/,
+  `-${cardHash}.png`
+);
+const cardUrl = `${manifest.origin}/${cardFile}`;
 const read = file => readFile(path.join(root, file), "utf8");
 const files = (await readdir(root, { recursive: true })).filter(
   file => !file.endsWith("/")
@@ -15,6 +23,7 @@ const files = (await readdir(root, { recursive: true })).filter(
 const allowed = new Set([
   ...manifest.pages.map(page => page.entry),
   ...manifest.assets,
+  cardFile,
   "404.html",
   ".nojekyll",
   "robots.txt",
@@ -55,10 +64,21 @@ for (const page of manifest.pages) {
     `${page.entry}: og:url`
   );
   assert.ok(
-    html.includes(
-      `property="og:image" content="${manifest.origin}/redesign/social-card.png"`
-    ),
+    html.includes(`property="og:image" content="${cardUrl}"`),
     `${page.entry}: social image`
+  );
+  assert.ok(
+    html.includes(`name="twitter:image" content="${cardUrl}"`),
+    `${page.entry}: Twitter image`
+  );
+  assert.ok(
+    html.includes(
+      `property="og:image:alt" content="${manifest.socialImage.alt}"`
+    ) &&
+      html.includes(
+        `name="twitter:image:alt" content="${manifest.socialImage.alt}"`
+      ),
+    `${page.entry}: social image descriptions`
   );
   assert.ok(
     html.includes('name="twitter:card" content="summary_large_image"'),
@@ -69,7 +89,7 @@ for (const page of manifest.pages) {
   assert.ok(sitemap.includes(`<loc>${url}</loc>`), `${page.entry}: sitemap`);
 }
 assert.ok((await read("404.html")).includes('content="noindex, follow"'));
-const card = await readFile(path.join(root, "redesign/social-card.png"));
+assert.deepEqual(await readFile(path.join(root, cardFile)), card);
 assert.equal(card.subarray(1, 4).toString(), "PNG");
 assert.equal(card.readUInt32BE(16), 1200);
 assert.equal(card.readUInt32BE(20), 630);
@@ -96,5 +116,5 @@ for (const file of files.filter(file => /\.(html|js|css)$/.test(file))) {
   }
 }
 console.log(
-  `Public build verified: ${manifest.pages.length} pages, 404, ${manifest.assets.length} public assets, metadata and sitemap.`
+  `Public build verified: ${manifest.pages.length} pages, 404, ${manifest.assets.length} public assets, versioned social image, metadata and sitemap.`
 );

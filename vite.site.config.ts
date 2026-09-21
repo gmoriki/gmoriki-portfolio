@@ -1,4 +1,5 @@
 import react from "@vitejs/plugin-react";
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { defineConfig } from "vite";
@@ -6,6 +7,17 @@ import manifest from "./site-manifest.json";
 
 const project = import.meta.dirname;
 const root = path.resolve(project, "client/site");
+const socialImageSource = readFileSync(
+  path.resolve(project, "client/public", manifest.socialImage.source)
+);
+const socialImageHash = createHash("sha256")
+  .update(socialImageSource)
+  .digest("hex")
+  .slice(0, 12);
+const socialImageFile = manifest.socialImage.source.replace(
+  /\.png$/,
+  `-${socialImageHash}.png`
+);
 
 export default defineConfig({
   root,
@@ -26,7 +38,7 @@ export default defineConfig({
         const page = manifest.pages.find(item => item.entry === entry);
         if (!page) return html;
         const url = manifest.origin + page.path;
-        const image = manifest.origin + "/redesign/social-card.png";
+        const image = `${manifest.origin}/${socialImageFile}`;
         return {
           html: html.replace(
             /<title>.*?<\/title>/s,
@@ -50,10 +62,10 @@ export default defineConfig({
               "og:title": page.title,
               "og:description": page.description,
               "og:image": image,
+              "og:image:type": "image/png",
               "og:image:width": "1200",
               "og:image:height": "630",
-              "og:image:alt":
-                "gmoriki — 職場としての大学に、AI人材育成を。森木銀河のポートレート",
+              "og:image:alt": manifest.socialImage.alt,
             }).map(([property, content]) => ({
               tag: "meta",
               attrs: { property, content },
@@ -63,8 +75,7 @@ export default defineConfig({
               "twitter:title": page.title,
               "twitter:description": page.description,
               "twitter:image": image,
-              "twitter:image:alt":
-                "gmoriki — 職場としての大学に、AI人材育成を。森木銀河のポートレート",
+              "twitter:image:alt": manifest.socialImage.alt,
             }).map(([name, content]) => ({
               tag: "meta",
               attrs: { name, content },
@@ -73,6 +84,12 @@ export default defineConfig({
         };
       },
       generateBundle() {
+        // The original path remains available for previously shared links.
+        this.emitFile({
+          type: "asset",
+          fileName: socialImageFile,
+          source: socialImageSource,
+        });
         for (const fileName of manifest.assets) {
           this.emitFile({
             type: "asset",
