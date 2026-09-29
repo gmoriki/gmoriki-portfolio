@@ -5,6 +5,7 @@ import {
   Footer,
   Navigation,
   Wordmark,
+  contactAvailability,
   type WordmarkTypeface,
 } from "./site";
 import { sitePaths } from "./site-paths";
@@ -198,11 +199,14 @@ export function HomePage({ typeface }: { typeface?: WordmarkTypeface }) {
               <br />
               次の実践を。
             </h2>
-            <p>
-              大学のAI研修、人材育成、ガバナンスの相談。
-              <br />
-              いま考えていることから、お聞かせください。
-            </p>
+            <div className="contact-copy">
+              <p>
+                大学のAI研修、人材育成、ガバナンスの相談。
+                <br />
+                ご相談の内容や実施時期を、まずはメールでお知らせください。
+              </p>
+              <p className="contact-availability">{contactAvailability}</p>
+            </div>
           </div>
           <a className="email" href="mailto:info@gmoriki.com">
             info@gmoriki.com

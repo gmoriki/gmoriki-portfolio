@@ -9,6 +9,9 @@ export type WordmarkTypeface = {
   fontVariationSettings?: string;
 };
 
+export const contactAvailability =
+  "2026年9月現在、新しいご依頼に対応できる時間が限られております。お返事までお待たせすることや、せっかくお声がけいただいても、内容によってはお引き受けできないことがあり、申し訳ありません。単発の研修は2027年1月以降、継続的なご支援は2027年度以降を目安にご相談いただけますと幸いです。";
+
 const defaultTypeface: WordmarkTypeface = {
   family: "Instrument Sans",
   weight: 600,

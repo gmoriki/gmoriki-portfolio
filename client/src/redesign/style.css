@@ -6,6 +6,7 @@
   font-weight: 400;
   --gutter: max(28px, 10.5vw, calc((100vw - 1360px) / 2));
   --section-space: clamp(96px, 10vw, 160px);
+  --navigation-height: 104px;
   --green: #165940;
   --muted: #595959;
 }
@@ -65,7 +66,7 @@ img {
   transform: none;
 }
 .navigation {
-  height: 104px;
+  height: var(--navigation-height);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -135,7 +136,14 @@ img {
   line-height: 1;
 }
 .hero {
-  padding: 60px var(--gutter) var(--section-space);
+  min-height: calc(100vh - var(--navigation-height));
+  min-height: calc(100svh - var(--navigation-height));
+  display: flex;
+  align-items: center;
+  padding: 60px var(--gutter);
+}
+.green-hero-reading {
+  width: 100%;
 }
 .hero-identity {
   display: grid;
@@ -372,6 +380,13 @@ img {
   line-height: 1.9;
   padding-bottom: 8px;
 }
+.contact-copy .contact-availability {
+  max-width: 44em;
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
 .email {
   display: flex;
   justify-content: space-between;
@@ -568,12 +583,12 @@ footer a:hover {
   :root {
     --gutter: 28px;
     --section-space: 88px;
+    --navigation-height: 78px;
   }
   html {
     scroll-padding-top: 102px;
   }
   .navigation {
-    height: 78px;
     gap: 18px;
   }
   .home-link {
@@ -585,7 +600,7 @@ footer a:hover {
   }
   .hero {
     padding-top: 28px;
-    padding-bottom: 84px;
+    padding-bottom: 28px;
   }
   .hero-identity {
     display: block;

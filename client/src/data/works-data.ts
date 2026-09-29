@@ -853,6 +853,29 @@ export const works: WorkItem[] = [
     subtitle: "全学FD・SD研究集会",
     description: "オンライン講演",
   },
+  {
+    date: "2026年9月25日",
+    title: "AIができることを人はなぜ学ぶのか",
+    university: "北海道大学",
+    organization: "北海道大学教育学修支援センター／北海道FD・SD協議会",
+    prefectureCode: "1",
+    prefectureName: "北海道",
+    tags: ["講演"],
+    subtitle: "シリーズ「生成AIに問われる大学の意義」③",
+    description: "オンライン講演",
+    link: "https://hokudai-learning.sites.gmoriki.com",
+    linkLabel: "講演サイト",
+  },
+  {
+    date: "2026年9月29日",
+    title: "なぜ大学では生成AIが広まりにくいのか？組織の“つくり”から考える話",
+    organization: "大学づくりラジオ",
+    tags: ["メディア出演"],
+    subtitle: "第20回・ゲスト出演",
+    description: "大学の生成AI活用とシャドーAIについて対談。",
+    link: "https://podcasts.apple.com/us/podcast/id1896580630?i=1000792043199",
+    linkLabel: "番組を聴く",
+  },
 
   // ---- ここから下に新しい実績を追加 ----
   // {

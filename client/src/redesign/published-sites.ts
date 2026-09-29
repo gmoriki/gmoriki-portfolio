@@ -1,6 +1,4 @@
-// Sites metadata and anonymous access were checked on 2026-09-21 (JST).
-// Evidence: docs/redesign-2026-09/v10/sites-research.md.
-// Upcoming lecture sites are omitted until the event has taken place.
+// Sites metadata and anonymous access were checked on 2026-09-29 (JST).
 export type PublishedSite = {
   id: string;
   title: string;
@@ -13,6 +11,17 @@ export type PublishedSite = {
 };
 
 export const publishedSites: PublishedSite[] = [
+  {
+    id: "site-hokudai-ai-learning",
+    title: "AIができることを人はなぜ学ぶのか",
+    context: "北海道大学 公開講演",
+    description:
+      "AIに仕事を任せるとき、成果と人の学びをどう両立するか。講演内容を図解でたどれるサイト。",
+    href: "https://hokudai-learning.sites.gmoriki.com",
+    createdAt: "2026-09-18",
+    access: "public",
+    tags: ["北海道大学", "講演", "生成AI", "学び", "研修教材"],
+  },
   {
     id: "site-kanazawa-seiryo-ai-training",
     title: "業務改善係のミッション",

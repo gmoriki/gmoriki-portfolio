@@ -7,7 +7,7 @@ import {
   indexRows,
 } from "./activity-index";
 import { PracticeMap, practiceRegions } from "./PracticeMap";
-import { Arrow, Footer, Navigation } from "./site";
+import { Arrow, Footer, Navigation, contactAvailability } from "./site";
 import { projects } from "./projects";
 import { publishedSites } from "./published-sites";
 import { GreenTerm, ReadingScope, ScrollInk } from "./green-interactions";
@@ -311,7 +311,7 @@ export function WorksPage() {
                 <ScrollInk>研修・講演のWebサイト</ScrollInk>
               </h3>
               <p>
-                ChatGPT Sitesで制作した、実践と
+                ChatGPT Sitesで制作した、講演資料と
                 <GreenTerm topic="learning">学び</GreenTerm>のための教材。
               </p>
             </ReadingScope>
@@ -348,7 +348,9 @@ export function WorksPage() {
             <h2 id="index-title">
               <ScrollInk>Index</ScrollInk>
             </h2>
-            <p>講演・研修・論考・資料・公開ツール・サイトを、一覧から。</p>
+            <p>
+              講演・研修・メディア出演・論考・資料・公開ツール・サイトを、一覧から。
+            </p>
           </div>
           <div className="index-controls">
             <label className="index-search">
@@ -486,15 +488,18 @@ export function WorksPage() {
             </button>
           )}
           <p className="index-note">
-            2026年9月21日更新。日付は開催・納品・掲載日。公開ツールは紹介記事の公開日、公開サイトは初回登録日を含みます。研修の実施と、資料・関連記事・サイトの公開はそれぞれ掲載しています。
+            2026年9月29日更新。日付は開催・納品・掲載日。公開ツールは紹介記事の公開日、公開サイトは初回登録日を含みます。研修の実施と、資料・関連記事・サイトの公開はそれぞれ掲載しています。
           </p>
         </section>
         <div className="works-contact">
-          <p>
-            大学のAI人材育成について、
-            <br />
-            一緒に考えてみませんか。
-          </p>
+          <div className="works-contact-copy">
+            <p className="works-contact-lead">
+              大学のAI人材育成。
+              <br />
+              ご相談はメールで。
+            </p>
+            <p className="contact-availability">{contactAvailability}</p>
+          </div>
           <a href="mailto:info@gmoriki.com">
             info@gmoriki.com
             <Arrow diagonal />
